@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AU Architecture Map</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Chakra+Petch:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0c0e14;--s1:#131620;--s2:#181c28;--bd:#2a3045;--g:#5efa9e;--gd:#3ab876;--r:#ff6b8a;--rd:#cc4466;--y:#f0c050;--b:#60a0f0;--c:#60d0d0;--p:#a78bfa;--t:#d0d8e8;--m:#6a7594;--w:#e8ecf4}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--t);font-family:'IBM Plex Mono',monospace;font-size:14px;line-height:1.7}
+.wrap{max-width:960px;margin:0 auto;padding:20px 16px}
+h1{font-family:'Chakra Petch',sans-serif;font-size:28px;font-weight:700;color:var(--g);letter-spacing:2px;text-align:center;margin-bottom:4px}
+h2{font-family:'Chakra Petch',sans-serif;font-size:20px;font-weight:600;color:var(--w);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--bd)}
+h3{font-family:'Chakra Petch',sans-serif;font-size:16px;font-weight:600;color:var(--g);margin:20px 0 10px}
+.sub{color:var(--m);font-size:12px;text-align:center;margin-bottom:24px}
+.nav{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-bottom:28px;position:sticky;top:0;background:var(--bg);padding:10px 0;z-index:10;border-bottom:1px solid var(--bd)}
+.nav a{font-size:11px;color:var(--m);text-decoration:none;padding:4px 10px;border:1px solid var(--bd);border-radius:4px;font-family:'Chakra Petch',sans-serif;letter-spacing:1px;text-transform:uppercase;transition:all .2s}
+.nav a:hover{color:var(--g);border-color:var(--gd)}
+
+/* Flow diagram styles */
+.flow{display:flex;flex-direction:column;align-items:center;gap:0;margin:16px 0}
+.flow-row{display:flex;gap:12px;align-items:stretch;justify-content:center;flex-wrap:wrap;width:100%}
+.flow-arrow{color:var(--gd);font-size:20px;text-align:center;padding:4px 0;opacity:0.6}
+.flow-arrow.wide{width:100%}
+.node{background:var(--s1);border:1px solid var(--bd);border-radius:6px;padding:10px 14px;text-align:center;min-width:120px;flex:1;max-width:200px;transition:border-color .2s}
+.node:hover{border-color:var(--gd)}
+.node .label{font-family:'Chakra Petch',sans-serif;font-size:13px;font-weight:600;margin-bottom:3px}
+.node .desc{font-size:11px;color:var(--m);line-height:1.4}
+.node.eagle{border-left:3px solid var(--b)}
+.node.eagle .label{color:var(--b)}
+.node.nano{border-left:3px solid var(--p)}
+.node.nano .label{color:var(--p)}
+.node.osprey{border-left:3px solid var(--y)}
+.node.osprey .label{color:var(--y)}
+.node.vulture{border-left:3px solid var(--r)}
+.node.vulture .label{color:var(--r)}
+.node.weather{border-left:3px solid var(--c)}
+.node.weather .label{color:var(--c)}
+.node.green{border-left:3px solid var(--g)}
+.node.green .label{color:var(--g)}
+.node.yellow{border-left:3px solid var(--y)}
+.node.yellow .label{color:var(--y)}
+.node.blue{border-left:3px solid var(--b)}
+.node.blue .label{color:var(--b)}
+.node.red{border-left:3px solid var(--r)}
+.node.red .label{color:var(--r)}
+.node.purple{border-left:3px solid var(--p)}
+.node.purple .label{color:var(--p)}
+.node.cyan{border-left:3px solid var(--c)}
+.node.cyan .label{color:var(--c)}
+.node.wide{max-width:100%;flex-basis:100%}
+.node.highlight{border:1px solid var(--gd);background:rgba(94,250,158,0.05)}
+
+.card{background:var(--s1);border:1px solid var(--bd);border-radius:6px;padding:14px;margin:12px 0;font-size:13px;line-height:1.8}
+.card.alert{border-color:var(--y);background:rgba(240,192,80,0.05)}
+.tag{font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;letter-spacing:1px;font-family:'Chakra Petch',sans-serif;display:inline-block;margin:2px}
+.tag-g{background:rgba(94,250,158,0.12);color:var(--g);border:1px solid var(--gd)}
+.tag-y{background:rgba(240,192,80,0.12);color:var(--y);border:1px solid #c09830}
+.tag-b{background:rgba(96,160,240,0.12);color:var(--b);border:1px solid #4080cc}
+.tag-r{background:rgba(255,107,138,0.12);color:var(--r);border:1px solid var(--rd)}
+.tag-p{background:rgba(167,139,250,0.12);color:var(--p);border:1px solid #7c5fcf}
+.tag-c{background:rgba(96,208,208,0.12);color:var(--c);border:1px solid #3aaa9e}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+@media(max-width:640px){.grid2,.grid3{grid-template-columns:1fr}.flow-row{flex-direction:column;align-items:center}}
+
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--bd),transparent);margin:32px 0}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0}
+th{background:var(--s2);color:var(--m);padding:8px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--bd)}
+td{padding:8px;border-bottom:1px solid #1a1f2e}
+.g{color:var(--g)}.r{color:var(--r)}.y{color:var(--y)}.b{color:var(--b)}.p{color:var(--p)}.c{color:var(--c)}
+.footer{text-align:center;color:#2a3045;font-size:11px;margin-top:40px;padding-top:16px;border-top:1px solid #1a1f2e}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>AU ARCHITECTURE MAP</h1>
+<div class="sub">ATHANOR UMBRA · SYSTEM REFERENCE · v1.0 · Updated Mar 28, 2026</div>
+
+<nav class="nav">
+  <a href="#overview">Overview</a>
+  <a href="#fleet">Bot Fleet</a>
+  <a href="#symphony">Symphony Protocol</a>
+  <a href="#morfeus">Morfeus Engine</a>
+  <a href="#agents">Multi-Agent</a>
+  <a href="#outputs">Output Channels</a>
+  <a href="#trading">Trading Pipeline</a>
+  <a href="#mcp">MCP Tools</a>
+  <a href="#data">Data Architecture</a>
+</nav>
+
+<!-- ============================================ -->
+<h2 id="overview">System Overview</h2>
+<!-- ============================================ -->
+
+<div class="flow">
+  <div class="flow-row">
+    <div class="node blue"><div class="label">Data Sources</div><div class="desc">Coinbase INTX, On-chain, F&G Index</div></div>
+  </div>
+  <div class="flow-arrow wide">▼</div>
+  <div class="flow-row">
+    <div class="node eagle"><div class="label">Eagle</div><div class="desc">Retail phase · 5s</div></div>
+    <div class="node nano"><div class="label">Nano</div><div class="desc">Institutional · 60s</div></div>
+    <div class="node osprey"><div class="label">Osprey</div><div class="desc">Whale flow · 15s</div></div>
+    <div class="node vulture"><div class="label">Vulture</div><div class="desc">Technical · 15-30m</div></div>
+    <div class="node weather"><div class="label">Weatherman</div><div class="desc">Macro · 30m</div></div>
+  </div>
+  <div class="flow-arrow wide">▼</div>
+  <div class="flow-row">
+    <div class="node green wide"><div class="label">Fleet State (RAM)</div><div class="desc">All 11 assets · All bot readings · Updated every cycle · Single source of truth</div></div>
+  </div>
+  <div class="flow-arrow wide">▼</div>
+  <div class="flow-row">
+    <div class="node yellow"><div class="label">Symphony State Machine</div><div class="desc">Override detection · 9/9 Nano ACCUM threshold</div></div>
+    <div class="node purple"><div class="label">Morfeus Confidence Engine</div><div class="desc">7 base + 3 regime shift multipliers</div></div>
+    <div class="node cyan"><div class="label">Pattern Engine</div><div class="desc">11 features · 4-key compounds</div></div>
+  </div>
+  <div class="flow-arrow wide">▼</div>
+  <div class="flow-row">
+    <div class="node highlight wide"><div class="label">Conviction Gate + EXECUTE Protocol</div><div class="desc">NO_SIGNAL → DIRECTIONAL → HIGH_CONVICTION → SYMPHONY_OVERRIDE · 93% hit rate on EXECUTE-filtered signals</div></div>
+  </div>
+  <div class="flow-arrow wide">▼</div>
+  <div class="flow-row">
+    <div class="node green"><div class="label">Signal Board</div><div class="desc">GitHub Pages · Public</div></div>
+    <div class="node yellow"><div class="label">Telegram</div><div class="desc">5 channels · Real-time</div></div>
+    <div class="node blue"><div class="label">Discord</div><div class="desc">Kettle + OFF GRID</div></div>
+    <div class="node red"><div class="label">Kalshi</div><div class="desc">Trade execution</div></div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<h2 id="fleet">Bot Fleet — The Orchestra</h2>
+<!-- ============================================ -->
+
+<div class="card">
+  "Don't just listen to the drum — let the whole orchestra play the symphony."<br>
+  Each bot reads ONE dimension of the market. The signal is in the HARMONY between all five voices.
+</div>
+
+<h3>Layer 1 — Eagle (Phase Detector)</h3>
+<div class="grid2">
+  <div class="node eagle"><div class="label">What it reads</div><div class="desc">Retail sentiment via CVD (Cumulative Volume Delta) and buy/sell pressure cycles</div></div>
+  <div class="node eagle"><div class="label">Output</div><div class="desc">CAPITULATION · ACCUMULATION · NEUTRAL · BREAKOUT_ATTEMPT + CVD direction</div></div>
+</div>
+<table>
+  <tr><th>Signal</th><th>Meaning</th><th>Action</th></tr>
+  <tr><td class="r">CAPITULATION</td><td>Retail panic selling, sellers exhausting</td><td>Watch for Nano disagreement (bullish if Nano stays ACCUM)</td></tr>
+  <tr><td class="g">ACCUMULATION</td><td>Buying pressure building</td><td>Momentum aligning upward</td></tr>
+  <tr><td>NEUTRAL</td><td>No strong directional pressure</td><td>Wait for catalyst</td></tr>
+  <tr><td class="g">BREAKOUT_ATTEMPT</td><td>Strong buying surge detected</td><td>Breakout in progress — act fast</td></tr>
+</table>
+<div class="card"><strong>Key rule:</strong> Eagle is the LOUDEST signal but NOT the most important. It tells you what RETAIL is doing — which is often wrong at turns.</div>
+
+<h3>Layer 2 — Nano (Perp Structure Analyzer)</h3>
+<div class="grid2">
+  <div class="node nano"><div class="label">What it reads</div><div class="desc">Perpetual futures OI, funding rates, institutional positioning across 9 perp-equipped assets</div></div>
+  <div class="node nano"><div class="label">Output</div><div class="desc">ACCUMULATION · DISTRIBUTION · CAPITULATION + funding rate + OI change</div></div>
+</div>
+<div class="card alert">
+  <strong>THE critical signal:</strong> Nano ACCUM during Eagle CAP = institutions buying what retail is selling = the STRONGEST bullish signal in the system. This is the foundation of the Symphony Protocol.
+</div>
+<table>
+  <tr><th>Pattern</th><th>Read</th></tr>
+  <tr><td class="g">Eagle CAP + Nano ACCUM</td><td>Bottom forming — institutions loading during panic</td></tr>
+  <tr><td class="r">Eagle CAP + Nano CAP</td><td>REAL breakdown — even institutions leaving</td></tr>
+  <tr><td class="g">7+/9 Nano ACCUM</td><td>SYMPHONY OVERRIDE — fleet-wide institutional consensus</td></tr>
+  <tr><td class="r">Nano DISTRIBUTION on individual asset</td><td>Institutions taking profit — exit or don't enter</td></tr>
+</table>
+
+<h3>Layer 3 — Osprey (Order Flow Monitor)</h3>
+<div class="grid2">
+  <div class="node osprey"><div class="label">What it reads</div><div class="desc">Whale transactions, zone positioning (0-100%), volume spikes, PIRATE/FENCE events</div></div>
+  <div class="node osprey"><div class="label">Output</div><div class="desc">Zone position · Volume ratio · PIRATE signals · FENCE ACTIVE · Zone accumulation patterns</div></div>
+</div>
+<div class="card"><strong>Filtering rule:</strong> Osprey fires HUNDREDS of signals per session. Must be filtered through Eagle + Nano for context. Individual SELL signals at resistance = whale profit-taking, not reversals. PIRATE CLUSTERS across hours = high conviction accumulation.</div>
+
+<h3>Layer 4 — Vulture (Technical Indicator Engine)</h3>
+<div class="grid2">
+  <div class="node vulture"><div class="label">What it reads</div><div class="desc">EMA stack (9/21), RSI, R:R ratio across multiple timeframes</div></div>
+  <div class="node vulture"><div class="label">Output</div><div class="desc">BULLISH STACK · BEARISH STACK · FLAT · RSI levels · R:R assessment</div></div>
+</div>
+<div class="card"><strong>Key principle:</strong> Vulture is the REFERENCE GUIDE (lagging), not the SIGNAL (leading). The bots are the leading indicators; Vulture confirms they're right. EMA STACK flips are DURABLE — they don't reverse in hours like Eagle/CVD.</div>
+
+<h3>Layer 5 — Weatherman (Macro Context Scanner)</h3>
+<div class="grid2">
+  <div class="node weather"><div class="label">What it reads</div><div class="desc">Fear & Greed Index, on-chain metrics, scheduled macro events, geopolitical context</div></div>
+  <div class="node weather"><div class="label">Output</div><div class="desc">Weatherman score · F&G index · On-chain score · Event calendar</div></div>
+</div>
+<div class="card"><strong>The concert hall:</strong> "Don't just listen to the song — know what concert hall you're in." Same bot signal means completely different things in different macro environments. MANDATORY check before any trade analysis.</div>
+
+<!-- ============================================ -->
+<h2 id="symphony">Symphony Protocol</h2>
+<!-- ============================================ -->
+
+<div class="flow">
+  <div class="flow-row">
+    <div class="node nano"><div class="label">Nano reads all 9 perp assets</div><div class="desc">BTC, ETH, SOL, DOGE, XRP, BNB, ZEC, LINK, BCH</div></div>
+  </div>
+  <div class="flow-arrow wide">▼</div>
+  <div class="flow-row">
+    <div class="node yellow"><div class="label">Count Nano ACCUM assets</div><div class="desc">≤3 = bearish · 4-6 = mixed · 7+ = OVERRIDE</div></div>
+  </div>
+  <div class="flow-arrow wide">▼</div>
+  <div class="flow-row">
+    <div class="node highlight"><div class="label">Symphony Override (7+/9)</div><div class="desc">Fleet-wide institutional consensus detected. Overrides individual R:R gates. 1.5x Kelly sizing.</div></div>
+  </div>
+  <div class="flow-arrow wide">▼</div>
+  <div class="flow-row">
+    <div class="node green"><div class="label">Duration gate</div><div class="desc">Must hold 30+ min to confirm. If Nano drops below 5 within 90min = kill switch.</div></div>
+    <div class="node red"><div class="label">CVD guard</div><div class="desc">If individual asset CVD contradicts fleet direction, Symphony multiplier does NOT apply to that asset.</div></div>
+  </div>
+</div>
+
+<h3>Symphony States</h3>
+<table>
+  <tr><th>State</th><th>Confidence</th><th>Trigger</th><th>Action</th></tr>
+  <tr><td>RANGE_BOUND</td><td>30%</td><td>Default / no strong alignment</td><td>Standard analysis, no override</td></tr>
+  <tr><td class="y">DIRECTIONAL</td><td>50-70%</td><td>5-6/9 aligned</td><td>Lean directional, quarter-Kelly</td></tr>
+  <tr><td class="g">SYMPHONY_OVERRIDE</td><td>80-97%</td><td>7+/9 Nano ACCUM</td><td>Override gates, 1.5x Kelly, wake Claude Code</td></tr>
+</table>
+
+<!-- ============================================ -->
+<h2 id="morfeus">Morfeus Confidence Engine</h2>
+<!-- ============================================ -->
+
+<div class="flow">
+  <div class="flow-row">
+    <div class="node green"><div class="label">Fleet State</div><div class="desc">Raw bot readings</div></div>
+  </div>
+  <div class="flow-arrow wide">▼</div>
+  <div class="flow-row">
+    <div class="node purple wide"><div class="label">3-Layer Confidence Calculation</div><div class="desc">Layer 1: Base formula (fleet features) → Layer 2: Pattern matcher (historical) → Layer 3: Claude interpretation (strategic)</div></div>
+  </div>
+  <div class="flow-arrow wide">▼</div>
+  <div class="flow-row">
+    <div class="node blue"><div class="label">7 Base Multipliers</div><div class="desc">EMA stack · Fleet CAP count · F&G · Nano OI · Macro shift · Eagle duration · Alignment quality</div></div>
+    <div class="node yellow"><div class="label">3 Regime Shift (NEW)</div><div class="desc">Symphony conviction ×1.15-1.50 · Fleet reversal ×1.10-1.20 · OVER cap exemption</div></div>
+  </div>
+  <div class="flow-arrow wide">▼</div>
+  <div class="flow-row">
+    <div class="node red"><div class="label">OVER Suppression Cap</div><div class="desc">Active when F&G ≤ 20 or 5+/11 CAP. Bypassed ONLY during sustained Symphony Override (Fix 3)</div></div>
+  </div>
+  <div class="flow-arrow wide">▼</div>
+</div>
+
+<h3>Confidence Tiers (Matrix Branding)</h3>
+<table>
+  <tr><th>Tier</th><th>Confidence</th><th>Meaning</th></tr>
+  <tr><td><span class="tag tag-g">PROPHECY</span></td><td>≥85%</td><td>Highest conviction — near-certain</td></tr>
+  <tr><td><span class="tag tag-y">RED PILL</span></td><td>≥70%</td><td>High conviction — tradeable</td></tr>
+  <tr><td><span class="tag tag-b">GLITCH</span></td><td>≥50%</td><td>Moderate — watch, don't commit heavy</td></tr>
+  <tr><td><span class="tag tag-p">BLUE PILL</span></td><td>≥30%</td><td>Low confidence — skip</td></tr>
+  <tr><td><span class="tag tag-r">GHOST</span></td><td>&lt;30%</td><td>No signal — do not trade</td></tr>
+</table>
+
+<h3>Conviction Gate</h3>
+<table>
+  <tr><th>Gate</th><th>Edge Required</th><th>Sizing</th><th>Trades Allowed</th></tr>
+  <tr><td>NO_SIGNAL</td><td>—</td><td>—</td><td>0</td></tr>
+  <tr><td>DIRECTIONAL</td><td>15%+</td><td>Quarter-Kelly</td><td>Lean</td></tr>
+  <tr><td>HIGH_CONVICTION</td><td>8%+</td><td>Half-Kelly</td><td>Standard</td></tr>
+  <tr><td class="g">SYMPHONY_OVERRIDE</td><td>5%+</td><td>1.5x Kelly</td><td>Heavy</td></tr>
+  <tr><td class="r">CATALYST_OVERRIDE</td><td>—</td><td>—</td><td>BLOCKED</td></tr>
+</table>
+
+<!-- ============================================ -->
+<h2 id="agents">Multi-Agent Architecture</h2>
+<!-- ============================================ -->
+
+<div class="flow">
+  <div class="flow-row">
+    <div class="node green"><div class="label">Desktop Claude</div><div class="desc">THIS CHAT · Strategy + Execution · MCP access · Fleet + Morfeus reads</div></div>
+    <div class="node blue"><div class="label">Chrome Claude</div><div class="desc">Kalshi scanning · Browser tasks · Contract pricing · Strike tables</div></div>
+    <div class="node purple"><div class="label">Terminal Claude</div><div class="desc">Claude Code · Engineering · Builds · Filesystem · Code deploys</div></div>
+  </div>
+  <div class="flow-arrow wide">▼ ▲ ▼ (bidirectional via prompts + files)</div>
+  <div class="flow-row">
+    <div class="node yellow wide"><div class="label">Claude Code Bridge (claude_code_bridge.py)</div><div class="desc">Auto-wakes Terminal Claude on Symphony Override or Volume Tsunami. Writes to claude_strategic_response.json. 1hr cooldown (force=True to bypass).</div></div>
+  </div>
+</div>
+
+<h3>Multi-Model Intelligence</h3>
+<div class="grid3">
+  <div class="node green"><div class="label">Claude (Lead)</div><div class="desc">Strategic analysis, all primary decisions, Max Pro subscription, zero API cost</div></div>
+  <div class="node yellow"><div class="label">Gemini Flash (Analyst)</div><div class="desc">Adaptive analyst cycles, free tier, reads fleet + writes reports</div></div>
+  <div class="node red"><div class="label">Grok (Parked)</div><div class="desc">Sentiment analysis, not active. Available for reactivation.</div></div>
+</div>
+
+<h3>Agent Trigger Paths</h3>
+<table>
+  <tr><th>Trigger</th><th>Source</th><th>What Happens</th></tr>
+  <tr><td class="g">Symphony Override</td><td>agent.py auto-detect</td><td>Bridge wakes Terminal Claude → reads fleet → writes strategic assessment</td></tr>
+  <tr><td class="y">Volume Tsunami</td><td>Watchdog 20x+ spike</td><td>Bridge wakes Terminal Claude → analyzes volume event</td></tr>
+  <tr><td class="b">Manual wake</td><td>Desktop Claude MCP or terminal</td><td>force=True bypasses cooldown → on-demand analysis</td></tr>
+  <tr><td class="p">Scheduled</td><td>Windows Task Scheduler</td><td>Health monitor, daily intelligence 6AM CT, weekly briefing Friday noon</td></tr>
+</table>
+
+<!-- ============================================ -->
+<h2 id="outputs">Output Channels</h2>
+<!-- ============================================ -->
+
+<div class="grid2">
+  <div class="card">
+    <h3 style="margin-top:0">Telegram (5 channels)</h3>
+    <span class="tag tag-g">@fleet</span> Fleet digests every 30min<br>
+    <span class="tag tag-r">@trades</span> EXECUTE-now priority alerts<br>
+    <span class="tag tag-y">@whales</span> Osprey whale activity<br>
+    <span class="tag tag-b">@phases</span> Eagle phase flips<br>
+    <span class="tag tag-p">@predictions</span> Morfeus prediction calls
+  </div>
+  <div class="card">
+    <h3 style="margin-top:0">Email (6x/day CT)</h3>
+    6:00 AM · 10:00 AM · 1:00 PM<br>
+    6:00 PM · 10:00 PM · 2:00 AM (conditional)<br><br>
+    Subject line: "KETTLE FLEET BRIEF"<br>
+    Gmail search: <code>subject:"KETTLE FLEET BRIEF" newer_than:1h</code>
+  </div>
+  <div class="card">
+    <h3 style="margin-top:0">Discord</h3>
+    <strong>Kettle:</strong> Raw feeds per-bot, #whale-alerts, #phase-flips, #fleet-intelligence<br><br>
+    <strong>OFF GRID:</strong> 8 Matrix channels — #the-one, #white-rabbit, #trinity, #the-merovingian, #agent-smith, #the-oracle, #the-construct, #the-architect
+  </div>
+  <div class="card">
+    <h3 style="margin-top:0">Signal Board + Reports</h3>
+    <strong>Signal Board:</strong> GitHub Pages, permanent URL, daily updates<br>
+    <strong>Daily Intelligence:</strong> 6AM CT auto-generated<br>
+    <strong>Weekly Briefing:</strong> Friday noon CT<br>
+    <strong>Strategic Response:</strong> claude_strategic_response.json on Claude Code wake
+  </div>
+</div>
+
+<!-- ============================================ -->
+<h2 id="trading">Trading Pipeline</h2>
+<!-- ============================================ -->
+
+<div class="flow">
+  <div class="flow-row">
+    <div class="node green"><div class="label">Fleet + Morfeus Read</div><div class="desc">Cross-reference fleet signals with Morfeus predictions. Both must agree on direction.</div></div>
+  </div>
+  <div class="flow-arrow wide">▼</div>
+  <div class="flow-row">
+    <div class="node yellow"><div class="label">Environmental Scan</div><div class="desc">MANDATORY: Macro events 24hr · Geopolitics · BTC structure · Time-of-day · Chart screenshots</div></div>
+  </div>
+  <div class="flow-arrow wide">▼</div>
+  <div class="flow-row">
+    <div class="node blue"><div class="label">Chrome Kalshi Scan</div><div class="desc">Strike tables · Contract prices · Volume · Spreads · Entry zone identification (20-50¢)</div></div>
+  </div>
+  <div class="flow-arrow wide">▼</div>
+  <div class="flow-row">
+    <div class="node purple"><div class="label">Play Construction</div><div class="desc">Match fleet conviction to contract pricing. 80%+ ROI minimum. Never pay more than 55¢.</div></div>
+  </div>
+  <div class="flow-arrow wide">▼</div>
+  <div class="flow-row">
+    <div class="node highlight"><div class="label">Active Management</div><div class="desc">Ride the position. Read fleet. Take profits when signal says. Cut when signal says. Capital rotation > passive hold.</div></div>
+  </div>
+</div>
+
+<h3>Play Types</h3>
+<table>
+  <tr><th>Type</th><th>Allocation</th><th>Entry</th><th>When</th><th>ROI Target</th></tr>
+  <tr><td><span class="tag tag-g">FLOOR</span></td><td>35%</td><td>YES on strikes below current</td><td>Phase 1 (Mon-Tue)</td><td>100-150%</td></tr>
+  <tr><td><span class="tag tag-y">PROJECTION</span></td><td>10%</td><td>YES far OTM, 5-15¢</td><td>Phase 1 (Mon-Tue)</td><td>500-1000%</td></tr>
+  <tr><td><span class="tag tag-r">REJECTION</span></td><td>35%</td><td>NO at resistance</td><td>Phase 3 (Wed-Thu)</td><td>150-300%</td></tr>
+  <tr><td><span class="tag tag-b">HEDGE</span></td><td>20%</td><td>NO near current</td><td>Phase 1 (Mon-Tue)</td><td>100-150%</td></tr>
+</table>
+
+<h3>Key Trading Rules</h3>
+<div class="card">
+  <strong style="color:var(--y)">80% ROI Minimum</strong> — Never buy deep ITM contracts (70¢+). Buy near the strike when price is AT the floor/ceiling.<br><br>
+  <strong style="color:var(--g)">Capital Rotation</strong> — Don't hold to settlement unless forced. Buy at 50¢, sell at 75-80¢, redeploy. Active rotation beats passive holding.<br><br>
+  <strong style="color:var(--r)">SMART MONEY EXIT</strong> — When bots detect institutional profit-taking at resistance while position is green, EXIT IMMEDIATELY. Do NOT wait for TP targets.<br><br>
+  <strong style="color:var(--b)">20% Cash Reserve</strong> — Always keep 20% for midweek opportunities. Never deploy more than 80%.<br><br>
+  <strong style="color:var(--p)">SOL Excluded</strong> — 0-1 record, inverted funding rate, weakest signal. Not tradeable until proven otherwise.
+</div>
+
+<!-- ============================================ -->
+<h2 id="mcp">MCP Tools (21 Total)</h2>
+<!-- ============================================ -->
+
+<div class="grid2">
+  <div class="card">
+    <h3 style="margin-top:0;color:var(--g)">Fleet Intelligence</h3>
+    <code>get_fleet_state</code> — all 11 assets<br>
+    <code>get_asset</code> — deep dive single asset<br>
+    <code>get_symphony_state</code> — override status<br>
+    <code>get_macro_conditions</code> — F&G, events<br>
+    <code>get_price_history</code> — 30-day with phases<br>
+    <code>get_system_health</code> — threads, uptime
+  </div>
+  <div class="card">
+    <h3 style="margin-top:0;color:var(--p)">Predictions + Analytics</h3>
+    <code>get_recent_predictions</code> — latest calls<br>
+    <code>get_prediction_history</code> — N-day record<br>
+    <code>get_ledger_today</code> — today's scorecard<br>
+    <code>get_daily_summaries</code> — W/L/PnL by day<br>
+    <code>get_pattern_stats</code> — empirical win rates<br>
+    <code>get_daily_intelligence</code> — 6AM report
+  </div>
+  <div class="card">
+    <h3 style="margin-top:0;color:var(--y)">Strategy + Bridge</h3>
+    <code>get_weekly_briefing</code> — Friday report<br>
+    <code>get_human_vs_system</code> — manual vs auto<br>
+    <code>wake_claude_code</code> — trigger Claude Code<br>
+    <code>get_strategic_response</code> — read CC output<br>
+    <em style="color:var(--m)">(+ additional utility tools)</em>
+  </div>
+  <div class="card">
+    <h3 style="margin-top:0;color:var(--b)">External Integrations</h3>
+    <code>Gmail</code> — fleet briefs, email alerts<br>
+    <code>Google Calendar</code> — event scheduling<br>
+    <code>Google Drive</code> — document storage<br>
+    <code>Chrome Claude</code> — browser automation<br>
+    <code>Massive Market Data</code> — stock/options<br>
+    <code>Slack</code> — connected
+  </div>
+</div>
+
+<!-- ============================================ -->
+<h2 id="data">Data Architecture</h2>
+<!-- ============================================ -->
+
+<div class="flow">
+  <div class="flow-row">
+    <div class="node green"><div class="label">fleet_state (RAM)</div><div class="desc">Single source of truth. All bots write here. All consumers read from here. No Drive dependency.</div></div>
+  </div>
+  <div class="flow-arrow wide">▼</div>
+  <div class="flow-row">
+    <div class="node blue"><div class="label">Raw Archiver</div><div class="desc">Append-only JSONL at data/archive/. Immutable proof of life. Every fleet snapshot preserved.</div></div>
+    <div class="node purple"><div class="label">Pattern Engine</div><div class="desc">11 features, 4-key compound patterns. Learns from every settlement. data/pattern_learning.json</div></div>
+    <div class="node yellow"><div class="label">Settlement Analyzer</div><div class="desc">MFE/MAE tracking. How far right/wrong before settlement. Optimizes entry timing.</div></div>
+  </div>
+  <div class="flow-arrow wide">▼</div>
+  <div class="flow-row">
+    <div class="node cyan"><div class="label">Prediction Results</div><div class="desc">predictions/prediction_results.json · Every call scored · W/L/Brier</div></div>
+    <div class="node red"><div class="label">Trade Ledger</div><div class="desc">Auto open/settle/score/grade A-F. Per-trade documentation for investor credibility.</div></div>
+    <div class="node green"><div class="label">Human Overlay</div><div class="desc">data/manual_trades.json · Your manual trades tracked alongside system for comparison</div></div>
+  </div>
+</div>
+
+<h3>Key File Paths (AU Repo)</h3>
+<table>
+  <tr><th>File</th><th>Purpose</th></tr>
+  <tr><td><code>C:\Users\djnec\athanor-umbra\</code></td><td>AU repo root</td></tr>
+  <tr><td><code>mcp_server/server.py</code></td><td>MCP server — 21 tools</td></tr>
+  <tr><td><code>data/archive/</code></td><td>Raw JSONL archives (append-only)</td></tr>
+  <tr><td><code>data/pattern_learning.json</code></td><td>Pattern engine state</td></tr>
+  <tr><td><code>data/analysis/daily_intelligence_*.json</code></td><td>Daily intelligence reports</td></tr>
+  <tr><td><code>data/analysis/claude_strategic_response.json</code></td><td>Claude Code's strategic assessments</td></tr>
+  <tr><td><code>data/manual_trades.json</code></td><td>Human trade overlay</td></tr>
+  <tr><td><code>predictions/prediction_results.json</code></td><td>Prediction scorecard</td></tr>
+  <tr><td><code>predictions/context_engine.py</code></td><td>Morfeus confidence engine (7+3 multipliers)</td></tr>
+</table>
+
+<h3>Asset Universe</h3>
+<table>
+  <tr><th>Tier</th><th>Assets</th><th>Cycle</th><th>Perps</th><th>Kalshi</th></tr>
+  <tr><td><span class="tag tag-g">T1</span></td><td>BTC, ETH</td><td>5s</td><td>Yes</td><td>Yes (most liquid)</td></tr>
+  <tr><td><span class="tag tag-y">T2</span></td><td>SOL, DOGE</td><td>15s</td><td>Yes</td><td>Yes (moderate)</td></tr>
+  <tr><td><span class="tag tag-b">T3</span></td><td>XRP, BNB, HYPE, TAO, ZEC, LINK, BCH</td><td>60s</td><td>Mixed</td><td>XRP only; rest fleet-intel</td></tr>
+</table>
+
+<div class="divider"></div>
+
+<div class="card" style="text-align:center">
+  <strong style="color:var(--g)">Signal Priority Order</strong><br><br>
+  <span class="tag tag-p">1. Nano Phase</span>
+  <span class="tag tag-b">2. Eagle + CVD</span>
+  <span class="tag tag-y">3. Osprey PIRATEs</span>
+  <span class="tag tag-r">4. Vulture EMA/RSI</span>
+  <span class="tag tag-c">5. Weatherman + Env</span>
+</div>
+
+<div class="footer">
+  Athanor Umbra · Architecture Map v1.0 · Last updated Mar 28, 2026<br>
+  <span style="color:var(--gd)">The bots tell us WHAT whales are doing. The environment tells us WHY and HOW FAR it goes.</span>
+</div>
+
+</div>
+</body>
+</html>
