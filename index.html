@@ -41,6 +41,7 @@ tr:hover{background:var(--s2)}
 .st-fill{font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;letter-spacing:1px;color:#5efa9e;background:rgba(94,250,158,0.1);border:1px solid rgba(94,250,158,0.3)}
 .st-queue{font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;letter-spacing:1px;color:#6a7594;background:rgba(106,117,148,0.1);border:1px solid rgba(106,117,148,0.3)}
 .st-partial{font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;letter-spacing:1px;color:var(--y);background:rgba(240,192,80,0.1);border:1px solid rgba(240,192,80,0.3)}
+.st-pfill{font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;letter-spacing:1px;color:#f0c050;background:rgba(240,192,80,0.1);border:1px solid rgba(240,192,80,0.3)}
 .oracle-box{background:linear-gradient(135deg,#131620,#1a1028);border:1px solid var(--gd);border-radius:6px;padding:16px;margin-bottom:12px}
 .oracle-title{font-family:'Chakra Petch',sans-serif;font-size:17px;font-weight:700;color:var(--g);margin-bottom:10px}
 .hist-row{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:#181c28;border-radius:4px;margin-bottom:4px;font-size:13px;flex-wrap:wrap;gap:8px}
@@ -72,7 +73,7 @@ tr:hover{background:var(--s2)}
 </div>
 <div class="snap" style="margin-bottom:28px">
   <div class="snap-i"><div class="snap-v r">$66,796</div><div class="snap-l">BTC ↓</div></div>
-  <div class="snap-i"><div class="snap-v r">$1,968</div><div class="snap-l">ETH ↓ (below $2K)</div></div>
+  <div class="snap-i"><div class="snap-v r">$1,985</div><div class="snap-l">ETH ↓ (below $2K)</div></div>
   <div class="snap-i"><div class="snap-v" style="color:var(--y)">30%</div><div class="snap-l">Symphony Range-Bound</div></div>
 </div>
 
@@ -123,13 +124,13 @@ tr:hover{background:var(--s2)}
   <div style="overflow-x:auto">
     <table>
       <thead><tr>
-        <th>Type</th><th>Contract</th><th>Side</th><th>Entry</th><th>Qty</th><th>Cost</th><th>Mkt Value</th><th>P&amp;L</th><th>Status</th>
+        <th>Type</th><th>Contract</th><th>Side</th><th>Entry</th><th>Qty</th><th>Cost</th><th>Payout</th><th>ROI</th><th>Status</th>
       </tr></thead>
       <tbody>
-        <tr><td><span class="tag tag-b">BREAKOUT</span></td><td class="w" style="font-weight:600">BTC YES $68,300 Apr 3</td><td class="g">YES</td><td class="w">37.36¢</td><td class="w">400</td><td class="w">$149.43</td><td class="w">$144.00</td><td class="r">-$5.43 (-4%)</td><td><span class="st-fill">FILLED</span></td></tr>
-        <tr><td><span class="tag tag-b">BREAKOUT</span></td><td class="w" style="font-weight:600">ETH YES $2,080 Apr 3</td><td class="g">YES</td><td class="w">35¢</td><td class="w">400</td><td class="w">$140.00</td><td class="w">$120.00</td><td class="r">-$20.00 (-14%)</td><td><span class="st-fill">FILLED</span></td></tr>
-        <tr><td><span class="tag tag-p">PROJ</span></td><td class="w" style="font-weight:600">ETH YES $2,160 Apr 3</td><td class="y">YES</td><td class="w">16¢</td><td class="w">104</td><td class="w">$16.64</td><td class="w">$16.64</td><td class="mu">$0</td><td><span class="st-partial">PARTIAL FILL</span></td></tr>
-        <tr><td><span class="tag tag-p">MOON</span></td><td class="w" style="font-weight:600">ETH YES $2,200 Apr 3</td><td class="y">YES</td><td class="w">10¢</td><td class="w">1</td><td class="w">$0.10</td><td class="w">$0.10</td><td class="mu">$0</td><td><span class="st-partial">PARTIAL FILL</span></td></tr>
+        <tr><td><span class="tag tag-b">BREAKOUT</span></td><td class="w" style="font-weight:600">BTC YES $68,300 Apr 3</td><td class="g">YES</td><td class="w">37¢</td><td class="w">400</td><td class="w">$149</td><td class="g">$400</td><td class="g">+168%</td><td><span class="st-fill">FILLED</span></td></tr>
+        <tr><td><span class="tag tag-b">BREAKOUT</span></td><td class="w" style="font-weight:600">ETH YES $2,080 Apr 3</td><td class="g">YES</td><td class="w">35¢</td><td class="w">400</td><td class="w">$140</td><td class="g">$400</td><td class="g">+186%</td><td><span class="st-fill">FILLED</span></td></tr>
+        <tr><td><span class="tag tag-p">PROJ</span></td><td class="w" style="font-weight:600">ETH YES $2,160 Apr 3</td><td class="y">YES</td><td class="w">16¢</td><td class="w">104</td><td class="w">$16.64</td><td class="y">$104</td><td class="y">+525%</td><td><span class="st-pfill">PARTIAL FILL</span></td></tr>
+        <tr><td><span class="tag tag-p">MOON</span></td><td class="w" style="font-weight:600">ETH YES $2,200 Apr 3</td><td class="y">YES</td><td class="w">10¢</td><td class="w">1</td><td class="w">$0.10</td><td class="y">$1</td><td class="y">+900%</td><td><span class="st-pfill">PARTIAL FILL</span></td></tr>
       </tbody>
     </table>
   </div>
@@ -138,23 +139,22 @@ tr:hover{background:var(--s2)}
   <div style="overflow-x:auto">
     <table>
       <thead><tr>
-        <th>Type</th><th>Contract</th><th>Limit</th><th>Qty</th><th>Reserve</th><th>Market</th><th>Gap</th><th>Status</th>
+        <th>Type</th><th>Contract</th><th>Side</th><th>Limit</th><th>Qty</th><th>Cost</th><th>Payout</th><th>ROI</th><th>Status</th>
       </tr></thead>
       <tbody>
-        <tr><td><span class="tag tag-p">PROJ</span></td><td class="w" style="font-weight:600">BTC YES $69,800 Apr 3</td><td class="w">18¢</td><td class="w">500</td><td class="w">$90</td><td class="w">23¢</td><td class="r">-5¢</td><td><span class="st-rest">RESTING</span></td></tr>
-        <tr><td><span class="tag tag-p">MOON</span></td><td class="w" style="font-weight:600">BTC YES $71,300 Apr 3</td><td class="w">9¢</td><td class="w">555</td><td class="w">$50</td><td class="w">14¢</td><td class="r">-5¢</td><td><span class="st-rest">RESTING</span></td></tr>
-        <tr><td><span class="tag tag-p">PROJ</span></td><td class="w" style="font-weight:600">ETH YES $2,120 Apr 3</td><td class="w">18¢</td><td class="w">300</td><td class="w">$54</td><td class="w">24¢</td><td class="r">-6¢</td><td><span class="st-rest">RESTING</span></td></tr>
-        <tr><td><span class="tag tag-p">PROJ</span></td><td class="w" style="font-weight:600">ETH YES $2,160 Apr 3</td><td class="w">16¢</td><td class="w">296</td><td class="w">$47.36</td><td class="w">18¢</td><td class="r">-2¢</td><td><span class="st-rest">RESTING</span></td></tr>
-        <tr><td><span class="tag tag-p">MOON</span></td><td class="w" style="font-weight:600">ETH YES $2,200 Apr 3</td><td class="w">10¢</td><td class="w">499</td><td class="w">$49.90</td><td class="w">12¢</td><td class="r">-2¢</td><td><span class="st-rest">RESTING</span></td></tr>
+        <tr><td><span class="tag tag-p">PROJ</span></td><td class="w" style="font-weight:600">BTC YES $69,800 Apr 3</td><td class="y">YES</td><td class="w">18¢</td><td class="w">500</td><td class="w">$90</td><td class="y">$500</td><td class="y">+456%</td><td><span class="st-rest">RESTING</span></td></tr>
+        <tr><td><span class="tag tag-p">MOON</span></td><td class="w" style="font-weight:600">BTC YES $71,300 Apr 3</td><td class="y">YES</td><td class="w">9¢</td><td class="w">555</td><td class="w">$50</td><td class="y">$555</td><td class="y">+1,011%</td><td><span class="st-rest">RESTING</span></td></tr>
+        <tr><td><span class="tag tag-p">PROJ</span></td><td class="w" style="font-weight:600">ETH YES $2,120 Apr 3</td><td class="y">YES</td><td class="w">18¢</td><td class="w">300</td><td class="w">$54</td><td class="y">$300</td><td class="y">+456%</td><td><span class="st-rest">RESTING</span></td></tr>
+        <tr><td><span class="tag tag-p">PROJ</span></td><td class="w" style="font-weight:600">ETH YES $2,160 Apr 3</td><td class="y">YES</td><td class="w">16¢</td><td class="w">284</td><td class="w">$45.44</td><td class="y">$284</td><td class="y">+525%</td><td><span class="st-rest">RESTING</span></td></tr>
+        <tr><td><span class="tag tag-p">MOON</span></td><td class="w" style="font-weight:600">ETH YES $2,200 Apr 3</td><td class="y">YES</td><td class="w">10¢</td><td class="w">499</td><td class="w">$49.90</td><td class="y">$499</td><td class="y">+900%</td><td><span class="st-rest">RESTING</span></td></tr>
       </tbody>
     </table>
   </div>
 
   <div style="margin-top:16px;background:var(--s2);border:1px solid var(--bd);border-radius:6px;padding:12px;font-size:13px;line-height:1.9">
     <div style="font-size:11px;color:var(--m);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">Account Summary</div>
-    <span class="w">Portfolio:</span> <span class="g">$1,004.44</span> &nbsp;·&nbsp; <span class="w">Positions:</span> $280.74 &nbsp;·&nbsp; <span class="w">Cash:</span> $723.70<br>
-    <span class="w">Deployed:</span> $306.17 &nbsp;·&nbsp; <span class="w">Resting reserves:</span> $291.22 &nbsp;·&nbsp; <span class="w">Free cash:</span> $432.48<br>
-    <span class="w">Open P&amp;L:</span> <span class="r">-$25.43 (-8.3%)</span> &nbsp;·&nbsp; <span class="mu">Settles Apr 3, 5pm EDT (5 days)</span>
+    <span class="w">Deployed:</span> $305.74 (4 filled) &nbsp;·&nbsp; <span class="w">Resting:</span> $289.34 (5 orders) &nbsp;·&nbsp; <span class="w">Cash:</span> ~$430 &nbsp;·&nbsp; <span class="w">Portfolio:</span> <span class="g">~$1,004</span><br>
+    <span class="mu">All positions settle Friday Apr 3 at 5pm EDT · 5 days remaining</span>
   </div>
 </div>
 
@@ -199,7 +199,7 @@ tr:hover{background:var(--s2)}
   <div class="stitle">Fleet Snapshot — Sunday 9:00 AM CT</div>
   <div class="card" style="font-size:14px;line-height:2">
     <span class="r">BTC $66,796:</span> Eagle NEUTRAL · CVD STRONG BEARISH · Nano DIST · Vulture FLAT ⚠️<br>
-    <span class="r">ETH $1,968:</span> Eagle NEUTRAL · CVD STRONG BEARISH · Nano DIST · Vulture <span class="r">BEARISH STACK 🔴</span><br>
+    <span class="r">ETH $1,985:</span> Eagle NEUTRAL · CVD STRONG BEARISH · Nano DIST · Vulture <span class="r">BEARISH STACK 🔴</span><br>
     <span class="mu">SOL:</span> Eagle NEUTRAL · Nano DIST · Excluded from plays<br>
     <span class="y">Symphony:</span> RANGE_BOUND 30% &nbsp;·&nbsp; <span class="r">F&amp;G: 9 (Extreme Fear)</span>
   </div>
@@ -218,7 +218,7 @@ tr:hover{background:var(--s2)}
 <!-- VERSION LOG -->
 <div class="section">
   <div style="font-size:13px;color:var(--m);line-height:2">
-    <span class="g">v4.3</span> Mar 29 9:00 AM — Live Kalshi sync. Macro week warning added. 5 resting orders logged. Exit targets mapped for pre-tariff profit-taking.<br>
+    <span class="g">v4.3</span> Mar 29 — Positions synced from live Kalshi. Original ROI format restored. Macro week banner active.<br>
     <span class="g">v4.2</span> Mar 28 10:00 PM — ETH $2,080 FILLED at 35¢. Removed duplicate BTC $69,800. F&amp;G dropped to 9. Symphony held 94% overnight.<br>
     <span class="g">v4.1</span> Mar 28 2:00 PM — Added BTC $69,800 deep moonshot at 5¢. $50 risk, $1,000 payout.<br>
     <span class="g">v4.0</span> Mar 28 9:45 AM — MARKET SHIFT. Symphony Override 97%. Cancelled 4 floor/hedge plays. Repositioned to breakout plays. Oracle updated to ETH $2,080.<br>
