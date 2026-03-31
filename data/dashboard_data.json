@@ -1,8 +1,8 @@
 {
-  "updated": "2026-03-31T01:57:57.593988Z",
+  "updated": "2026-03-31T02:02:58.714003Z",
   "balance": {
     "available": 512.2,
-    "portfolio": 1156.93
+    "portfolio": 1119.83
   },
   "symphony": {
     "state": "RANGE_BOUND",
@@ -18,15 +18,15 @@
   },
   "assets": {
     "BTC": {
-      "price": 67929.64,
+      "price": 67756.0,
       "eagle_phase": "NEUTRAL",
-      "eagle_cvd": "STRONG BEARISH",
+      "eagle_cvd": "MILD BEARISH",
       "eagle_phase_confidence": 30.0,
-      "proximity_ceiling_pct": 0.7,
-      "proximity_floor_pct": 2.098,
-      "nano_phase": "DISTRIBUTION",
-      "nano_oi_1h": 0.23,
-      "nano_position_pct": 76.9,
+      "proximity_ceiling_pct": 0.66,
+      "proximity_floor_pct": 1.898,
+      "nano_phase": "ACCUMULATION",
+      "nano_oi_1h": 0.19,
+      "nano_position_pct": 66.3,
       "nano_near_floor": false,
       "nano_near_ceiling": false,
       "nano_direction_bias": "NEUTRAL",
@@ -46,15 +46,15 @@
       "ceiling_1d": 76022.6
     },
     "ETH": {
-      "price": 2072.62,
-      "eagle_phase": "BREAKOUT_ATTEMPT",
-      "eagle_cvd": "STRONG BEARISH",
-      "eagle_phase_confidence": 100.0,
-      "proximity_ceiling_pct": 0.78,
-      "proximity_floor_pct": 2.844,
+      "price": 2066.72,
+      "eagle_phase": "NEUTRAL",
+      "eagle_cvd": "MILD BEARISH",
+      "eagle_phase_confidence": 30.0,
+      "proximity_ceiling_pct": 0.9,
+      "proximity_floor_pct": 2.497,
       "nano_phase": "BREAKOUT_ATTEMPT",
-      "nano_oi_1h": 0.28,
-      "nano_position_pct": 76.1,
+      "nano_oi_1h": 0.57,
+      "nano_position_pct": 65.9,
       "nano_near_floor": false,
       "nano_near_ceiling": false,
       "nano_direction_bias": "NEUTRAL",
@@ -108,7 +108,12 @@
       "realized_pnl": 27.0,
       "fees_paid": 0.0,
       "strike": 2119.99,
-      "sell_targets": []
+      "sell_targets": [
+        {
+          "price": 0.5,
+          "qty": 150
+        }
+      ]
     },
     {
       "ticker": "KXETHD-26APR0317-T2159.99",
@@ -212,6 +217,18 @@
     }
   ],
   "resting_orders": [
+    {
+      "order_id": "b2b53992-213d-4267-bf48-d8ae40e74dd2",
+      "ticker": "KXETHD-26APR0317-T2119.99",
+      "side": "yes",
+      "type": "limit",
+      "action": "sell",
+      "price": 0.5,
+      "quantity": 150,
+      "remaining": 150,
+      "created_at": "2026-03-31T02:02:06.833785Z",
+      "expiry_time": ""
+    },
     {
       "order_id": "a993065f-3195-42eb-a074-d9abe1be54c8",
       "ticker": "KXETHD-26APR0317-T2079.99",
@@ -333,10 +350,10 @@
     "today_fired": 494,
     "today_hit_rate": 44,
     "total_wins": 1023,
-    "total_losses": 1203,
-    "total_hit_rate": 46.0,
+    "total_losses": 1208,
+    "total_hit_rate": 45.9,
     "today_wins": 24,
-    "today_losses": 23,
+    "today_losses": 28,
     "brier_overall": null,
     "brier_rolling_50": null,
     "brier_glitch_plus": null
