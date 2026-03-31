@@ -7,30 +7,20 @@
 <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
 <style>
 :root {
-  --text: #1a1a1a; --dim: #666; --hint: #999;
-  --border: rgba(0,0,0,0.1);
-  --card-bg: rgba(0,0,0,0.03);
-  --green: #2d8a4e; --red: #c0392b; --blue: #2c7be5; --purple: #7c3aed;
-  --yellow: #b45309;
-  --green-bg: rgba(45,138,78,0.08); --red-bg: rgba(192,57,43,0.08);
-  --blue-bg: rgba(44,123,229,0.08); --purple-bg: rgba(124,58,237,0.08);
-  --yellow-bg: rgba(180,83,9,0.08);
+  --bg: #0d1117;
+  --text: #c9d1d9; --dim: #8b949e; --hint: #6e7681;
+  --border: #30363d;
+  --card-bg: #161b22;
+  --green: #3fb950; --red: #f85149; --blue: #58a6ff; --purple: #bc8cff;
+  --yellow: #d29922;
+  --green-bg: rgba(63,185,80,0.1); --red-bg: rgba(248,81,73,0.1);
+  --blue-bg: rgba(88,166,255,0.1); --purple-bg: rgba(188,140,255,0.1);
+  --yellow-bg: rgba(210,153,34,0.1);
   font-size: 14px;
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #e0e0e0; --dim: #999; --hint: #555;
-    --border: rgba(255,255,255,0.1);
-    --card-bg: rgba(255,255,255,0.05);
-    --green: #5cab5c; --red: #c45c5c; --blue: #6ba3d6; --purple: #9b7ed8;
-    --yellow: #d97706;
-    --green-bg: rgba(92,171,92,0.1); --red-bg: rgba(196,92,92,0.1);
-    --blue-bg: rgba(107,163,214,0.1); --purple-bg: rgba(155,126,216,0.1);
-    --yellow-bg: rgba(217,119,6,0.1);
-  }
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body {
+  background: var(--bg);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   color: var(--text);
   line-height: 1.5;
@@ -283,7 +273,7 @@ body {
 let dashData = null;
 let charts = {};   // { btc: { chart, candleSeries, priceLines: [] }, eth: {...} }
 let activeTf = '48H';
-const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+const isDark = true; // always dark — matches Signal Board theme
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 const fmt = {
@@ -409,9 +399,9 @@ function applyTimeframe(chartObj, tf) {
 }
 
 // ─── Chart init ──────────────────────────────────────────────────────────────
-const chartBg    = isDark ? '#141414' : '#ffffff';
-const chartText  = isDark ? '#999'    : '#666';
-const chartGrid  = isDark ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.04)';
+const chartBg   = '#0d1117';
+const chartText = '#8b949e';
+const chartGrid = '#21262d';
 
 function createChartInstance(containerId) {
   const container = document.getElementById(containerId);
