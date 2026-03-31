@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ping Pong War Room · Athanor Umbra</title>
+<script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
 <style>
 :root {
   --text: #1a1a1a; --dim: #666; --hint: #999;
@@ -34,10 +35,9 @@ body {
   color: var(--text);
   line-height: 1.5;
   padding: 16px;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
 }
-/* Numbers always monospace */
 .mono { font-family: 'SF Mono', 'Consolas', 'Menlo', monospace; }
 
 /* ── Layout ── */
@@ -56,30 +56,42 @@ body {
 }
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
-/* ── Header ── */
-.header {
+/* ── Nav bar ── */
+.navbar {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 6px;
+  align-items: center;
+  padding: 10px 0 8px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid var(--border);
   flex-wrap: wrap;
   gap: 8px;
 }
-.header-left h1 {
-  font-size: 18px; font-weight: 700; letter-spacing: -0.3px;
+.navbar-left h1 {
+  font-size: 16px; font-weight: 700; letter-spacing: -0.3px;
 }
-.header-left .sub { font-size: 12px; color: var(--dim); margin-top: 2px; }
-.header-right { display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap; }
-.stat-item { text-align: right; }
-.stat-value { font-size: 18px; font-weight: 700; font-family: 'SF Mono','Consolas','Menlo',monospace; }
+.navbar-center {
+  display: flex; gap: 16px; align-items: center; flex-wrap: wrap;
+}
+.stat-item { text-align: center; }
+.stat-value { font-size: 16px; font-weight: 700; font-family: 'SF Mono','Consolas','Menlo',monospace; }
 .stat-label { font-size: 10px; color: var(--dim); text-transform: uppercase; letter-spacing: 0.5px; }
 .stat-item.green .stat-value { color: var(--green); }
 .stat-item.red .stat-value { color: var(--red); }
 .stat-item.blue .stat-value { color: var(--blue); }
+.navbar-right { display: flex; gap: 8px; align-items: center; }
+.btn {
+  font-size: 12px; font-weight: 600; padding: 5px 12px;
+  border-radius: 4px; border: 1px solid var(--border);
+  background: var(--card-bg); color: var(--text);
+  cursor: pointer; text-decoration: none; display: inline-block;
+  transition: background 0.15s;
+}
+.btn:hover { background: var(--blue-bg); border-color: var(--blue); color: var(--blue); }
 .meta-bar {
   display: flex; justify-content: space-between; align-items: center;
   font-size: 11px; color: var(--dim);
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 #data-age { font-size: 11px; color: var(--hint); }
 
@@ -92,38 +104,75 @@ body {
   background: var(--card-bg);
   white-space: nowrap;
 }
-.badge.green { color: var(--green); background: var(--green-bg); border-color: var(--green); }
-.badge.red { color: var(--red); background: var(--red-bg); border-color: var(--red); }
-.badge.blue { color: var(--blue); background: var(--blue-bg); border-color: var(--blue); }
+.badge.green  { color: var(--green);  background: var(--green-bg);  border-color: var(--green);  }
+.badge.red    { color: var(--red);    background: var(--red-bg);    border-color: var(--red);    }
+.badge.blue   { color: var(--blue);   background: var(--blue-bg);   border-color: var(--blue);   }
 .badge.purple { color: var(--purple); background: var(--purple-bg); border-color: var(--purple); }
 .badge.yellow { color: var(--yellow); background: var(--yellow-bg); border-color: var(--yellow); }
-.badge.dim { color: var(--dim); }
+.badge.dim    { color: var(--dim); }
 
-/* ── Ladders ── */
-.ladders { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.ladder-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
-.ladder-header {
-  display: flex; justify-content: space-between; align-items: baseline;
-  padding: 10px 12px 6px;
+/* ── Chart area ── */
+.chart-controls {
+  display: flex; align-items: center; gap: 6px;
+  margin-bottom: 8px; flex-wrap: wrap;
 }
-.ladder-asset { font-size: 13px; font-weight: 700; }
-.ladder-price { font-size: 20px; font-weight: 700; font-family: 'SF Mono','Consolas','Menlo',monospace; }
-.ladder-svg-wrap { padding: 0 0 8px; }
-.ladder-legend {
+.chart-controls .section-title { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
+.tf-btn {
+  font-size: 11px; font-weight: 600; padding: 3px 10px;
+  border-radius: 3px; border: 1px solid var(--border);
+  background: var(--card-bg); color: var(--dim);
+  cursor: pointer;
+}
+.tf-btn.active { background: var(--blue-bg); border-color: var(--blue); color: var(--blue); }
+.charts-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  margin-bottom: 12px;
+}
+.chart-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.chart-header {
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding: 8px 12px 4px;
+}
+.chart-asset { font-size: 13px; font-weight: 700; }
+.chart-price { font-size: 18px; font-weight: 700; font-family: 'SF Mono','Consolas','Menlo',monospace; }
+.chart-container { height: 450px; position: relative; }
+.chart-no-data {
+  display: flex; align-items: center; justify-content: center;
+  height: 100%; color: var(--dim); font-size: 13px; text-align: center;
+  padding: 20px;
+}
+.chart-legend {
   display: flex; flex-wrap: wrap; gap: 10px;
-  padding: 4px 12px 10px;
+  padding: 6px 12px 8px;
   font-size: 10px; color: var(--dim);
 }
 .leg-item { display: flex; align-items: center; gap: 4px; }
-.leg-line { display: inline-block; width: 18px; height: 2px; }
+.leg-swatch { display: inline-block; width: 18px; height: 2px; }
+.leg-swatch.dashed {
+  background: repeating-linear-gradient(
+    to right, currentColor 0, currentColor 4px, transparent 4px, transparent 8px
+  );
+  height: 1px;
+}
+
+/* ── Drag scenario panel ── */
+.scenario-panel {
+  display: none; background: var(--yellow-bg);
+  border: 1px solid var(--yellow); border-radius: 6px;
+  padding: 10px 14px; margin-top: 8px;
+  font-size: 12px; line-height: 1.6;
+}
+.scenario-panel.visible { display: block; }
+.scenario-panel strong { color: var(--yellow); }
 
 /* ── Cycle Tracker ── */
 .cycle-table-wrap { overflow-x: auto; }
-.cycle-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 13px;
-}
+.cycle-table { width: 100%; border-collapse: collapse; font-size: 13px; }
 .cycle-table th {
   padding: 6px 10px;
   font-size: 10px; font-weight: 600; letter-spacing: 0.5px;
@@ -156,7 +205,11 @@ body {
 /* ── Side panels ── */
 .side-panels { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .panel-title { font-size: 12px; font-weight: 700; margin-bottom: 10px; }
-.panel-row { display: flex; justify-content: space-between; font-size: 13px; padding: 4px 0; border-bottom: 1px solid var(--border); }
+.panel-row {
+  display: flex; justify-content: space-between;
+  font-size: 13px; padding: 4px 0;
+  border-bottom: 1px solid var(--border);
+}
 .panel-row:last-child { border-bottom: none; }
 .panel-row .label { color: var(--dim); font-size: 12px; }
 .panel-row .val { font-family: 'SF Mono','Consolas','Menlo',monospace; font-weight: 600; }
@@ -174,73 +227,65 @@ body {
 .catalyst-row { display: flex; gap: 8px; flex-wrap: wrap; }
 .catalyst-card {
   flex: 1; min-width: 100px;
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 10px 12px;
-  text-align: center;
+  background: var(--card-bg); border: 1px solid var(--border);
+  border-radius: 6px; padding: 10px 12px; text-align: center;
 }
 .catalyst-card.risk-MAX  { border-color: var(--red);    }
-.catalyst-card.risk-HIGH { border-color: var(--yellow);  }
+.catalyst-card.risk-HIGH { border-color: var(--yellow); }
 .catalyst-card.risk-MED  { border-color: var(--border); }
 .catalyst-label {
   font-size: 11px; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.5px;
-  margin-bottom: 4px;
+  text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;
 }
-.catalyst-card.risk-MAX  .catalyst-label { color: var(--red);   }
+.catalyst-card.risk-MAX  .catalyst-label { color: var(--red);    }
 .catalyst-card.risk-HIGH .catalyst-label { color: var(--yellow); }
-.catalyst-card.risk-MED  .catalyst-label { color: var(--dim);   }
+.catalyst-card.risk-MED  .catalyst-label { color: var(--dim);    }
 .catalyst-countdown {
   font-size: 16px; font-weight: 700;
-  font-family: 'SF Mono','Consolas','Menlo',monospace;
-  margin: 2px 0;
+  font-family: 'SF Mono','Consolas','Menlo',monospace; margin: 2px 0;
 }
 .catalyst-risk { font-size: 10px; color: var(--hint); margin-top: 2px; }
 .catalyst-past { opacity: 0.4; }
 
 /* ── Footer ── */
 .footer {
-  margin-top: 24px;
-  padding: 12px 0;
+  margin-top: 24px; padding: 12px 0;
   border-top: 1px solid var(--border);
-  font-size: 12px; color: var(--dim);
-  line-height: 1.6;
+  font-size: 12px; color: var(--dim); line-height: 1.6;
 }
 .footer strong { color: var(--text); }
 
 /* ── Responsive ── */
 @media (max-width: 680px) {
-  .ladders, .side-panels { grid-template-columns: 1fr; }
-  .header { flex-direction: column; }
+  .charts-grid, .side-panels { grid-template-columns: 1fr; }
+  .navbar { flex-direction: column; align-items: flex-start; }
   .catalyst-row { flex-direction: column; }
-  .header-right { flex-direction: row; flex-wrap: wrap; gap: 12px; }
+  .navbar-center { flex-direction: row; flex-wrap: wrap; gap: 12px; }
 }
-
-/* ── Pulsing dot animation for current price ── */
-@keyframes pulse-dot {
-  0%,100% { opacity: 1; r: 4; }
-  50%      { opacity: 0.4; r: 6; }
-}
-.price-dot { animation: pulse-dot 2s ease-in-out infinite; }
 </style>
 </head>
 <body>
 
-<div id="app">
-  <div style="text-align:center;padding:60px;color:var(--dim);">
-    Waiting for data… Agent writes <code>dashboard_data.json</code> on next cycle.
-  </div>
-</div>
+<!-- Static skeleton — filled by JS -->
+<div id="navbar-section"></div>
+<div id="meta-bar-section"></div>
+<div id="charts-section"></div>
+<div id="scenario-panel" class="scenario-panel"></div>
+<div id="cycle-section"></div>
+<div id="fleet-section"></div>
+<div id="catalyst-section"></div>
+<div id="footer-section"></div>
 
 <script>
 'use strict';
 
-// ─── Data ────────────────────────────────────────────────────────────────────
+// ─── State ───────────────────────────────────────────────────────────────────
 let dashData = null;
+let charts = {};   // { btc: { chart, candleSeries, priceLines: [] }, eth: {...} }
+let activeTf = '48H';
+const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
-const $ = id => document.getElementById(id);
 const fmt = {
   dollar(v, d=2) {
     if (v == null || isNaN(v)) return '—';
@@ -265,7 +310,7 @@ const fmt = {
     const h = Math.floor(ms / 3600000);
     const m = Math.floor((ms % 3600000) / 60000);
     if (h >= 48) return Math.floor(h/24) + 'd ' + (h%24) + 'h';
-    if (h >= 1) return h + 'h ' + m + 'm';
+    if (h >= 1)  return h + 'h ' + m + 'm';
     return m + 'm';
   },
   age(dtStr) {
@@ -276,13 +321,11 @@ const fmt = {
   }
 };
 
-// Signal coloring
 function sigClass(phase) {
   if (!phase) return 'dim';
   const p = phase.toUpperCase();
   if (/ACCUM|BREAK|BULL|LONG|OVERRIDE|SNAP/.test(p)) return 'green';
-  if (/DIST|CAP|BEAR|RESIST|SHORT/.test(p)) return 'red';
-  if (/NEUTRAL|RANGE|FLAT/.test(p)) return 'dim';
+  if (/DIST|CAP|BEAR|RESIST|SHORT/.test(p))           return 'red';
   return 'dim';
 }
 function fgClass(v) {
@@ -293,7 +336,7 @@ function fgClass(v) {
 }
 function fgLabel(v) {
   const n = Number(v);
-  if (n <= 10) return 'EXTREME FEAR';
+  if (n <= 10) return 'EXT. FEAR';
   if (n <= 25) return 'FEAR';
   if (n <= 45) return 'LEAN BEAR';
   if (n <= 55) return 'NEUTRAL';
@@ -302,201 +345,281 @@ function fgLabel(v) {
   return 'EXT. GREED';
 }
 
-// ─── SVG Ladder ──────────────────────────────────────────────────────────────
-function drawLadder(container, assetKey, data) {
-  const a = data[assetKey.toLowerCase()];
-  if (!a) return;
+// ─── Candle bucketing ────────────────────────────────────────────────────────
+function phaseColor(phase) {
+  if (!phase) return isDark ? '#888' : '#888';
+  const p = phase.toUpperCase();
+  if (/ACCUM|BREAK|BULL/.test(p)) return isDark ? '#5cab5c' : '#2d8a4e';
+  if (/CAP|DIST|DUMP|BEAR/.test(p)) return isDark ? '#c45c5c' : '#c0392b';
+  return '#888';
+}
 
-  const price = a.price || 0;
-  const ema   = a.ema200 || 0;
-  const lev   = a.levels || {};
+function buildCandles(series) {
+  if (!series || series.length === 0) return [];
+  const bucketSize = 1800; // 30 min in seconds
+  const buckets = {};
 
-  // Collect all significant prices
-  const allP = [price, ema, lev.f5m, lev.f1h, lev.f4h, lev.c1h, lev.c4h, lev.c6h]
-    .filter(p => p > 0);
+  series.forEach(pt => {
+    const tMs = new Date(pt.ts).getTime();
+    const tSec = Math.floor(tMs / 1000);
+    const bucketTime = Math.floor(tSec / bucketSize) * bucketSize;
+    const p = pt.price;
 
-  // Add strikes from positions
-  const posList = (data.positions || []).filter(p => p.asset.toLowerCase() === assetKey && p.strike > 0);
-  const sells   = (data.sell_orders || []).filter(o => o.asset.toLowerCase() === assetKey);
-  posList.forEach(p => allP.push(p.strike));
-
-  if (allP.length < 2) { container.innerHTML = '<div style="padding:20px;color:var(--dim);font-size:12px">Insufficient data</div>'; return; }
-
-  const minP = Math.min(...allP) * 0.988;
-  const maxP = Math.max(...allP) * 1.012;
-
-  const W = container.clientWidth || 340;
-  const H = 380;
-  const padL = 80, padR = 8, padT = 18, padB = 18;
-  const plotW = W - padL - padR;
-  const plotH = H - padT - padB;
-
-  function yOf(p) {
-    return padT + plotH * (1 - (p - minP) / (maxP - minP));
-  }
-  function priceLbl(p) {
-    return '$' + Math.round(p).toLocaleString();
-  }
-
-  // Resolve CSS vars for SVG (can't use var() in SVG attributes directly)
-  const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const C = {
-    text:   isDark ? '#e0e0e0' : '#1a1a1a',
-    dim:    isDark ? '#666'    : '#999',
-    grid:   isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)',
-    green:  isDark ? '#5cab5c' : '#2d8a4e',
-    red:    isDark ? '#c45c5c' : '#c0392b',
-    blue:   isDark ? '#6ba3d6' : '#2c7be5',
-    purple: isDark ? '#9b7ed8' : '#7c3aed',
-    bg:     isDark ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.02)',
-  };
-
-  const NS = 'http://www.w3.org/2000/svg';
-  const svg = document.createElementNS(NS, 'svg');
-  svg.setAttribute('width', W);
-  svg.setAttribute('height', H);
-  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
-  svg.style.display = 'block';
-
-  function mk(tag, attrs) {
-    const e = document.createElementNS(NS, tag);
-    for (const [k,v] of Object.entries(attrs)) e.setAttribute(k, String(v));
-    return e;
-  }
-  function hline(y, color, dash, width) {
-    return mk('line', {x1:padL, y1:y, x2:padL+plotW, y2:y, stroke:color,
-      'stroke-dasharray': dash||'none', 'stroke-width': width||1, 'stroke-linecap': 'round'});
-  }
-  function leftLabel(y, txt, color, size) {
-    const t = mk('text', {x: padL-5, y: y+4, fill: color||C.dim, 'font-size': size||9,
-      'font-family': 'SF Mono,Consolas,Menlo,monospace', 'text-anchor': 'end'});
-    t.textContent = txt;
-    return t;
-  }
-  function rightLabel(y, txt, color, size) {
-    const t = mk('text', {x: padL+plotW+4, y: y+4, fill: color||C.dim, 'font-size': size||9,
-      'font-family': 'SF Mono,Consolas,Menlo,monospace', 'text-anchor': 'start'});
-    t.textContent = txt;
-    return t;
-  }
-
-  // Background
-  svg.appendChild(mk('rect', {x:padL, y:padT, width:plotW, height:plotH, fill:C.bg}));
-
-  // Subtle grid
-  for (let i = 0; i <= 5; i++) {
-    const gp = minP + (maxP - minP) * i / 5;
-    const gy = yOf(gp);
-    svg.appendChild(mk('line', {x1:padL, y1:gy, x2:padL+plotW, y2:gy,
-      stroke:C.grid, 'stroke-width':'0.5'}));
-  }
-
-  // Helper to draw a named level line if in range
-  function level(price, color, dash, width, lbl, rLbl) {
-    if (!price || price < minP || price > maxP) return;
-    const y = yOf(price);
-    svg.appendChild(hline(y, color, dash, width));
-    if (lbl) svg.appendChild(leftLabel(y, lbl, color, 9));
-    if (rLbl) {
-      const t = mk('text', {x: padL+plotW-3, y: y-3, fill:color, 'font-size':'9',
-        'font-family': 'SF Mono,Consolas,Menlo,monospace', 'text-anchor': 'end'});
-      t.textContent = priceLbl(price);
-      svg.appendChild(t);
+    if (!buckets[bucketTime]) {
+      buckets[bucketTime] = { time: bucketTime, open: p, high: p, low: p, close: p, lastPhase: pt.eagle_phase };
+    } else {
+      const b = buckets[bucketTime];
+      b.high  = Math.max(b.high, p);
+      b.low   = Math.min(b.low, p);
+      b.close = p;
+      b.lastPhase = pt.eagle_phase || b.lastPhase;
     }
-  }
-
-  // Draw levels (bottom to top visually, order doesn't matter for SVG)
-  level(lev.c6h, C.red,    'none',  1.5, '6H CEIL', true);
-  level(lev.c4h, C.red,    '6,3',   1,   '4H CEIL', true);
-  level(lev.c1h, C.red,    '2,3',   1,   '1H CEIL', true);
-  level(ema,     C.purple, 'none',  2,   'EMA 200', true);
-  level(lev.f5m, C.green,  '2,3',   1,   '5M FLR',  true);
-  level(lev.f1h, C.green,  'none',  1.5, '1H FLR',  true);
-  level(lev.f4h, C.green,  '6,3',   1,   '4H FLR',  true);
-
-  // Position strike annotations
-  posList.forEach(pos => {
-    if (pos.strike < minP || pos.strike > maxP) return;
-    const y = yOf(pos.strike);
-    // Find matching sell order
-    const sell = sells.find(o => o.ticker === pos.ticker || (o.strike === pos.strike));
-    const sellTxt = sell ? ` → ${Math.round(sell.price * 100)}¢` : '';
-    const label = `${pos.qty}× ${Math.round(pos.entry*100)}¢${sellTxt}`;
-
-    svg.appendChild(mk('line', {
-      x1: padL + plotW*0.3, y1: y, x2: padL+plotW, y2: y,
-      stroke: C.blue, 'stroke-dasharray': '3,3', 'stroke-width': '1',
-    }));
-    svg.appendChild(mk('circle', {
-      cx: padL + plotW*0.3, cy: y, r: '3', fill: C.blue
-    }));
-    const lt = mk('text', {
-      x: padL+plotW-3, y: y-4, fill: C.blue,
-      'font-size': '9', 'font-family': 'SF Mono,Consolas,Menlo,monospace', 'text-anchor': 'end'
-    });
-    lt.textContent = label;
-    svg.appendChild(lt);
   });
 
-  // Current price (most prominent — blue solid, pulsing dot)
-  if (price > minP && price < maxP) {
-    const y = yOf(price);
-    svg.appendChild(hline(y, C.blue, 'none', 2.5));
-    // Price tag (filled box on left)
-    const ptxt = priceLbl(price);
-    const tw = ptxt.length * 6 + 8;
-    svg.appendChild(mk('rect', {x: padL-tw-2, y: y-11, width: tw, height: 14, fill: C.blue, rx: '2'}));
-    const pt = mk('text', {
-      x: padL-6, y: y+1, fill: '#fff',
-      'font-size': '9', 'font-weight': '700',
-      'font-family': 'SF Mono,Consolas,Menlo,monospace', 'text-anchor': 'end'
+  return Object.values(buckets)
+    .sort((a, b) => a.time - b.time)
+    .map(b => {
+      const c = phaseColor(b.lastPhase);
+      return {
+        time: b.time,
+        open: b.open,
+        high: b.high,
+        low:  b.low,
+        close: b.close,
+        color: c,
+        borderColor: c,
+        wickColor: c,
+      };
     });
-    pt.textContent = ptxt;
-    svg.appendChild(pt);
-    // Pulsing dot on right edge
-    const dot = mk('circle', { cx: padL+plotW, cy: y, r: '4', fill: C.blue, class: 'price-dot' });
-    svg.appendChild(dot);
+}
+
+// ─── Timeframe range ─────────────────────────────────────────────────────────
+function tfToSeconds(tf) {
+  const map = { '4H': 4*3600, '12H': 12*3600, '24H': 24*3600, '48H': 48*3600 };
+  return map[tf] || 48*3600;
+}
+
+function applyTimeframe(chartObj, tf) {
+  if (!chartObj || !chartObj.chart) return;
+  const nowSec = Math.floor(Date.now() / 1000);
+  const fromSec = nowSec - tfToSeconds(tf);
+  try {
+    chartObj.chart.timeScale().setVisibleRange({ from: fromSec, to: nowSec + 1800 });
+  } catch(e) { /* chart may not have data yet */ }
+}
+
+// ─── Chart init ──────────────────────────────────────────────────────────────
+const chartBg    = isDark ? '#141414' : '#ffffff';
+const chartText  = isDark ? '#999'    : '#666';
+const chartGrid  = isDark ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.04)';
+
+function createChartInstance(containerId) {
+  const container = document.getElementById(containerId);
+  if (!container) return null;
+
+  const chart = LightweightCharts.createChart(container, {
+    width:  container.clientWidth,
+    height: 450,
+    layout: {
+      background: { type: 'solid', color: chartBg },
+      textColor: chartText,
+      fontFamily: "'SF Mono','Consolas','Menlo',monospace",
+      fontSize: 11,
+    },
+    grid: {
+      vertLines: { color: chartGrid },
+      horzLines: { color: chartGrid },
+    },
+    crosshair: { mode: LightweightCharts.CrosshairMode.Normal },
+    rightPriceScale: { borderColor: chartGrid, mode: LightweightCharts.PriceScaleMode.Normal },
+    timeScale: { borderColor: chartGrid, timeVisible: true, secondsVisible: false },
+    handleScroll: true,
+    handleScale: true,
+  });
+
+  // Resize observer
+  const ro = new ResizeObserver(() => {
+    chart.applyOptions({ width: container.clientWidth });
+  });
+  ro.observe(container);
+
+  return chart;
+}
+
+function initCharts(d) {
+  const assets = ['btc', 'eth'];
+  assets.forEach(assetKey => {
+    const containerId = 'chart-' + assetKey;
+    const chart = createChartInstance(containerId);
+    if (!chart) return;
+
+    // Candlestick series
+    const candleSeries = chart.addCandlestickSeries({
+      upColor: isDark ? '#5cab5c' : '#2d8a4e',
+      downColor: isDark ? '#c45c5c' : '#c0392b',
+      borderUpColor: isDark ? '#5cab5c' : '#2d8a4e',
+      borderDownColor: isDark ? '#c45c5c' : '#c0392b',
+      wickUpColor: isDark ? '#5cab5c' : '#2d8a4e',
+      wickDownColor: isDark ? '#c45c5c' : '#c0392b',
+    });
+
+    charts[assetKey] = { chart, candleSeries, priceLines: [] };
+    populateChartData(assetKey, d);
+    applyTimeframe(charts[assetKey], activeTf);
+  });
+}
+
+function populateChartData(assetKey, d) {
+  const chartObj = charts[assetKey];
+  if (!chartObj) return;
+  const { chart, candleSeries } = chartObj;
+
+  // Clear old price lines
+  chartObj.priceLines.forEach(pl => {
+    try { candleSeries.removePriceLine(pl); } catch(e) {}
+  });
+  chartObj.priceLines = [];
+
+  const a = d[assetKey] || {};
+  const ph = d.price_history || {};
+  const assetUpper = assetKey.toUpperCase();
+  const histData = ph[assetUpper] || {};
+  const series = histData.series || [];
+
+  // Candles
+  const candles = buildCandles(series);
+  if (candles.length > 0) {
+    candleSeries.setData(candles);
   }
 
-  container.innerHTML = '';
-  container.appendChild(svg);
+  // Helper to add a price line and store ref
+  function addLine(opts) {
+    const pl = candleSeries.createPriceLine(opts);
+    chartObj.priceLines.push(pl);
+    return pl;
+  }
+
+  // EMA 200
+  if (a.ema200) {
+    addLine({
+      price: a.ema200,
+      color: isDark ? '#9b7ed8' : '#7c3aed',
+      lineWidth: 2,
+      lineStyle: 0,
+      axisLabelVisible: true,
+      title: 'EMA 200',
+    });
+  }
+
+  const lev = a.levels || {};
+
+  // Floor lines
+  if (lev.f1h) addLine({ price: lev.f1h, color: isDark ? '#5cab5c' : '#2d8a4e', lineWidth: 1, lineStyle: 0, axisLabelVisible: true, title: '1H FLR' });
+  if (lev.f4h) addLine({ price: lev.f4h, color: isDark ? '#5cab5c' : '#2d8a4e', lineWidth: 1, lineStyle: 2, axisLabelVisible: true, title: '4H FLR' });
+
+  // Ceiling lines
+  if (lev.c1h) addLine({ price: lev.c1h, color: isDark ? '#c45c5c' : '#c0392b', lineWidth: 1, lineStyle: 2, axisLabelVisible: true, title: '1H CEIL' });
+  if (lev.c4h) addLine({ price: lev.c4h, color: isDark ? '#c45c5c' : '#c0392b', lineWidth: 1, lineStyle: 2, axisLabelVisible: true, title: '4H CEIL' });
+
+  // Position strike lines (amber, draggable)
+  const positions  = d.positions   || [];
+  const sellOrders = d.sell_orders || [];
+  const buyTraps   = d.buy_traps   || [];
+
+  positions
+    .filter(pos => pos.asset && pos.asset.toLowerCase() === assetKey)
+    .forEach(pos => {
+      const sell = sellOrders.find(o =>
+        o.ticker === pos.ticker || (o.asset === pos.asset && o.strike === pos.strike)
+      );
+      const sellStr = sell ? Math.round(sell.price * 100) + '¢' : '?';
+      const title = `${pos.qty}× @${Math.round(pos.entry * 100)}¢ → sell ${sellStr}`;
+
+      addLine({
+        price: pos.strike,
+        color: isDark ? '#d97706' : '#b45309',
+        lineWidth: 2,
+        lineStyle: 0,
+        axisLabelVisible: true,
+        title,
+        draggable: true,
+      });
+    });
+
+  // Standalone sell order lines (no matching position)
+  sellOrders
+    .filter(o => o.asset && o.asset.toLowerCase() === assetKey)
+    .filter(o => {
+      return !positions.some(p => p.ticker === o.ticker || (p.asset === o.asset && p.strike === o.strike));
+    })
+    .forEach(o => {
+      addLine({
+        price: o.strike,
+        color: isDark ? '#5cab5c' : '#2d8a4e',
+        lineWidth: 1,
+        lineStyle: 2,
+        axisLabelVisible: true,
+        title: `SELL ${o.remaining}×`,
+      });
+    });
+
+  // Buy trap lines
+  buyTraps
+    .filter(o => o.asset && o.asset.toLowerCase() === assetKey)
+    .forEach(o => {
+      addLine({
+        price: o.strike || o.price,
+        color: isDark ? '#6ba3d6' : '#2c7be5',
+        lineWidth: 1,
+        lineStyle: 2,
+        axisLabelVisible: true,
+        title: `BUY ${o.qty}×`,
+      });
+    });
+
+  // Subscribe to drag events for scenario panel
+  chartObj.priceLines.forEach((pl, idx) => {
+    // Identify position lines by checking if they correspond to a position
+    const positionsForAsset = positions.filter(p => p.asset && p.asset.toLowerCase() === assetKey);
+    const matchPos = positionsForAsset[idx - (a.ema200 ? 1 : 0) - ((lev.f1h ? 1 : 0) + (lev.f4h ? 1 : 0) + (lev.c1h ? 1 : 0) + (lev.c4h ? 1 : 0))];
+    // Note: draggable price line drag detection is via subscribeCustomSeriesPriceLine
+    // which isn't available. We use the draggable option and listen via chart events instead.
+  });
+}
+
+function updateCharts(d) {
+  ['btc', 'eth'].forEach(assetKey => {
+    if (!charts[assetKey]) return;
+    populateChartData(assetKey, d);
+    // Don't reset zoom on update
+  });
 }
 
 // ─── Cycle Status ─────────────────────────────────────────────────────────────
 function cycleStatus(pos, sellOrders, buyTraps) {
   const sell = sellOrders.find(o =>
-    o.ticker === pos.ticker ||
-    (o.asset === pos.asset && o.strike === pos.strike)
+    o.ticker === pos.ticker || (o.asset === pos.asset && o.strike === pos.strike)
   );
   const buy = buyTraps.find(o => o.asset === pos.asset);
 
-  if (!sell)                           return 'action_needed';
-  if (sell.remaining === 0)            return 'done';
-  if (sell.remaining < sell.qty)       return 'filling';
-  if (buy)                             return 'cycling';
+  if (!sell)                     return 'action_needed';
+  if (sell.remaining === 0)      return 'done';
+  if (sell.remaining < sell.qty) return 'filling';
+  if (buy)                       return 'cycling';
   return 'resting';
 }
 
-// ─── Render ───────────────────────────────────────────────────────────────────
-function renderDashboard(d) {
+// ─── Render nav bar ───────────────────────────────────────────────────────────
+function renderNav(d) {
   const bal = d.balance || {};
-  const btc = d.btc || {};
-  const eth = d.eth || {};
-  const sym = d.symphony || {};
   const mac = d.macro || {};
-
-  let html = '';
-
-  // SECTION 1: HEADER
-  const fg = mac.fg || 0;
-  html += `
-  <div class="section">
-    <div class="header">
-      <div class="header-left">
-        <h1>Ping Pong War Room · Athanor Umbra</h1>
-        <div class="sub">Settlement: <strong>Fri Apr 3, 2026</strong> &nbsp;·&nbsp; Kalshi Crypto Contracts</div>
+  const fg  = mac.fg || 0;
+  document.getElementById('navbar-section').innerHTML = `
+    <nav class="navbar">
+      <div class="navbar-left">
+        <h1>PING PONG WAR ROOM · ATHANOR UMBRA</h1>
       </div>
-      <div class="header-right">
+      <div class="navbar-center">
         <div class="stat-item">
           <div class="stat-value mono">${fmt.dollar(bal.portfolio_value)}</div>
           <div class="stat-label">Portfolio</div>
@@ -514,145 +637,139 @@ function renderDashboard(d) {
           <div class="stat-label">Fear &amp; Greed</div>
         </div>
       </div>
-    </div>
+      <div class="navbar-right">
+        <a class="btn" href="index.html">← Signal Board</a>
+        <button class="btn" onclick="fetchData()">Refresh</button>
+      </div>
+    </nav>
     <div class="meta-bar">
-      <span>Mon Mar 31, 2026</span>
+      <span>Data: ${d.updated_at || '—'}</span>
       <span id="data-age">${fmt.age(d.updated_at)}</span>
     </div>
-  </div>`;
+  `;
+}
 
-  // SECTION 2: FLEET BADGES
-  const btcSigC = sigClass(btc.eagle);
-  const ethSigC = sigClass(eth.eagle);
-  const symC = sym.state && /OVERRIDE|BULL/.test(sym.state.toUpperCase()) ? 'purple' : 'dim';
-  html += `
-  <div class="section">
-    <div class="section-title">Fleet Signals</div>
-    <div class="badges">
-      <span class="badge ${symC}">SYM: ${sym.state || '—'} ${sym.confidence ? sym.confidence + '%' : ''}</span>
-      <span class="badge ${btcSigC}">BTC: ${btc.eagle || '—'}</span>
-      <span class="badge ${sigClass(btc.eagle_cvd)}">BTC CVD: ${btc.eagle_cvd || '—'}</span>
-      <span class="badge ${btc.rsi > 60 ? 'green' : btc.rsi < 40 ? 'red' : 'dim'}">BTC RSI: ${btc.rsi ? Number(btc.rsi).toFixed(0) : '—'}</span>
-      <span class="badge ${sigClass(btc.nano)}">BTC NANO: ${btc.nano || '—'}</span>
-      <span class="badge dim">BTC R:R ${btc.rr_best_long ? Number(btc.rr_best_long).toFixed(1) + ':1' : '—'} ${btc.rr_best_timeframe || ''}</span>
-      <span class="badge ${sigClass(btc.vulture_bias)}">BTC BIAS: ${btc.vulture_bias || '—'}</span>
-      <span class="badge dim">BTC EMA200 ${btc.ema200_distance_pct != null ? fmt.pct(btc.ema200_distance_pct) : '—'}</span>
-      <span class="badge ${ethSigC}">ETH: ${eth.eagle || '—'}</span>
-      <span class="badge ${sigClass(eth.eagle_cvd)}">ETH CVD: ${eth.eagle_cvd || '—'}</span>
-      <span class="badge ${eth.rsi > 60 ? 'green' : eth.rsi < 40 ? 'red' : 'dim'}">ETH RSI: ${eth.rsi ? Number(eth.rsi).toFixed(0) : '—'}</span>
-      <span class="badge ${sigClass(eth.nano)}">ETH NANO: ${eth.nano || '—'}</span>
-      <span class="badge dim">ETH R:R ${eth.rr_best_long ? Number(eth.rr_best_long).toFixed(1) + ':1' : '—'} ${eth.rr_best_timeframe || ''}</span>
-      <span class="badge ${sigClass(mac.bias)}">MACRO: ${mac.bias || '—'}</span>
-      <span class="badge dim">WTHR: ${mac.weatherman > 0 ? '+' : ''}${mac.weatherman}</span>
-    </div>
-  </div>`;
+// ─── Render chart section (skeleton only — charts live in their containers) ──
+function renderChartSection(d) {
+  const btc = d.btc || {};
+  const eth = d.eth || {};
+  const ph  = d.price_history || {};
 
-  // SECTION 3: PRICE LADDERS
-  html += `
-  <div class="section">
-    <div class="section-title">Price Ladders</div>
-    <div class="ladders">
-      <div class="ladder-card">
-        <div class="ladder-header">
-          <div class="ladder-asset" style="color:var(--blue)">BTC</div>
-          <div class="ladder-price">${fmt.price(btc.price)}</div>
-        </div>
-        <div class="ladder-svg-wrap" id="ladder-btc-wrap"></div>
-        <div class="ladder-legend">
-          <div class="leg-item"><span class="leg-line" style="background:var(--blue)"></span>Price</div>
-          <div class="leg-item"><span class="leg-line" style="background:var(--purple)"></span>EMA200</div>
-          <div class="leg-item"><span class="leg-line" style="background:var(--red)"></span>Ceiling</div>
-          <div class="leg-item"><span class="leg-line" style="background:var(--green)"></span>Floor</div>
-          <div class="leg-item"><span class="leg-line" style="background:var(--blue);height:1px;border-style:dashed"></span>Strikes</div>
-        </div>
+  const btcHasData = (ph.BTC && ph.BTC.series && ph.BTC.series.length > 0);
+  const ethHasData = (ph.ETH && ph.ETH.series && ph.ETH.series.length > 0);
+
+  document.getElementById('charts-section').innerHTML = `
+    <div class="section">
+      <div class="chart-controls">
+        <div class="section-title" style="flex:1">Price Charts</div>
+        <button class="tf-btn${activeTf==='4H' ?' active':''}" onclick="setTf('4H')">4H</button>
+        <button class="tf-btn${activeTf==='12H'?' active':''}" onclick="setTf('12H')">12H</button>
+        <button class="tf-btn${activeTf==='24H'?' active':''}" onclick="setTf('24H')">24H</button>
+        <button class="tf-btn${activeTf==='48H'?' active':''}" onclick="setTf('48H')">48H</button>
       </div>
-      <div class="ladder-card">
-        <div class="ladder-header">
-          <div class="ladder-asset" style="color:var(--purple)">ETH</div>
-          <div class="ladder-price">${fmt.price(eth.price)}</div>
+      <div class="charts-grid">
+        <div class="chart-card">
+          <div class="chart-header">
+            <div class="chart-asset" style="color:var(--blue)">BTC</div>
+            <div class="chart-price" id="btc-price-label">${fmt.price(btc.price)}</div>
+          </div>
+          <div class="chart-container" id="chart-btc">
+            ${!btcHasData ? '<div class="chart-no-data">Waiting for price history data (next agent cycle)</div>' : ''}
+          </div>
+          <div class="chart-legend">
+            <div class="leg-item"><span class="leg-swatch" style="background:${isDark?'#6ba3d6':'#2c7be5'}"></span>Price</div>
+            <div class="leg-item"><span class="leg-swatch" style="background:${isDark?'#9b7ed8':'#7c3aed'}"></span>EMA200</div>
+            <div class="leg-item"><span class="leg-swatch" style="background:${isDark?'#d97706':'#b45309'}"></span>Position</div>
+            <div class="leg-item"><span class="leg-swatch dashed" style="color:${isDark?'#5cab5c':'#2d8a4e'}"></span>Sell</div>
+            <div class="leg-item"><span class="leg-swatch dashed" style="color:${isDark?'#6ba3d6':'#2c7be5'}"></span>Buy</div>
+            <div class="leg-item"><span class="leg-swatch" style="background:${isDark?'#5cab5c':'#2d8a4e'}"></span>Floor</div>
+            <div class="leg-item"><span class="leg-swatch dashed" style="color:${isDark?'#c45c5c':'#c0392b'}"></span>Ceiling</div>
+          </div>
         </div>
-        <div class="ladder-svg-wrap" id="ladder-eth-wrap"></div>
-        <div class="ladder-legend">
-          <div class="leg-item"><span class="leg-line" style="background:var(--blue)"></span>Price</div>
-          <div class="leg-item"><span class="leg-line" style="background:var(--purple)"></span>EMA200</div>
-          <div class="leg-item"><span class="leg-line" style="background:var(--red)"></span>Ceiling</div>
-          <div class="leg-item"><span class="leg-line" style="background:var(--green)"></span>Floor</div>
-          <div class="leg-item"><span class="leg-line" style="background:var(--blue);height:1px;border-style:dashed"></span>Strikes</div>
+        <div class="chart-card">
+          <div class="chart-header">
+            <div class="chart-asset" style="color:var(--purple)">ETH</div>
+            <div class="chart-price" id="eth-price-label">${fmt.price(eth.price)}</div>
+          </div>
+          <div class="chart-container" id="chart-eth">
+            ${!ethHasData ? '<div class="chart-no-data">Waiting for price history data (next agent cycle)</div>' : ''}
+          </div>
+          <div class="chart-legend">
+            <div class="leg-item"><span class="leg-swatch" style="background:${isDark?'#6ba3d6':'#2c7be5'}"></span>Price</div>
+            <div class="leg-item"><span class="leg-swatch" style="background:${isDark?'#9b7ed8':'#7c3aed'}"></span>EMA200</div>
+            <div class="leg-item"><span class="leg-swatch" style="background:${isDark?'#d97706':'#b45309'}"></span>Position</div>
+            <div class="leg-item"><span class="leg-swatch dashed" style="color:${isDark?'#5cab5c':'#2d8a4e'}"></span>Sell</div>
+            <div class="leg-item"><span class="leg-swatch dashed" style="color:${isDark?'#6ba3d6':'#2c7be5'}"></span>Buy</div>
+            <div class="leg-item"><span class="leg-swatch" style="background:${isDark?'#5cab5c':'#2d8a4e'}"></span>Floor</div>
+            <div class="leg-item"><span class="leg-swatch dashed" style="color:${isDark?'#c45c5c':'#c0392b'}"></span>Ceiling</div>
+          </div>
         </div>
       </div>
     </div>
-  </div>`;
+  `;
+}
 
-  // SECTION 4: PING PONG CYCLE TRACKER
-  const positions = d.positions || [];
+// Timeframe button handler
+function setTf(tf) {
+  activeTf = tf;
+  // Update button classes
+  document.querySelectorAll('.tf-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.textContent === tf);
+  });
+  // Apply range to both charts
+  ['btc', 'eth'].forEach(k => applyTimeframe(charts[k], tf));
+}
+
+// ─── Render cycle tracker ──────────────────────────────────────────────────────
+function renderCycleTracker(d) {
+  const positions  = d.positions   || [];
   const sellOrders = d.sell_orders || [];
-  const buyTraps   = d.buy_traps  || [];
-  html += `
-  <div class="section">
-    <div class="section-title">Ping Pong Cycle Tracker</div>
-    <div class="cycle-table-wrap">
-      <table class="cycle-table">
-        <thead>
-          <tr>
-            <th>Position</th>
-            <th>Hold</th>
-            <th></th>
-            <th>Sell Target</th>
-            <th></th>
-            <th>Rebuy</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>`;
+  const buyTraps   = d.buy_traps   || [];
 
+  let rows = '';
   if (positions.length === 0) {
-    html += `<tr><td colspan="7" style="text-align:center;color:var(--dim);padding:20px">No open positions</td></tr>`;
+    rows = `<tr><td colspan="7" style="text-align:center;color:var(--dim);padding:20px">No open positions</td></tr>`;
   } else {
     positions.forEach(pos => {
       const status = cycleStatus(pos, sellOrders, buyTraps);
-      const needsAction = status === 'action_needed';
-      const rowClass = needsAction ? 'needs-action' : '';
+      const rowClass = status === 'action_needed' ? 'needs-action' : '';
 
       const sell = sellOrders.find(o =>
         o.ticker === pos.ticker || (o.asset === pos.asset && o.strike === pos.strike)
       );
       const buy = buyTraps.find(o => o.asset === pos.asset);
 
-      // Position label: BTC ≥$68,300
-      const posLabel = `${pos.asset} ≥${fmt.price(pos.strike)}`;
+      const posLabel  = `${pos.asset} ≥${fmt.price(pos.strike)}`;
+      const costFmt   = pos.cost_basis ? fmt.dollar(pos.cost_basis) : fmt.dollar((pos.qty||0)*(pos.entry||0));
+      const holdTxt   = `${(pos.qty||0).toLocaleString()} × ${fmt.cents(pos.entry)} = ${costFmt}`;
 
-      // Hold: qty × entry¢ = cost
-      const costFmt = pos.cost_basis ? fmt.dollar(pos.cost_basis) : fmt.dollar((pos.qty||0)*(pos.entry||0));
-      const holdTxt = `${(pos.qty||0).toLocaleString()} × ${fmt.cents(pos.entry)} = ${costFmt}`;
-
-      // Sell target
-      let sellTxt = '—';
+      let sellTxt  = '—';
       let profitTxt = '';
       if (sell) {
         const profit = pos.entry > 0 ? ((sell.price - pos.entry) / pos.entry * 100) : 0;
-        const filled  = (sell.qty || 0) - (sell.remaining || 0);
-        sellTxt = `${(sell.remaining||0).toLocaleString()} × ${fmt.cents(sell.price)}`;
-        profitTxt = `<div class="pos-sub" style="color:var(--green)">${fmt.pct(profit)} ROI · ${filled > 0 ? filled + ' filled' : 'none filled'}</div>`;
+        const filled = (sell.qty||0) - (sell.remaining||0);
+        sellTxt   = `${(sell.remaining||0).toLocaleString()} × ${fmt.cents(sell.price)}`;
+        profitTxt = `<div class="pos-sub" style="color:var(--green)">${fmt.pct(profit)} ROI · ${filled > 0 ? filled+' filled' : 'none filled'}</div>`;
       }
 
-      // Rebuy
-      const rebuyTxt = buy ? `${(buy.remaining||buy.qty||0).toLocaleString()} × ${fmt.cents(buy.price)} ${buy.asset}` : '—';
+      const rebuyTxt = buy
+        ? `${(buy.remaining||buy.qty||0).toLocaleString()} × ${fmt.cents(buy.price)} ${buy.asset}`
+        : '—';
 
-      // Status badge
-      const statusLabels = {
-        done: ['DONE', 'status-done'],
-        filling: ['FILLING', 'status-filling'],
-        resting: ['RESTING', 'status-resting'],
-        cycling: ['CYCLING', 'status-cycling'],
+      const statusMap = {
+        done:          ['DONE',          'status-done'],
+        filling:       ['FILLING',       'status-filling'],
+        resting:       ['RESTING',       'status-resting'],
+        cycling:       ['CYCLING',       'status-cycling'],
         action_needed: ['ACTION NEEDED', 'status-action'],
       };
-      const [sLabel, sClass] = statusLabels[status] || ['—', ''];
+      const [sLabel, sClass] = statusMap[status] || ['—', ''];
 
-      html += `
+      rows += `
         <tr class="${rowClass}">
           <td>
             <div class="pos-name">${posLabel}</div>
-            <div class="pos-sub">${pos.side?.toUpperCase() || 'YES'} · MV ${fmt.dollar(pos.market_value)}</div>
+            <div class="pos-sub">${(pos.side||'yes').toUpperCase()} · MV ${fmt.dollar(pos.market_value)}</div>
           </td>
           <td class="mono" style="font-size:12px">${holdTxt}</td>
           <td class="arrow">→</td>
@@ -666,170 +783,248 @@ function renderDashboard(d) {
         </tr>`;
     });
   }
-  html += `</tbody></table></div></div>`;
 
-  // SECTION 5: SIDE PANELS
-  // Profit banked: sell orders with fully filled (remaining === 0) or partially filled
+  document.getElementById('cycle-section').innerHTML = `
+    <div class="section">
+      <div class="section-title">Ping Pong Cycle Tracker</div>
+      <div class="cycle-table-wrap">
+        <table class="cycle-table">
+          <thead>
+            <tr>
+              <th>Position</th><th>Hold</th><th></th>
+              <th>Sell Target</th><th></th><th>Rebuy</th><th>Status</th>
+            </tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
+    </div>`;
+}
+
+// ─── Render fleet + position overview ─────────────────────────────────────────
+function renderFleet(d) {
+  const btc = d.btc || {};
+  const eth = d.eth || {};
+  const sym = d.symphony || {};
+  const mac = d.macro || {};
+
+  const positions  = d.positions   || [];
+  const sellOrders = d.sell_orders || [];
+  const buyTraps   = d.buy_traps   || [];
+
+  // Profit calc
   const bankedProfit = sellOrders.reduce((sum, o) => {
-    const filled = (o.qty || 0) - (o.remaining || 0);
+    const filled = (o.qty||0) - (o.remaining||0);
     if (filled <= 0) return sum;
-    const pos = positions.find(p => p.ticker === o.ticker || (p.asset === o.asset && p.strike === o.strike));
+    const pos   = positions.find(p => p.ticker === o.ticker || (p.asset === o.asset && p.strike === o.strike));
     const entry = pos ? pos.entry : 0;
     return sum + (o.price - entry) * filled;
   }, 0);
-  const pendingMV = positions.reduce((sum, p) => sum + (p.market_value || 0), 0);
-  const pendingCost = positions.reduce((sum, p) => sum + (p.cost_basis || (p.qty||0)*(p.entry||0)), 0);
+  const pendingMV   = positions.reduce((s, p) => s + (p.market_value||0), 0);
+  const pendingCost = positions.reduce((s, p) => s + (p.cost_basis||(p.qty||0)*(p.entry||0)), 0);
 
-  const btcDist = (btc.nano || '').toUpperCase() === 'DISTRIBUTION';
-  const ethDist = (eth.nano || '').toUpperCase() === 'DISTRIBUTION';
-  const shortSideActive = btcDist && ethDist;
+  const btcDist      = (btc.nano||'').toUpperCase() === 'DISTRIBUTION';
+  const ethDist      = (eth.nano||'').toUpperCase() === 'DISTRIBUTION';
+  const shortActive  = btcDist && ethDist;
 
-  html += `
-  <div class="section">
-    <div class="section-title">Position Overview</div>
-    <div class="side-panels">
-      <div class="card">
-        <div class="panel-title">Profit &amp; Exposure</div>
-        <div class="panel-row">
-          <span class="label">Profit banked</span>
-          <span class="val" style="color:${bankedProfit >= 0 ? 'var(--green)' : 'var(--red)'}">${fmt.dollar(bankedProfit)}</span>
-        </div>
-        <div class="panel-row">
-          <span class="label">Total cost basis</span>
-          <span class="val">${fmt.dollar(pendingCost)}</span>
-        </div>
-        <div class="panel-row">
-          <span class="label">Total market value</span>
-          <span class="val">${fmt.dollar(pendingMV)}</span>
-        </div>
-        <div class="panel-row">
-          <span class="label">Unrealized</span>
-          <span class="val" style="color:${pendingMV - pendingCost >= 0 ? 'var(--green)' : 'var(--red)'}">${fmt.dollar(pendingMV - pendingCost)}</span>
-        </div>
-        <div class="panel-row">
-          <span class="label">Open positions</span>
-          <span class="val">${positions.length}</span>
-        </div>
-        <div class="panel-row">
-          <span class="label">Resting sells</span>
-          <span class="val">${sellOrders.length}</span>
-        </div>
-        <div class="panel-row">
-          <span class="label">Buy traps</span>
-          <span class="val">${buyTraps.length}</span>
-        </div>
-      </div>
+  const symC     = sym.state && /OVERRIDE|BULL/.test(sym.state.toUpperCase()) ? 'purple' : 'dim';
+  const btcSigC  = sigClass(btc.eagle);
+  const ethSigC  = sigClass(eth.eagle);
 
-      <div class="card">
-        <div class="panel-title">Short Side Watch</div>
-        <div class="watch-row">
-          <span>BTC Nano</span>
-          <span class="badge ${btcDist ? 'red' : 'green'}">${btc.nano || '—'}</span>
+  document.getElementById('fleet-section').innerHTML = `
+    <div class="section">
+      <div class="section-title">Position Overview</div>
+      <div class="side-panels">
+        <div class="card">
+          <div class="panel-title">Profit &amp; Exposure</div>
+          <div class="panel-row">
+            <span class="label">Profit banked</span>
+            <span class="val" style="color:${bankedProfit>=0?'var(--green)':'var(--red)'}">${fmt.dollar(bankedProfit)}</span>
+          </div>
+          <div class="panel-row">
+            <span class="label">Total cost basis</span>
+            <span class="val">${fmt.dollar(pendingCost)}</span>
+          </div>
+          <div class="panel-row">
+            <span class="label">Total market value</span>
+            <span class="val">${fmt.dollar(pendingMV)}</span>
+          </div>
+          <div class="panel-row">
+            <span class="label">Unrealized</span>
+            <span class="val" style="color:${pendingMV-pendingCost>=0?'var(--green)':'var(--red)'}">${fmt.dollar(pendingMV-pendingCost)}</span>
+          </div>
+          <div class="panel-row">
+            <span class="label">Open positions</span>
+            <span class="val">${positions.length}</span>
+          </div>
+          <div class="panel-row">
+            <span class="label">Resting sells</span>
+            <span class="val">${sellOrders.length}</span>
+          </div>
+          <div class="panel-row">
+            <span class="label">Buy traps</span>
+            <span class="val">${buyTraps.length}</span>
+          </div>
         </div>
-        <div class="watch-row">
-          <span>ETH Nano</span>
-          <span class="badge ${ethDist ? 'red' : 'green'}">${eth.nano || '—'}</span>
+        <div class="card">
+          <div class="panel-title">Short Side Watch</div>
+          <div class="watch-row">
+            <span>BTC Nano</span>
+            <span class="badge ${btcDist?'red':'green'}">${btc.nano||'—'}</span>
+          </div>
+          <div class="watch-row">
+            <span>ETH Nano</span>
+            <span class="badge ${ethDist?'red':'green'}">${eth.nano||'—'}</span>
+          </div>
+          <div class="watch-row">
+            <span>BTC Zone</span>
+            <span class="badge dim">${btc.nano_zone_weight||'—'}</span>
+          </div>
+          <div class="watch-row">
+            <span>ETH Zone</span>
+            <span class="badge dim">${eth.nano_zone_weight||'—'}</span>
+          </div>
+          <div class="watch-status ${shortActive?'watch-active':'watch-inactive'}">
+            NO scanning: ${shortActive?'ACTIVE — scan bearish contracts':'INACTIVE — fleet not in DIST'}
+          </div>
+          ${shortActive?`
+          <div style="font-size:12px;color:var(--dim);margin-top:8px;line-height:1.5">
+            Both BTC + ETH Nano in DISTRIBUTION.<br>Check edge scanner for NO contracts.
+          </div>`:''}
         </div>
-        <div class="watch-row">
-          <span>BTC Zone</span>
-          <span class="badge dim">${btc.nano_zone_weight || '—'}</span>
-        </div>
-        <div class="watch-row">
-          <span>ETH Zone</span>
-          <span class="badge dim">${eth.nano_zone_weight || '—'}</span>
-        </div>
-        <div class="watch-status ${shortSideActive ? 'watch-active' : 'watch-inactive'}">
-          NO scanning: ${shortSideActive ? 'ACTIVE — scan bearish contracts' : 'INACTIVE — fleet not in DIST'}
-        </div>
-        ${shortSideActive ? `
-        <div style="font-size:12px;color:var(--dim);margin-top:8px;line-height:1.5">
-          Both BTC + ETH Nano in DISTRIBUTION.<br>
-          Check edge scanner for NO contracts.
-        </div>` : ''}
       </div>
     </div>
-  </div>`;
 
-  // SECTION 6: CATALYST TIMELINE
+    <div class="section">
+      <div class="section-title">Fleet Signals</div>
+      <div class="badges">
+        <span class="badge ${symC}">SYM: ${sym.state||'—'} ${sym.confidence?sym.confidence+'%':''}</span>
+        <span class="badge ${btcSigC}">BTC: ${btc.eagle||'—'}</span>
+        <span class="badge ${sigClass(btc.eagle_cvd)}">BTC CVD: ${btc.eagle_cvd||'—'}</span>
+        <span class="badge ${btc.rsi>60?'green':btc.rsi<40?'red':'dim'}">BTC RSI: ${btc.rsi!=null?Number(btc.rsi).toFixed(0):'—'}</span>
+        <span class="badge ${sigClass(btc.nano)}">BTC NANO: ${btc.nano||'—'}</span>
+        <span class="badge ${sigClass(btc.vulture_bias)}">BTC BIAS: ${btc.vulture_bias||'—'}</span>
+        <span class="badge dim">BTC EMA% ${btc.ema200_distance_pct!=null?fmt.pct(btc.ema200_distance_pct):'—'}</span>
+        <span class="badge ${ethSigC}">ETH: ${eth.eagle||'—'}</span>
+        <span class="badge ${sigClass(eth.eagle_cvd)}">ETH CVD: ${eth.eagle_cvd||'—'}</span>
+        <span class="badge ${eth.rsi>60?'green':eth.rsi<40?'red':'dim'}">ETH RSI: ${eth.rsi!=null?Number(eth.rsi).toFixed(0):'—'}</span>
+        <span class="badge ${sigClass(eth.nano)}">ETH NANO: ${eth.nano||'—'}</span>
+        <span class="badge ${sigClass(mac.bias)}">MACRO: ${mac.bias||'—'}</span>
+        <span class="badge dim">WTHR: ${mac.weatherman>0?'+':''}${mac.weatherman??'—'}</span>
+      </div>
+    </div>`;
+}
+
+// ─── Render catalysts ─────────────────────────────────────────────────────────
+function renderCatalysts(d) {
   const catalysts = d.catalysts || [];
-  html += `
-  <div class="section">
-    <div class="section-title">Catalyst Timeline</div>
-    <div class="catalyst-row">`;
+  let cards = '';
   catalysts.forEach(c => {
-    const cd = fmt.countdown(c.date);
+    const cd   = fmt.countdown(c.date);
     const past = cd === null;
-    html += `
-      <div class="catalyst-card risk-${c.risk} ${past ? 'catalyst-past' : ''}">
+    cards += `
+      <div class="catalyst-card risk-${c.risk} ${past?'catalyst-past':''}">
         <div class="catalyst-label">${c.label}</div>
-        <div class="catalyst-countdown" style="color:var(${c.risk === 'MAX' ? '--red' : c.risk === 'HIGH' ? '--yellow' : '--dim'})">${past ? 'PAST' : cd}</div>
+        <div class="catalyst-countdown" style="color:var(${c.risk==='MAX'?'--red':c.risk==='HIGH'?'--yellow':'--dim'})">${past?'PAST':cd}</div>
         <div class="catalyst-risk">${c.risk}</div>
       </div>`;
   });
-  html += `</div></div>`;
-
-  // FOOTER
-  html += `
-  <div class="footer">
-    <strong>Ping Pong Rules:</strong>
-    Sell half at 2× entry · Set sells AND rebuys simultaneously · Fleet bullish = YES only · Fleet bearish = scan NOs ·
-    Never hold to settlement blind · Trade the appreciation, not the outcome ·
-    F&amp;G ≤ 25 = buy the dip · DIST phase = trim or rotate
-  </div>`;
-
-  document.getElementById('app').innerHTML = html;
-
-  // Draw SVG ladders after DOM update
-  requestAnimationFrame(() => {
-    const btcWrap = document.getElementById('ladder-btc-wrap');
-    const ethWrap = document.getElementById('ladder-eth-wrap');
-    if (btcWrap) drawLadder(btcWrap, 'btc', d);
-    if (ethWrap) drawLadder(ethWrap, 'eth', d);
-  });
+  if (catalysts.length === 0) {
+    cards = `<div style="color:var(--dim);font-size:13px;padding:8px">No catalysts scheduled</div>`;
+  }
+  document.getElementById('catalyst-section').innerHTML = `
+    <div class="section">
+      <div class="section-title">Catalyst Timeline</div>
+      <div class="catalyst-row">${cards}</div>
+    </div>`;
 }
 
-// ─── Fetch & Refresh ──────────────────────────────────────────────────────────
+// ─── Render footer ─────────────────────────────────────────────────────────────
+function renderFooter() {
+  document.getElementById('footer-section').innerHTML = `
+    <div class="footer">
+      <strong>Ping Pong Rules:</strong>
+      Sell half at 2× entry · Set sells AND rebuys simultaneously · Fleet bullish = YES only · Fleet bearish = scan NOs ·
+      Never hold to settlement blind · Trade the appreciation, not the outcome ·
+      F&amp;G ≤ 25 = buy the dip · DIST phase = trim or rotate
+    </div>`;
+}
+
+// ─── Render all static sections ───────────────────────────────────────────────
+function renderStaticSections(d) {
+  renderNav(d);
+  renderCycleTracker(d);
+  renderFleet(d);
+  renderCatalysts(d);
+  renderFooter();
+}
+
+// ─── Data age updater ─────────────────────────────────────────────────────────
+function updateDataAge() {
+  if (!dashData) return;
+  const el = document.getElementById('data-age');
+  if (el) el.textContent = fmt.age(dashData.updated_at);
+}
+
+// ─── Main fetch ───────────────────────────────────────────────────────────────
 async function fetchData() {
   try {
     const resp = await fetch('data/dashboard_data.json?t=' + Date.now());
     if (!resp.ok) throw new Error('HTTP ' + resp.status);
     dashData = await resp.json();
-    renderDashboard(dashData);
-    updateDataAge();
-  } catch (e) {
-    const app = document.getElementById('app');
-    if (!dashData) {
-      app.innerHTML = `<div style="text-align:center;padding:60px;color:var(--dim);">
-        Waiting for data… Agent writes <code>dashboard_data.json</code> on next cycle.<br>
-        <small style="color:var(--hint)">${e.message}</small>
-      </div>`;
+
+    if (!charts.btc) {
+      // First load: render chart section skeleton then init charts
+      renderChartSection(dashData);
+      requestAnimationFrame(() => {
+        initCharts(dashData);
+      });
+    } else {
+      // Subsequent: update chart data only — do NOT call renderChartSection
+      // (it would destroy the chart-btc / chart-eth DOM nodes and orphan the instances)
+      const btcLbl = document.getElementById('btc-price-label');
+      const ethLbl = document.getElementById('eth-price-label');
+      if (btcLbl && dashData.btc) btcLbl.textContent = fmt.price(dashData.btc.price);
+      if (ethLbl && dashData.eth) ethLbl.textContent = fmt.price(dashData.eth.price);
+      requestAnimationFrame(() => {
+        updateCharts(dashData);
+        applyTimeframe(charts.btc, activeTf);
+        applyTimeframe(charts.eth, activeTf);
+      });
     }
+
+    renderStaticSections(dashData);
+
+  } catch (e) {
+    if (!dashData) {
+      // Show waiting state in all sections
+      document.getElementById('charts-section').innerHTML = `
+        <div class="section">
+          <div style="text-align:center;padding:60px;color:var(--dim);">
+            Waiting for data… Agent writes <code>dashboard_data.json</code> on next cycle.<br>
+            <small style="color:var(--hint)">${e.message}</small>
+          </div>
+        </div>`;
+    }
+    console.warn('fetchData error:', e);
   }
 }
 
-function updateDataAge() {
-  if (!dashData) return;
-  const el = document.getElementById('data-age');
-  if (el) el.textContent = 'Data: ' + fmt.age(dashData.updated_at);
-}
-
-// ─── Resize: redraw SVG ladders ───────────────────────────────────────────────
-let resizeTimer;
-window.addEventListener('resize', () => {
-  clearTimeout(resizeTimer);
-  resizeTimer = setTimeout(() => {
-    if (!dashData) return;
-    const btcWrap = document.getElementById('ladder-btc-wrap');
-    const ethWrap = document.getElementById('ladder-eth-wrap');
-    if (btcWrap) drawLadder(btcWrap, 'btc', dashData);
-    if (ethWrap) drawLadder(ethWrap, 'eth', dashData);
-  }, 150);
-});
-
 // ─── Init ─────────────────────────────────────────────────────────────────────
+renderFooter(); // render footer immediately
 fetchData();
 setInterval(fetchData, 60000);
 setInterval(updateDataAge, 10000);
+
+// Resize: refit chart widths
+window.addEventListener('resize', () => {
+  ['btc', 'eth'].forEach(k => {
+    if (charts[k]) {
+      const el = document.getElementById('chart-' + k);
+      if (el) charts[k].chart.applyOptions({ width: el.clientWidth });
+    }
+  });
+});
 </script>
 </body>
 </html>
