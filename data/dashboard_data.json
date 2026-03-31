@@ -1,8 +1,8 @@
 {
-  "updated": "2026-03-31T01:47:55.172673Z",
+  "updated": "2026-03-31T01:52:56.388577Z",
   "balance": {
-    "available": 510.64,
-    "portfolio": 1191.21
+    "available": 512.2,
+    "portfolio": 1135.83
   },
   "symphony": {
     "state": "RANGE_BOUND",
@@ -18,24 +18,24 @@
   },
   "assets": {
     "BTC": {
-      "price": 67824.01,
-      "eagle_phase": "BREAKOUT_ATTEMPT",
+      "price": 67902.99,
+      "eagle_phase": "NEUTRAL",
       "eagle_cvd": "STRONG BULLISH",
-      "eagle_phase_confidence": 32.0,
-      "proximity_ceiling_pct": 0.55,
-      "proximity_floor_pct": 2.255,
+      "eagle_phase_confidence": 30.0,
+      "proximity_ceiling_pct": 0.72,
+      "proximity_floor_pct": 2.081,
       "nano_phase": "DISTRIBUTION",
-      "nano_oi_1h": 0.18,
-      "nano_position_pct": 75.0,
+      "nano_oi_1h": 0.12,
+      "nano_position_pct": 76.0,
       "nano_near_floor": false,
       "nano_near_ceiling": false,
       "nano_direction_bias": "NEUTRAL",
-      "rsi": 67.53956863561942,
-      "ema_200": 68021.51061024737,
-      "ema_200_distance_pct": 0.37,
+      "rsi": 63.68985346200964,
+      "ema_200": 68016.9711077598,
+      "ema_200_distance_pct": -0.25,
       "direction_bias": "SHORT",
-      "trend": "\u2696\ufe0f RANGING \u2014 Consolidation (wait for direction)",
-      "best_rr_long": 2.3,
+      "trend": "\ud83d\udcc8 BULLISH \u2014 Confirmed uptrend (long-friendly, short-cautious)",
+      "best_rr_long": 2.8,
       "best_rr_short": 0.4,
       "best_rr_tf": "1d",
       "floor_1h": 66168.98,
@@ -46,25 +46,25 @@
       "ceiling_1d": 76022.6
     },
     "ETH": {
-      "price": 2069.9,
-      "eagle_phase": "NEUTRAL",
+      "price": 2073.56,
+      "eagle_phase": "BREAKOUT_ATTEMPT",
       "eagle_cvd": "STRONG BULLISH",
-      "eagle_phase_confidence": 30.0,
-      "proximity_ceiling_pct": 0.97,
-      "proximity_floor_pct": 2.784,
+      "eagle_phase_confidence": 92.0,
+      "proximity_ceiling_pct": 0.81,
+      "proximity_floor_pct": 2.949,
       "nano_phase": "BREAKOUT_ATTEMPT",
-      "nano_oi_1h": -0.2,
-      "nano_position_pct": 75.0,
+      "nano_oi_1h": 0.37,
+      "nano_position_pct": 76.7,
       "nano_near_floor": false,
       "nano_near_ceiling": false,
       "nano_direction_bias": "NEUTRAL",
-      "rsi": 64.98445541187377,
-      "ema_200": 2059.4410000712955,
-      "ema_200_distance_pct": 0.94,
+      "rsi": 62.95957244595336,
+      "ema_200": 2059.349955295176,
+      "ema_200_distance_pct": 0.5,
       "direction_bias": "SHORT",
       "trend": "\ud83d\udcc8 BULLISH \u2014 Confirmed uptrend (long-friendly, short-cautious)",
-      "best_rr_long": 2.2,
-      "best_rr_short": 0.5,
+      "best_rr_long": 2.4,
+      "best_rr_short": 0.4,
       "best_rr_tf": "1d",
       "floor_1h": 2010.96,
       "ceiling_1h": 2090.25,
@@ -75,6 +75,81 @@
     }
   },
   "positions": [
+    {
+      "ticker": "KXETHD-26APR0317-T2079.99",
+      "asset": "ETH",
+      "side": "yes",
+      "quantity": 393,
+      "avg_entry": 0.3648,
+      "market_value": 137.55,
+      "cost_basis": 143.37,
+      "unrealized_pnl": -5.82,
+      "unrealized_pct": -4.1,
+      "realized_pnl": 1.19,
+      "fees_paid": 0.0,
+      "strike": 2079.99,
+      "sell_targets": [
+        {
+          "price": 0.52,
+          "qty": 193
+        }
+      ]
+    },
+    {
+      "ticker": "KXETHD-26APR0317-T2119.99",
+      "asset": "ETH",
+      "side": "yes",
+      "quantity": 150,
+      "avg_entry": 1.0,
+      "market_value": 27.0,
+      "cost_basis": 150.0,
+      "unrealized_pnl": -123.0,
+      "unrealized_pct": -82.0,
+      "realized_pnl": 27.0,
+      "fees_paid": 0.0,
+      "strike": 2119.99,
+      "sell_targets": []
+    },
+    {
+      "ticker": "KXETHD-26APR0317-T2159.99",
+      "asset": "ETH",
+      "side": "yes",
+      "quantity": 400,
+      "avg_entry": 0.16,
+      "market_value": 64.0,
+      "cost_basis": 64.0,
+      "unrealized_pnl": 0.0,
+      "unrealized_pct": 0.0,
+      "realized_pnl": 0.0,
+      "fees_paid": 0.0,
+      "strike": 2159.99,
+      "sell_targets": [
+        {
+          "price": 0.32,
+          "qty": 200
+        }
+      ]
+    },
+    {
+      "ticker": "KXETHD-26APR0317-T2199.99",
+      "asset": "ETH",
+      "side": "yes",
+      "quantity": 498,
+      "avg_entry": 0.1034,
+      "market_value": 49.8,
+      "cost_basis": 51.49,
+      "unrealized_pnl": -1.69,
+      "unrealized_pct": -3.3,
+      "realized_pnl": 0.3,
+      "fees_paid": 0.0,
+      "strike": 2199.99,
+      "sell_targets": [
+        {
+          "price": 0.25,
+          "qty": 248
+        }
+      ]
+    },
     {
       "ticker": "KXBTCD-26APR0317-T68299.99",
       "asset": "BTC",
@@ -134,81 +209,6 @@
           "qty": 344
         }
       ]
-    },
-    {
-      "ticker": "KXETHD-26APR0317-T2079.99",
-      "asset": "ETH",
-      "side": "yes",
-      "quantity": 396,
-      "avg_entry": 0.3584,
-      "market_value": 138.6,
-      "cost_basis": 141.93,
-      "unrealized_pnl": -3.33,
-      "unrealized_pct": -2.3,
-      "realized_pnl": 0.68,
-      "fees_paid": 0.0,
-      "strike": 2079.99,
-      "sell_targets": [
-        {
-          "price": 0.52,
-          "qty": 196
-        }
-      ]
-    },
-    {
-      "ticker": "KXETHD-26APR0317-T2119.99",
-      "asset": "ETH",
-      "side": "yes",
-      "quantity": 150,
-      "avg_entry": 1.0,
-      "market_value": 27.0,
-      "cost_basis": 150.0,
-      "unrealized_pnl": -123.0,
-      "unrealized_pct": -82.0,
-      "realized_pnl": 27.0,
-      "fees_paid": 0.0,
-      "strike": 2119.99,
-      "sell_targets": []
-    },
-    {
-      "ticker": "KXETHD-26APR0317-T2159.99",
-      "asset": "ETH",
-      "side": "yes",
-      "quantity": 400,
-      "avg_entry": 0.16,
-      "market_value": 64.0,
-      "cost_basis": 64.0,
-      "unrealized_pnl": 0.0,
-      "unrealized_pct": 0.0,
-      "realized_pnl": 0.0,
-      "fees_paid": 0.0,
-      "strike": 2159.99,
-      "sell_targets": [
-        {
-          "price": 0.32,
-          "qty": 200
-        }
-      ]
-    },
-    {
-      "ticker": "KXETHD-26APR0317-T2199.99",
-      "asset": "ETH",
-      "side": "yes",
-      "quantity": 498,
-      "avg_entry": 0.1034,
-      "market_value": 49.8,
-      "cost_basis": 51.49,
-      "unrealized_pnl": -1.69,
-      "unrealized_pct": -3.3,
-      "realized_pnl": 0.3,
-      "fees_paid": 0.0,
-      "strike": 2199.99,
-      "sell_targets": [
-        {
-          "price": 0.25,
-          "qty": 248
-        }
-      ]
     }
   ],
   "resting_orders": [
@@ -220,7 +220,7 @@
       "action": "sell",
       "price": 0.52,
       "quantity": 200,
-      "remaining": 196,
+      "remaining": 193,
       "created_at": "2026-03-30T20:56:46.910337Z",
       "expiry_time": ""
     },
