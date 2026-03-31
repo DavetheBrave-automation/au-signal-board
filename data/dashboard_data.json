@@ -1,8 +1,8 @@
 {
-  "updated": "2026-03-31T01:37:09.689733Z",
+  "updated": "2026-03-31T01:42:10.889491Z",
   "balance": {
-    "available": 508.12,
-    "portfolio": 1184.41
+    "available": 510.64,
+    "portfolio": 1191.21
   },
   "symphony": {
     "state": "RANGE_BOUND",
@@ -18,17 +18,17 @@
   },
   "assets": {
     "BTC": {
-      "price": 68103.35,
+      "price": 68026.0,
       "eagle_phase": "BREAKOUT_ATTEMPT",
       "eagle_cvd": "STRONG BULLISH",
       "eagle_phase_confidence": 67.0,
       "proximity_ceiling_pct": 0.37,
       "proximity_floor_pct": 2.439,
-      "nano_phase": "BREAKOUT_ATTEMPT",
-      "nano_oi_1h": 0.34,
-      "nano_position_pct": 91.5,
+      "nano_phase": "DISTRIBUTION",
+      "nano_oi_1h": 0.5,
+      "nano_position_pct": 86.0,
       "nano_near_floor": false,
-      "nano_near_ceiling": true,
+      "nano_near_ceiling": false,
       "nano_direction_bias": "NEUTRAL",
       "rsi": 61.97506230663341,
       "ema_200": 68015.89866994886,
@@ -46,15 +46,15 @@
       "ceiling_1d": 76022.6
     },
     "ETH": {
-      "price": 2078.63,
-      "eagle_phase": "NEUTRAL",
+      "price": 2075.5,
+      "eagle_phase": "BREAKOUT_ATTEMPT",
       "eagle_cvd": "STRONG BULLISH",
-      "eagle_phase_confidence": 30.0,
-      "proximity_ceiling_pct": 1.26,
-      "proximity_floor_pct": 2.164,
+      "eagle_phase_confidence": 83.0,
+      "proximity_ceiling_pct": 0.42,
+      "proximity_floor_pct": 3.345,
       "nano_phase": "BREAKOUT_ATTEMPT",
-      "nano_oi_1h": -0.96,
-      "nano_position_pct": 87.8,
+      "nano_oi_1h": -0.21,
+      "nano_position_pct": 84.6,
       "nano_near_floor": false,
       "nano_near_ceiling": false,
       "nano_direction_bias": "NEUTRAL",
@@ -67,14 +67,74 @@
       "best_rr_short": 0.4,
       "best_rr_tf": "1d",
       "floor_1h": 2010.96,
-      "ceiling_1h": 2083.73,
+      "ceiling_1h": 2090.25,
       "floor_4h": 1937.59,
-      "ceiling_4h": 2083.73,
+      "ceiling_4h": 2090.25,
       "floor_1d": 1937.59,
       "ceiling_1d": 2386.23
     }
   },
   "positions": [
+    {
+      "ticker": "KXBTCD-26APR0317-T68299.99",
+      "asset": "BTC",
+      "side": "yes",
+      "quantity": 400,
+      "avg_entry": 0.3575,
+      "market_value": 142.99,
+      "cost_basis": 143.0,
+      "unrealized_pnl": -0.01,
+      "unrealized_pct": -0.0,
+      "realized_pnl": 0.0,
+      "fees_paid": 6.44,
+      "strike": 68299.99,
+      "sell_targets": [
+        {
+          "price": 0.55,
+          "qty": 200
+        }
+      ]
+    },
+    {
+      "ticker": "KXBTCD-26APR0317-T69799.99",
+      "asset": "BTC",
+      "side": "yes",
+      "quantity": 1055,
+      "avg_entry": 0.18,
+      "market_value": 189.9,
+      "cost_basis": 189.9,
+      "unrealized_pnl": 0.0,
+      "unrealized_pct": 0.0,
+      "realized_pnl": 0.0,
+      "fees_paid": 0.0,
+      "strike": 69799.99,
+      "sell_targets": [
+        {
+          "price": 0.36,
+          "qty": 527
+        }
+      ]
+    },
+    {
+      "ticker": "KXBTCD-26APR0317-T71299.99",
+      "asset": "BTC",
+      "side": "yes",
+      "quantity": 918,
+      "avg_entry": 0.1059,
+      "market_value": 82.62,
+      "cost_basis": 97.22,
+      "unrealized_pnl": -14.6,
+      "unrealized_pct": -15.0,
+      "realized_pnl": 1.44,
+      "fees_paid": 0.0,
+      "strike": 71299.99,
+      "sell_targets": [
+        {
+          "price": 0.18,
+          "qty": 344
+        }
+      ]
+    },
     {
       "ticker": "KXETHD-26APR0317-T2079.99",
       "asset": "ETH",
@@ -149,66 +209,6 @@
           "qty": 248
         }
       ]
-    },
-    {
-      "ticker": "KXBTCD-26APR0317-T68299.99",
-      "asset": "BTC",
-      "side": "yes",
-      "quantity": 400,
-      "avg_entry": 0.3575,
-      "market_value": 142.99,
-      "cost_basis": 143.0,
-      "unrealized_pnl": -0.01,
-      "unrealized_pct": -0.0,
-      "realized_pnl": 0.0,
-      "fees_paid": 6.44,
-      "strike": 68299.99,
-      "sell_targets": [
-        {
-          "price": 0.55,
-          "qty": 200
-        }
-      ]
-    },
-    {
-      "ticker": "KXBTCD-26APR0317-T69799.99",
-      "asset": "BTC",
-      "side": "yes",
-      "quantity": 1055,
-      "avg_entry": 0.18,
-      "market_value": 189.9,
-      "cost_basis": 189.9,
-      "unrealized_pnl": 0.0,
-      "unrealized_pct": 0.0,
-      "realized_pnl": 0.0,
-      "fees_paid": 0.0,
-      "strike": 69799.99,
-      "sell_targets": [
-        {
-          "price": 0.36,
-          "qty": 527
-        }
-      ]
-    },
-    {
-      "ticker": "KXBTCD-26APR0317-T71299.99",
-      "asset": "BTC",
-      "side": "yes",
-      "quantity": 932,
-      "avg_entry": 0.092,
-      "market_value": 83.88,
-      "cost_basis": 85.74,
-      "unrealized_pnl": -1.86,
-      "unrealized_pct": -2.2,
-      "realized_pnl": 0.18,
-      "fees_paid": 0.0,
-      "strike": 71299.99,
-      "sell_targets": [
-        {
-          "price": 0.18,
-          "qty": 358
-        }
-      ]
     }
   ],
   "resting_orders": [
@@ -268,7 +268,7 @@
       "action": "sell",
       "price": 0.18,
       "quantity": 360,
-      "remaining": 358,
+      "remaining": 344,
       "created_at": "2026-03-30T20:52:16.929459Z",
       "expiry_time": ""
     },
