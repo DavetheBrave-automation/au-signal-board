@@ -316,8 +316,8 @@ function drawLadder(container, assetKey, data) {
     .filter(p => p > 0);
 
   // Add strikes from positions
-  const posList = (data.positions || []).filter(p => p.asset === assetKey && p.strike > 0);
-  const sells   = (data.sell_orders || []).filter(o => o.asset === assetKey);
+  const posList = (data.positions || []).filter(p => p.asset.toLowerCase() === assetKey && p.strike > 0);
+  const sells   = (data.sell_orders || []).filter(o => o.asset.toLowerCase() === assetKey);
   posList.forEach(p => allP.push(p.strike));
 
   if (allP.length < 2) { container.innerHTML = '<div style="padding:20px;color:var(--dim);font-size:12px">Insufficient data</div>'; return; }
