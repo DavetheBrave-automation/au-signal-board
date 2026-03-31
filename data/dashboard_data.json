@@ -1,19 +1,19 @@
 {
-  "updated": "2026-03-31T00:21:34.929717Z",
+  "updated": "2026-03-31T00:26:36.089543Z",
   "balance": {
     "available": 451.18,
-    "portfolio": 737.51
+    "portfolio": 694.51
   },
   "symphony": {
     "state": "SYMPHONY_OVERRIDE",
     "confidence": 88,
     "assets_aligned": [
       "BTC",
-      "SOL",
       "XRP",
       "BNB",
       "ZEC",
-      "LINK"
+      "LINK",
+      "BCH"
     ]
   },
   "macro": {
@@ -25,17 +25,17 @@
   },
   "assets": {
     "BTC": {
-      "price": 66602.65,
+      "price": 66689.23,
       "eagle_phase": "CAPITULATION",
       "eagle_cvd": "STRONG BEARISH",
-      "eagle_phase_confidence": 24.0,
-      "proximity_ceiling_pct": 2.36,
-      "proximity_floor_pct": 0.323,
+      "eagle_phase_confidence": 30.0,
+      "proximity_ceiling_pct": 2.32,
+      "proximity_floor_pct": 0.358,
       "nano_phase": "ACCUMULATION",
-      "nano_oi_1h": 0.06,
-      "nano_position_pct": 56.1,
+      "nano_oi_1h": 0.1,
+      "nano_position_pct": 75.7,
       "nano_near_floor": false,
-      "nano_near_ceiling": false,
+      "nano_near_ceiling": true,
       "nano_direction_bias": "NEUTRAL",
       "rsi": 46.217885353069676,
       "ema_200": 68016.33871991053,
@@ -53,15 +53,15 @@
       "ceiling_1d": 76022.6
     },
     "ETH": {
-      "price": 2020.88,
-      "eagle_phase": "CAPITULATION",
+      "price": 2022.39,
+      "eagle_phase": "NEUTRAL",
       "eagle_cvd": "STRONG BEARISH",
-      "eagle_phase_confidence": 58.0,
-      "proximity_ceiling_pct": 3.25,
-      "proximity_floor_pct": 0.302,
+      "eagle_phase_confidence": 30.0,
+      "proximity_ceiling_pct": 3.08,
+      "proximity_floor_pct": 0.466,
       "nano_phase": "ACCUMULATION",
-      "nano_oi_1h": -0.08,
-      "nano_position_pct": 41.1,
+      "nano_oi_1h": -0.01,
+      "nano_position_pct": 46.6,
       "nano_near_floor": false,
       "nano_near_ceiling": false,
       "nano_direction_bias": "NEUTRAL",
@@ -356,10 +356,10 @@
   "ledger": {
     "today_fired": 494,
     "today_hit_rate": 44,
-    "total_wins": 1007,
+    "total_wins": 1012,
     "total_losses": 1181,
-    "total_hit_rate": 46.0,
-    "today_wins": 8,
+    "total_hit_rate": 46.1,
+    "today_wins": 13,
     "today_losses": 1,
     "brier_overall": null,
     "brier_rolling_50": null,
