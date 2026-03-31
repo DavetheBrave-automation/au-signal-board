@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AU Trading Ledger · Athanor Umbra</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Chakra+Petch:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0c0e14;--s1:#131620;--s2:#181c28;--bd:#2a3045;
+  --g:#5efa9e;--gd:#3ab876;--r:#ff6b8a;--rd:#cc4466;
+  --y:#f0c050;--b:#60a0f0;--c:#60d0d0;--p:#a78bfa;
+  --t:#d0d8e8;--m:#6a7594;--w:#e8ecf4
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--t);font-family:'IBM Plex Mono',monospace;font-size:14px;line-height:1.7;padding:20px 16px}
+.wrap{max-width:960px;margin:0 auto}
+
+/* ── Nav ── */
+.nav-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;padding:10px 0 14px;border-bottom:1px solid var(--bd);margin-bottom:22px}
+.nav-brand{font-family:'Chakra Petch',sans-serif;font-size:14px;font-weight:700;color:var(--g);letter-spacing:1px}
+.nav-links{display:flex;flex-wrap:wrap;gap:6px}
+.nav-links a{font-size:11px;color:var(--m);text-decoration:none;padding:4px 10px;border:1px solid var(--bd);border-radius:3px;font-family:'Chakra Petch',sans-serif;letter-spacing:.5px;text-transform:uppercase;transition:color .15s,border-color .15s}
+.nav-links a:hover,.nav-links a.active{color:var(--g);border-color:var(--gd)}
+
+/* ── Page header ── */
+.hdr{text-align:center;margin-bottom:28px}
+.hdr h1{font-family:'Chakra Petch',sans-serif;font-size:28px;font-weight:700;color:var(--g);letter-spacing:2px}
+.hdr .sub{color:var(--m);font-size:12px;margin-top:4px}
+
+/* ── Stats bar ── */
+.stats-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:28px}
+.stat-card{background:var(--s1);border:1px solid var(--bd);border-radius:6px;padding:12px 14px;text-align:center}
+.stat-card .val{font-size:20px;font-weight:700;font-family:'Chakra Petch',sans-serif;letter-spacing:.5px}
+.stat-card .lbl{font-size:10px;color:var(--m);text-transform:uppercase;letter-spacing:.8px;margin-top:3px}
+.stat-card.green .val{color:var(--g)}
+.stat-card.red .val{color:var(--r)}
+.stat-card.blue .val{color:var(--b)}
+.stat-card.yellow .val{color:var(--y)}
+.stat-card.cyan .val{color:var(--c)}
+
+/* ── Section ── */
+.section{margin-bottom:28px}
+.sec-title{font-family:'Chakra Petch',sans-serif;font-size:12px;font-weight:600;color:var(--m);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--bd)}
+
+/* ── Equity curve ── */
+.equity-wrap{background:var(--s1);border:1px solid var(--bd);border-radius:6px;padding:16px;overflow-x:auto}
+.equity-wrap svg{display:block;width:100%;overflow:visible}
+.tooltip{position:fixed;background:var(--s2);border:1px solid var(--bd);border-radius:5px;padding:7px 11px;font-size:12px;pointer-events:none;z-index:100;display:none;line-height:1.5;max-width:220px}
+
+/* ── Week card ── */
+.week-card{background:var(--s1);border:1px solid var(--bd);border-radius:6px;margin-bottom:14px;overflow:hidden}
+.week-header{display:flex;align-items:center;flex-wrap:wrap;gap:10px;padding:14px 18px;cursor:pointer;user-select:none;transition:background .15s}
+.week-header:hover{background:var(--s2)}
+.week-chevron{font-size:12px;color:var(--m);margin-left:auto;transition:transform .25s}
+.week-card.open .week-chevron{transform:rotate(90deg)}
+.week-label{font-family:'Chakra Petch',sans-serif;font-size:15px;font-weight:700;color:var(--w)}
+.badge{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;letter-spacing:.8px;font-family:'Chakra Petch',sans-serif}
+.badge-live{background:rgba(94,250,158,0.12);color:var(--g);border:1px solid var(--gd);animation:pulse 1.6s ease-in-out infinite}
+.badge-settled{background:rgba(106,117,148,0.15);color:var(--m);border:1px solid var(--bd)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.week-meta{display:flex;flex-wrap:wrap;gap:16px;font-size:13px}
+.week-meta .wm-item{color:var(--m)}
+.week-meta .wm-item span{color:var(--t);font-weight:600}
+.week-meta .wm-pnl{color:var(--g);font-weight:700}
+.week-meta .wm-pnl.neg{color:var(--r)}
+.week-meta .wm-record{color:var(--y);font-weight:700}
+
+/* ── Trade table ── */
+.week-body{display:none;padding:0 0 4px}
+.week-card.open .week-body{display:block}
+.trade-table{width:100%;border-collapse:collapse;font-size:12px}
+.trade-table th{background:var(--s2);color:var(--m);padding:7px 12px;text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--bd);white-space:nowrap}
+.trade-table td{padding:8px 12px;border-bottom:1px solid rgba(42,48,69,0.6);vertical-align:middle}
+.trade-table tr:last-child td{border-bottom:none}
+.trade-table tr.win td{border-left:2px solid var(--gd)}
+.trade-table tr.loss td{border-left:2px solid var(--rd)}
+.trade-table tr:hover td{background:rgba(255,255,255,0.02)}
+.ticker{font-size:11px;color:var(--b)}
+.side-yes{color:var(--g);font-weight:600}
+.side-no{color:var(--r);font-weight:600}
+.profit-pos{color:var(--g);font-weight:600}
+.profit-neg{color:var(--r);font-weight:600}
+.grade{font-family:'Chakra Petch',sans-serif;font-size:10px;font-weight:700;padding:2px 7px;border-radius:3px;letter-spacing:.5px}
+.grade-aplus{background:rgba(94,250,158,0.12);color:var(--g);border:1px solid var(--gd)}
+.grade-a{background:rgba(96,208,208,0.12);color:var(--c);border:1px solid #3aaa9e}
+.grade-bplus{background:rgba(96,160,240,0.12);color:var(--b);border:1px solid #4080cc}
+.grade-b{background:rgba(167,139,250,0.12);color:var(--p);border:1px solid #7c5fcf}
+.grade-bminus{background:rgba(240,192,80,0.10);color:var(--y);border:1px solid #c09830}
+.grade-miss{background:rgba(255,107,138,0.10);color:var(--r);border:1px solid var(--rd)}
+.week-totals{display:flex;flex-wrap:wrap;gap:20px;padding:10px 14px;background:var(--s2);font-size:12px;border-top:1px solid var(--bd)}
+.week-totals .tot{color:var(--m)}
+.week-totals .tot span{color:var(--t);font-weight:600}
+.week-totals .tot-pnl span{color:var(--g);font-weight:700}
+.week-totals .tot-pnl.neg span{color:var(--r)}
+
+/* ── Footer ── */
+.footer{text-align:center;color:var(--bd);font-size:11px;margin-top:36px;padding-top:14px;border-top:1px solid var(--s2)}
+
+/* ── Mobile ── */
+@media(max-width:600px){
+  body{font-size:13px;padding:12px 10px}
+  .stats-bar{grid-template-columns:repeat(3,1fr)}
+  .week-meta{gap:10px;font-size:12px}
+  .trade-table th:nth-child(5),.trade-table td:nth-child(5){display:none}
+  .week-header{padding:12px 14px}
+  .hdr h1{font-size:22px}
+  .nav-bar{flex-direction:column;align-items:flex-start;gap:6px}
+}
+@media(max-width:375px){
+  .stats-bar{grid-template-columns:repeat(2,1fr)}
+  .trade-table th:nth-child(4),.trade-table td:nth-child(4){display:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ── Nav ── -->
+<div class="nav-bar">
+  <span class="nav-brand">ATHANOR UMBRA</span>
+  <div class="nav-links">
+    <a href="index.html">Signal Board</a>
+    <a href="dashboard.html">Ping Pong</a>
+    <a href="ledger.html" class="active">Ledger</a>
+    <a href="architecture.html">Architecture</a>
+  </div>
+</div>
+
+<!-- ── Header ── -->
+<div class="hdr">
+  <h1>TRADING LEDGER</h1>
+  <div class="sub">ATHANOR UMBRA · Kalshi Prediction Protocol · Regent Park Account</div>
+</div>
+
+<!-- ── Stats bar ── -->
+<div class="stats-bar" id="stats-bar">
+  <div class="stat-card blue"><div class="val">18</div><div class="lbl">Total Trades</div></div>
+  <div class="stat-card"><div class="val" style="color:var(--y)">15–3</div><div class="lbl">Win–Loss</div></div>
+  <div class="stat-card green"><div class="val">83.3%</div><div class="lbl">Win Rate</div></div>
+  <div class="stat-card green"><div class="val">+$824.97</div><div class="lbl">Total P&amp;L</div></div>
+  <div class="stat-card cyan"><div class="val">$1,587</div><div class="lbl">Portfolio</div></div>
+  <div class="stat-card green"><div class="val">+76.4%</div><div class="lbl">Return</div></div>
+</div>
+
+<!-- ── Equity Curve ── -->
+<div class="section">
+  <div class="sec-title">Equity Curve — P&amp;L per Trade</div>
+  <div class="equity-wrap">
+    <svg id="equity-svg" viewBox="0 0 860 180" preserveAspectRatio="xMidYMid meet" height="180"></svg>
+  </div>
+</div>
+
+<!-- ── Week 2 (LIVE) ── -->
+<div class="section">
+  <div class="sec-title">Weekly Cards</div>
+
+  <div class="week-card open" id="week2-card">
+    <div class="week-header" onclick="toggleCard('week2-card')">
+      <span class="week-label">WEEK 2</span>
+      <span class="badge badge-live">LIVE</span>
+      <div class="week-meta">
+        <div class="wm-item wm-record"><span>3–0</span></div>
+        <div class="wm-item wm-pnl"><span>+$172.19</span></div>
+        <div class="wm-item">Avg ROI: <span>99%</span></div>
+        <div class="wm-item">Mar 31 – Apr 6, 2026</div>
+      </div>
+      <span class="week-chevron">▶</span>
+    </div>
+    <div class="week-body">
+      <table class="trade-table">
+        <thead>
+          <tr><th>#</th><th>Contract</th><th>Side</th><th>Qty</th><th>Entry</th><th>Cost</th><th>Payout</th><th>Profit</th><th>ROI</th><th>Grade</th></tr>
+        </thead>
+        <tbody id="week2-tbody"></tbody>
+      </table>
+      <div class="week-totals">
+        <div class="tot">Deployed: <span>$172.81</span></div>
+        <div class="tot">Returned: <span>$345.00</span></div>
+        <div class="tot tot-pnl">Net P&amp;L: <span>+$172.19</span></div>
+        <div class="tot">Avg ROI: <span>99%</span></div>
+        <div class="tot">Record: <span>3W · 0L</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Week 1 (SETTLED) ── -->
+  <div class="week-card" id="week1-card">
+    <div class="week-header" onclick="toggleCard('week1-card')">
+      <span class="week-label">WEEK 1</span>
+      <span class="badge badge-settled">SETTLED</span>
+      <div class="week-meta">
+        <div class="wm-item wm-record"><span>12–3</span></div>
+        <div class="wm-item wm-pnl"><span>+$652.78</span></div>
+        <div class="wm-item">Avg ROI: <span>43.5%</span></div>
+        <div class="wm-item">Mar 24–30, 2026</div>
+      </div>
+      <span class="week-chevron">▶</span>
+    </div>
+    <div class="week-body">
+      <table class="trade-table">
+        <thead>
+          <tr><th>#</th><th>Contract</th><th>Side</th><th>Qty</th><th>Entry</th><th>Cost</th><th>Payout</th><th>Profit</th><th>ROI</th><th>Grade</th></tr>
+        </thead>
+        <tbody id="week1-tbody"></tbody>
+      </table>
+      <div class="week-totals">
+        <div class="tot">Deployed: <span>$1,006.02</span></div>
+        <div class="tot">Returned: <span>$1,784.00</span></div>
+        <div class="tot tot-pnl">Net P&amp;L: <span>+$652.78</span></div>
+        <div class="tot">Avg ROI: <span>43.5%</span></div>
+        <div class="tot">Record: <span>12W · 3L</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Footer ── -->
+<div class="footer">ATHANOR UMBRA · AU Signal Board · <span id="footer-date"></span></div>
+
+</div><!-- /wrap -->
+
+<div class="tooltip" id="tooltip"></div>
+
+<script>
+// ─── Trade Data ────────────────────────────────────────────────────────────────
+const week2Trades = [
+  { n:1, ticker:'KXBTCD-26APR0317-T67299', side:'YES', qty:114, entry:0.50, cost:57.00, payout:114.00, profit:57.00, roi:100.0, grade:'A+',  win:true },
+  { n:2, ticker:'KXBTCD-26APR0317-T68299', side:'YES', qty:116, entry:0.50, cost:58.00, payout:116.00, profit:58.00, roi:100.0, grade:'A+',  win:true },
+  { n:3, ticker:'KXBTCD-26APR0317-T69299', side:'YES', qty:115, entry:0.50, cost:57.81, payout:115.00, profit:57.19, roi:98.9,  grade:'A',   win:true },
+];
+
+const week1Trades = [
+  { n:1,  ticker:'KXBTCD-26MAR2817-T64999', side:'YES', qty:155, entry:0.45, cost:69.75,  payout:155.00, profit:85.25,  roi:122.2, grade:'A+',   win:true  },
+  { n:2,  ticker:'KXBTCD-26MAR2817-T65499', side:'YES', qty:150, entry:0.52, cost:78.00,  payout:150.00, profit:72.00,  roi:92.3,  grade:'A',    win:true  },
+  { n:3,  ticker:'KXBTCD-26MAR2817-T67499', side:'YES', qty:100, entry:0.38, cost:38.00,  payout:0.00,   profit:-38.00, roi:-100,  grade:'MISS', win:false },
+  { n:4,  ticker:'KXETHD-26MAR2817-T2249',  side:'YES', qty:145, entry:0.60, cost:87.00,  payout:145.00, profit:58.00,  roi:66.7,  grade:'B+',   win:true  },
+  { n:5,  ticker:'KXBTCD-26MAR2817-T64499', side:'NO',  qty:150, entry:0.48, cost:72.00,  payout:150.00, profit:78.00,  roi:108.3, grade:'A',    win:true  },
+  { n:6,  ticker:'KXBTCD-26MAR2817-T65999', side:'YES', qty:100, entry:0.50, cost:50.00,  payout:0.00,   profit:-50.00, roi:-100,  grade:'MISS', win:false },
+  { n:7,  ticker:'KXBTCD-26MAR2817-T64999', side:'YES', qty:141, entry:0.56, cost:78.96,  payout:141.00, profit:62.04,  roi:78.6,  grade:'B+',   win:true  },
+  { n:8,  ticker:'KXETHD-26MAR2817-T1949',  side:'YES', qty:140, entry:0.62, cost:86.80,  payout:140.00, profit:53.20,  roi:61.3,  grade:'B',    win:true  },
+  { n:9,  ticker:'KXBTCD-26MAR3117-T64999', side:'YES', qty:130, entry:0.55, cost:71.50,  payout:130.00, profit:58.50,  roi:81.8,  grade:'B+',   win:true  },
+  { n:10, ticker:'KXBTCD-26MAR3117-T64499', side:'NO',  qty:160, entry:0.70, cost:112.00, payout:160.00, profit:48.00,  roi:42.9,  grade:'B-',   win:true  },
+  { n:11, ticker:'KXBTCD-26MAR3117-T65499', side:'YES', qty:100, entry:0.38, cost:38.00,  payout:0.00,   profit:-38.00, roi:-100,  grade:'MISS', win:false },
+  { n:12, ticker:'KXBTCD-26MAR3117-T63999', side:'YES', qty:144, entry:0.55, cost:79.20,  payout:144.00, profit:64.80,  roi:81.8,  grade:'B+',   win:true  },
+  { n:13, ticker:'KXETHD-26MAR3117-T2049',  side:'YES', qty:164, entry:0.50, cost:82.00,  payout:164.00, profit:82.00,  roi:100.0, grade:'A',    win:true  },
+  { n:14, ticker:'KXBTCD-26MAR3117-T64499', side:'YES', qty:132, entry:0.43, cost:56.76,  payout:132.00, profit:75.24,  roi:132.5, grade:'A+',   win:true  },
+  { n:15, ticker:'KXETHD-26MAR3117-T2099',  side:'YES', qty:110, entry:0.62, cost:68.20,  payout:110.00, profit:41.80,  roi:61.3,  grade:'B',    win:true  },
+];
+
+// ─── Helpers ──────────────────────────────────────────────────────────────────
+const gradeClass = {
+  'A+': 'grade-aplus', 'A': 'grade-a', 'B+': 'grade-bplus',
+  'B': 'grade-b', 'B-': 'grade-bminus', 'MISS': 'grade-miss'
+};
+
+function fmt(n, dp=2, sign=false) {
+  const s = Math.abs(n).toFixed(dp);
+  const pfx = n < 0 ? '-' : (sign ? '+' : '');
+  return pfx + (dp === 0 ? parseInt(s).toLocaleString() : parseFloat(s).toLocaleString('en-US', {minimumFractionDigits:dp, maximumFractionDigits:dp}));
+}
+
+function renderTrades(trades, tbodyId) {
+  const tbody = document.getElementById(tbodyId);
+  tbody.innerHTML = '';
+  trades.forEach(t => {
+    const roiStr = t.roi < 0 ? '−100%' : '+' + t.roi.toFixed(1) + '%';
+    const tr = document.createElement('tr');
+    tr.className = t.win ? 'win' : 'loss';
+    tr.innerHTML = `
+      <td style="color:var(--m)">${t.n}</td>
+      <td><span class="ticker">${t.ticker}</span></td>
+      <td><span class="${t.side === 'YES' ? 'side-yes' : 'side-no'}">${t.side}</span></td>
+      <td>${t.qty.toLocaleString()}x</td>
+      <td>${(t.entry * 100).toFixed(0)}¢</td>
+      <td>$${t.cost.toFixed(2)}</td>
+      <td>${t.payout > 0 ? '$' + t.payout.toFixed(2) : '<span style="color:var(--rd)">—</span>'}</td>
+      <td class="${t.profit >= 0 ? 'profit-pos' : 'profit-neg'}">${t.profit >= 0 ? '+' : ''}$${Math.abs(t.profit).toFixed(2)}</td>
+      <td style="color:${t.roi >= 0 ? 'var(--g)' : 'var(--r)'}">${roiStr}</td>
+      <td><span class="grade ${gradeClass[t.grade] || ''}">${t.grade}</span></td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+// ─── Equity Curve ─────────────────────────────────────────────────────────────
+function drawEquity() {
+  const allTrades = [...week1Trades, ...week2Trades];
+  const svg = document.getElementById('equity-svg');
+
+  const W = 860, H = 180;
+  const padL = 10, padR = 10, padT = 20, padB = 30;
+  const innerW = W - padL - padR;
+  const innerH = H - padT - padB;
+  const baselineRatio = 0.72; // 72% from top = baseline
+  const baselineY = padT + innerH * baselineRatio;
+
+  const maxProfit = Math.max(...allTrades.map(t => t.profit));
+  const maxLoss   = Math.max(...allTrades.map(t => -Math.min(t.profit, 0)));
+  const upScale   = (innerH * baselineRatio - 4) / maxProfit;
+  const dnScale   = (innerH * (1 - baselineRatio) - 4) / (maxLoss || 1);
+
+  const n = allTrades.length;
+  const barW = Math.floor((innerW - (n - 1) * 3) / n);
+  const gap  = 3;
+
+  let svgContent = '';
+
+  // Baseline
+  svgContent += `<line x1="${padL}" y1="${baselineY}" x2="${W - padR}" y2="${baselineY}" stroke="rgba(42,48,69,0.8)" stroke-width="1"/>`;
+
+  // Bars
+  allTrades.forEach((t, i) => {
+    const x = padL + i * (barW + gap);
+    const isWin = t.profit >= 0;
+    const barH = isWin
+      ? Math.max(3, t.profit * upScale)
+      : Math.max(3, (-t.profit) * dnScale);
+    const y = isWin ? baselineY - barH : baselineY;
+    const fill = isWin ? 'var(--gd)' : 'var(--rd)';
+    const week = i < week1Trades.length ? 1 : 2;
+
+    svgContent += `<rect
+      x="${x}" y="${y.toFixed(1)}" width="${barW}" height="${barH.toFixed(1)}"
+      fill="${fill}" rx="1" opacity="0.85"
+      class="eq-bar"
+      data-n="${t.n}" data-ticker="${t.ticker}" data-side="${t.side}"
+      data-profit="${t.profit.toFixed(2)}" data-roi="${t.roi.toFixed(1)}"
+      data-grade="${t.grade}" data-week="${week}"
+      onmouseenter="showTip(event,this)" onmouseleave="hideTip()"
+      style="cursor:pointer;transition:opacity .12s"
+    />`;
+
+    // Trade number below
+    svgContent += `<text x="${(x + barW/2).toFixed(0)}" y="${H - 6}" text-anchor="middle"
+      font-size="8" fill="var(--m)" font-family="IBM Plex Mono,monospace">${t.n}</text>`;
+  });
+
+  // Week separator
+  const sepX = padL + week1Trades.length * (barW + gap) - gap/2 - 1;
+  svgContent += `<line x1="${sepX}" y1="${padT}" x2="${sepX}" y2="${H - padB + 2}"
+    stroke="rgba(94,250,158,0.25)" stroke-width="1" stroke-dasharray="3,3"/>`;
+  svgContent += `<text x="${sepX + 3}" y="${padT + 9}" font-size="8" fill="var(--gd)"
+    font-family="Chakra Petch,sans-serif">WK2 →</text>`;
+
+  // P&L labels on axis
+  svgContent += `<text x="${W-padR}" y="${baselineY - 3}" text-anchor="end"
+    font-size="8" fill="var(--m)" font-family="IBM Plex Mono,monospace">$0</text>`;
+  svgContent += `<text x="${W-padR}" y="${padT + 10}" text-anchor="end"
+    font-size="8" fill="var(--gd)" font-family="IBM Plex Mono,monospace">+$${maxProfit.toFixed(0)}</text>`;
+  if (maxLoss > 0) {
+    svgContent += `<text x="${W-padR}" y="${H - padB - 2}" text-anchor="end"
+      font-size="8" fill="var(--rd)" font-family="IBM Plex Mono,monospace">−$${maxLoss.toFixed(0)}</text>`;
+  }
+
+  svg.innerHTML = svgContent;
+}
+
+// ─── Tooltip ─────────────────────────────────────────────────────────────────
+function showTip(e, el) {
+  const tip = document.getElementById('tooltip');
+  const profit = parseFloat(el.dataset.profit);
+  const sign = profit >= 0 ? '+' : '';
+  tip.innerHTML = `
+    <span style="color:var(--b);font-size:10px">${el.dataset.ticker}</span><br>
+    ${el.dataset.side} · Wk${el.dataset.week} #${el.dataset.n}<br>
+    P&amp;L: <span style="color:${profit>=0?'var(--g)':'var(--r)'}">${sign}$${Math.abs(profit).toFixed(2)}</span>
+    &nbsp;(${profit>=0?'+':''}${parseFloat(el.dataset.roi).toFixed(1)}%)<br>
+    Grade: <span style="color:var(--y)">${el.dataset.grade}</span>
+  `;
+  tip.style.display = 'block';
+  moveTip(e);
+}
+function moveTip(e) {
+  const tip = document.getElementById('tooltip');
+  tip.style.left = (e.clientX + 14) + 'px';
+  tip.style.top  = (e.clientY - 40) + 'px';
+}
+function hideTip() {
+  document.getElementById('tooltip').style.display = 'none';
+}
+document.addEventListener('mousemove', e => {
+  if (document.getElementById('tooltip').style.display !== 'none') moveTip(e);
+});
+
+// ─── Card toggle ─────────────────────────────────────────────────────────────
+function toggleCard(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+
+// ─── Init ────────────────────────────────────────────────────────────────────
+renderTrades(week2Trades, 'week2-tbody');
+renderTrades(week1Trades, 'week1-tbody');
+drawEquity();
+document.getElementById('footer-date').textContent = new Date().toLocaleDateString('en-US', {month:'long', day:'numeric', year:'numeric'});
+</script>
+</body>
+</html>
