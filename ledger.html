@@ -135,12 +135,12 @@ body{background:var(--bg);color:var(--t);font-family:'IBM Plex Mono',monospace;f
 
 <!-- ── Stats bar ── -->
 <div class="stats-bar" id="stats-bar">
-  <div class="stat-card blue"><div class="val">18</div><div class="lbl">Total Trades</div></div>
-  <div class="stat-card"><div class="val" style="color:var(--y)">15–3</div><div class="lbl">Win–Loss</div></div>
-  <div class="stat-card green"><div class="val">83.3%</div><div class="lbl">Win Rate</div></div>
-  <div class="stat-card green"><div class="val">+$824.97</div><div class="lbl">Total P&amp;L</div></div>
-  <div class="stat-card cyan"><div class="val">$1,587</div><div class="lbl">Portfolio</div></div>
-  <div class="stat-card green"><div class="val">+76.4%</div><div class="lbl">Return</div></div>
+  <div class="stat-card blue"><div class="val">22</div><div class="lbl">Total Trades</div></div>
+  <div class="stat-card"><div class="val" style="color:var(--y)">19–3</div><div class="lbl">Win–Loss</div></div>
+  <div class="stat-card green"><div class="val">86.4%</div><div class="lbl">Win Rate</div></div>
+  <div class="stat-card green"><div class="val">+$1,151.99</div><div class="lbl">Total P&amp;L</div></div>
+  <div class="stat-card cyan"><div class="val">$1,681.78</div><div class="lbl">Portfolio</div></div>
+  <div class="stat-card green"><div class="val">+86.9%</div><div class="lbl">Return</div></div>
 </div>
 
 <!-- ── Equity Curve ── -->
@@ -158,11 +158,11 @@ body{background:var(--bg);color:var(--t);font-family:'IBM Plex Mono',monospace;f
   <div class="week-card open" id="week2-card">
     <div class="week-header" onclick="toggleCard('week2-card')">
       <span class="week-label">WEEK 2</span>
-      <span class="badge badge-live">LIVE</span>
+      <span class="badge badge-settled">SETTLED</span>
       <div class="week-meta">
-        <div class="wm-item wm-record"><span>3–0</span></div>
-        <div class="wm-item wm-pnl"><span>+$172.19</span></div>
-        <div class="wm-item">Avg ROI: <span>99%</span></div>
+        <div class="wm-item wm-record"><span>7–0</span></div>
+        <div class="wm-item wm-pnl"><span>+$499.21</span></div>
+        <div class="wm-item">Avg ROI: <span>62%</span></div>
         <div class="wm-item">Mar 31 – Apr 6, 2026</div>
       </div>
       <span class="week-chevron">▶</span>
@@ -175,11 +175,11 @@ body{background:var(--bg);color:var(--t);font-family:'IBM Plex Mono',monospace;f
         <tbody id="week2-tbody"></tbody>
       </table>
       <div class="week-totals">
-        <div class="tot">Deployed: <span>$172.81</span></div>
-        <div class="tot">Returned: <span>$345.00</span></div>
-        <div class="tot tot-pnl">Net P&amp;L: <span>+$172.19</span></div>
-        <div class="tot">Avg ROI: <span>99%</span></div>
-        <div class="tot">Record: <span>3W · 0L</span></div>
+        <div class="tot">Deployed: <span>$809.63</span></div>
+        <div class="tot">Returned: <span>$1,308.84</span></div>
+        <div class="tot tot-pnl">Net P&amp;L: <span>+$499.21</span></div>
+        <div class="tot">Avg ROI: <span>62%</span></div>
+        <div class="tot">Record: <span>7W · 0L</span></div>
       </div>
     </div>
   </div>
@@ -223,11 +223,42 @@ body{background:var(--bg);color:var(--t);font-family:'IBM Plex Mono',monospace;f
 <div class="tooltip" id="tooltip"></div>
 
 <script>
+// ─── Ticker Parser ────────────────────────────────────────────────────────────
+function parseKalshiTicker(ticker) {
+  if (!ticker) return '—';
+  try {
+    const tl = ticker.toLowerCase();
+    let asset = '';
+    if (tl.includes('kxbtc'))       asset = 'BTC';
+    else if (tl.includes('kxeth'))  asset = 'ETH';
+    else if (tl.includes('kxsol'))  asset = 'SOL';
+    else if (tl.includes('kxdoge')) asset = 'DOGE';
+    else if (tl.includes('kxxrp'))  asset = 'XRP';
+    else return ticker;
+    const tp = ticker.split('-T')[1];
+    if (!tp) return asset;
+    const raw = parseFloat(tp);
+    let strike;
+    if (asset === 'BTC' || asset === 'ETH' || asset === 'SOL')
+      strike = '$' + Math.round(raw + 0.5).toLocaleString();
+    else if (asset === 'DOGE')
+      strike = '$' + (raw + 0.00001).toFixed(4);
+    else if (asset === 'XRP')
+      strike = '$' + (raw + 0.001).toFixed(3);
+    else strike = '$' + raw;
+    return asset + ' ' + strike;
+  } catch(e) { return ticker; }
+}
+
 // ─── Trade Data ────────────────────────────────────────────────────────────────
 const week2Trades = [
-  { n:1, ticker:'KXBTCD-26APR0317-T67299', side:'YES', qty:114, entry:0.50, cost:57.00, payout:114.00, profit:57.00, roi:100.0, grade:'A+',  win:true },
-  { n:2, ticker:'KXBTCD-26APR0317-T68299', side:'YES', qty:116, entry:0.50, cost:58.00, payout:116.00, profit:58.00, roi:100.0, grade:'A+',  win:true },
-  { n:3, ticker:'KXBTCD-26APR0317-T69299', side:'YES', qty:115, entry:0.50, cost:57.81, payout:115.00, profit:57.19, roi:98.9,  grade:'A',   win:true },
+  { n:1, ticker:'KXBTCD-26APR0317-T68299.99', side:'YES', qty:300, entry:0.4932, cost:147.96, payout:201.03, profit:53.07,  roi:35.9,  grade:'B+',  win:true },
+  { n:2, ticker:'KXBTCD-26APR0317-T69799.99', side:'YES', qty:400, entry:0.4876, cost:195.04, payout:293.44, profit:98.40,  roi:50.4,  grade:'A',   win:true },
+  { n:3, ticker:'KXBTCD-26APR0317-T71299.99', side:'YES', qty:300, entry:0.5097, cost:152.90, payout:234.40, profit:81.50,  roi:53.3,  grade:'A',   win:true },
+  { n:4, ticker:'KXETHD-26APR0317-T2079.99',  side:'YES', qty:200, entry:0.7000, cost:140.00, payout:234.05, profit:94.05,  roi:67.2,  grade:'A',   win:true },
+  { n:5, ticker:'KXETHD-26APR0317-T2119.99',  side:'YES', qty:117, entry:0.4726, cost:55.30,  payout:117.25, profit:61.95,  roi:112.0, grade:'A+',  win:true },
+  { n:6, ticker:'KXETHD-26APR0317-T2159.99',  side:'YES', qty:126, entry:0.5200, cost:65.53,  payout:126.48, profit:60.95,  roi:93.0,  grade:'A',   win:true },
+  { n:7, ticker:'KXETHD-26APR0317-T2199.99',  side:'YES', qty:102, entry:0.5186, cost:52.90,  payout:102.19, profit:49.29,  roi:93.2,  grade:'A',   win:true },
 ];
 
 const week1Trades = [
@@ -269,10 +300,13 @@ function renderTrades(trades, tbodyId) {
     tr.className = t.win ? 'win' : 'loss';
     tr.innerHTML = `
       <td style="color:var(--m)">${t.n}</td>
-      <td><span class="ticker">${t.ticker}</span></td>
+      <td>
+        <span class="ticker" style="color:var(--w);font-weight:600">${parseKalshiTicker(t.ticker)}</span>
+        <br><span class="ticker" style="font-size:10px">${t.ticker}</span>
+      </td>
       <td><span class="${t.side === 'YES' ? 'side-yes' : 'side-no'}">${t.side}</span></td>
-      <td>${t.qty.toLocaleString()}x</td>
-      <td>${(t.entry * 100).toFixed(0)}¢</td>
+      <td>${t.qty ? t.qty.toLocaleString() + 'x' : '—'}</td>
+      <td>${t.entry ? (t.entry * 100).toFixed(0) + '¢' : '—'}</td>
       <td>$${t.cost.toFixed(2)}</td>
       <td>${t.payout > 0 ? '$' + t.payout.toFixed(2) : '<span style="color:var(--rd)">—</span>'}</td>
       <td class="${t.profit >= 0 ? 'profit-pos' : 'profit-neg'}">${t.profit >= 0 ? '+' : ''}$${Math.abs(t.profit).toFixed(2)}</td>
