@@ -135,12 +135,12 @@ body{background:var(--bg);color:var(--t);font-family:'IBM Plex Mono',monospace;f
 
 <!-- ── Stats bar ── -->
 <div class="stats-bar" id="stats-bar">
-  <div class="stat-card blue"><div class="val">26</div><div class="lbl">Total Trades</div></div>
-  <div class="stat-card"><div class="val" style="color:var(--y)">22–4</div><div class="lbl">Win–Loss</div></div>
-  <div class="stat-card green"><div class="val">84.6%</div><div class="lbl">Win Rate</div></div>
-  <div class="stat-card green"><div class="val">+$1,204.71</div><div class="lbl">Total P&amp;L</div></div>
-  <div class="stat-card cyan"><div class="val">$1,534.50</div><div class="lbl">Portfolio <span style="font-size:8px;color:var(--m);display:block;font-family:'IBM Plex Mono',monospace;letter-spacing:0;text-transform:none;font-weight:400">$534 active + $1K banked</span></div></div>
-  <div class="stat-card green"><div class="val">+70.5%</div><div class="lbl">Return</div></div>
+  <div class="stat-card blue"><div class="val">31</div><div class="lbl">Total Trades</div></div>
+  <div class="stat-card"><div class="val" style="color:var(--y)">22–9</div><div class="lbl">Win–Loss</div></div>
+  <div class="stat-card green"><div class="val">71.0%</div><div class="lbl">Win Rate</div></div>
+  <div class="stat-card green"><div class="val">+$997.10</div><div class="lbl">Total P&amp;L</div></div>
+  <div class="stat-card cyan"><div class="val">$1,326.89</div><div class="lbl">Portfolio <span style="font-size:8px;color:var(--m);display:block;font-family:'IBM Plex Mono',monospace;letter-spacing:0;text-transform:none;font-weight:400">$326 active + $1K banked</span></div></div>
+  <div class="stat-card green"><div class="val">+58.3%</div><div class="lbl">Return</div></div>
 </div>
 
 <!-- ── Equity Curve ── -->
@@ -155,10 +155,10 @@ body{background:var(--bg);color:var(--t);font-family:'IBM Plex Mono',monospace;f
 <div class="section">
   <div class="sec-title">Weekly Cards</div>
 
-  <!-- ── Week 3 (SETTLED) ── -->
+  <!-- ── Week 2B (SETTLED) ── -->
   <div class="week-card open" id="week3-card">
     <div class="week-header" onclick="toggleCard('week3-card')">
-      <span class="week-label">WEEK 3</span>
+      <span class="week-label">WEEK 2B</span>
       <span class="badge badge-settled">SETTLED</span>
       <div class="week-meta">
         <div class="wm-item wm-record"><span>3–1</span></div>
@@ -181,6 +181,36 @@ body{background:var(--bg);color:var(--t);font-family:'IBM Plex Mono',monospace;f
         <div class="tot tot-pnl">Net P&amp;L: <span>+$52.72</span></div>
         <div class="tot">Avg ROI: <span>42%</span></div>
         <div class="tot">Record: <span>3W · 1L</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Week 3 (SETTLED) ── -->
+  <div class="week-card open" id="week4-card">
+    <div class="week-header" onclick="toggleCard('week4-card')">
+      <span class="week-label">WEEK 3</span>
+      <span class="badge badge-settled">SETTLED</span>
+      <div class="week-meta">
+        <div class="wm-item wm-record"><span>0–5</span></div>
+        <div class="wm-item wm-pnl neg"><span>−$207.61</span></div>
+        <div class="wm-item">Avg ROI: <span>−100%</span></div>
+        <div class="wm-item">Apr 10, 2026 · Iran Ceasefire</div>
+      </div>
+      <span class="week-chevron">▶</span>
+    </div>
+    <div class="week-body">
+      <table class="trade-table">
+        <thead>
+          <tr><th>#</th><th>Contract</th><th>Side</th><th>Qty</th><th>Entry</th><th>Cost</th><th>Payout</th><th>Profit</th><th>ROI</th><th>Grade</th></tr>
+        </thead>
+        <tbody id="week4-tbody"></tbody>
+      </table>
+      <div class="week-totals">
+        <div class="tot">Deployed: <span>$207.61</span></div>
+        <div class="tot">Returned: <span>$0.00</span></div>
+        <div class="tot tot-pnl neg">Net P&amp;L: <span>−$207.61</span></div>
+        <div class="tot">Avg ROI: <span>−100%</span></div>
+        <div class="tot">Record: <span>0W · 5L</span></div>
       </div>
     </div>
   </div>
@@ -281,6 +311,14 @@ function parseKalshiTicker(ticker) {
 }
 
 // ─── Trade Data ────────────────────────────────────────────────────────────────
+const week4Trades = [
+  { n:1, ticker:'KXBTCD-26APR1017-T63999.99', side:'NO', qty:1000, entry:0.08, cost:80.00,  payout:0.00, profit:-80.00,  roi:-100, grade:'MISS', win:false, note:'Iran ceasefire news drove BTC above $64K at expiry — all NO positions expired worthless. Apr 10 17:00 ET settlement.' },
+  { n:2, ticker:'KXBTCD-26APR1017-T64999.99', side:'NO', qty:1000, entry:0.11, cost:110.00, payout:0.00, profit:-110.00, roi:-100, grade:'MISS', win:false },
+  { n:3, ticker:'KXBTCD-26APR1017-T65999.99', side:'NO', qty:69,   entry:0.13, cost:8.97,   payout:0.00, profit:-8.97,   roi:-100, grade:'MISS', win:false },
+  { n:4, ticker:'KXETHD-26APR1017-T1969.99',  side:'NO', qty:5,    entry:0.09, cost:0.45,   payout:0.00, profit:-0.45,   roi:-100, grade:'MISS', win:false },
+  { n:5, ticker:'KXETHD-26APR1017-T2049.99',  side:'NO', qty:39,   entry:0.21, cost:8.19,   payout:0.00, profit:-8.19,   roi:-100, grade:'MISS', win:false },
+];
+
 const week3Trades = [
   { n:1, ticker:'KXBTCD-26APR1017-T72499.99', side:'YES', qty:500, entry:0.05, cost:25.00, payout:61.04, profit:36.04,  roi:160,  grade:'A',  win:true  },
   { n:2, ticker:'KXBTCD-26APR1017-T71499.99', side:'YES', qty:412, entry:0.09, cost:37.08, payout:87.61, profit:50.53,  roi:136,  grade:'A',  win:true  },
@@ -362,7 +400,7 @@ function renderTrades(trades, tbodyId) {
 
 // ─── Equity Curve ─────────────────────────────────────────────────────────────
 function drawEquity() {
-  const allTrades = [...week1Trades, ...week2Trades, ...week3Trades];
+  const allTrades = [...week1Trades, ...week2Trades, ...week3Trades, ...week4Trades];
   const svg = document.getElementById('equity-svg');
 
   const W = 860, H = 180;
@@ -395,7 +433,7 @@ function drawEquity() {
       : Math.max(3, (-t.profit) * dnScale);
     const y = isWin ? baselineY - barH : baselineY;
     const fill = isWin ? 'var(--gd)' : 'var(--rd)';
-    const week = i < week1Trades.length ? 1 : (i < week1Trades.length + week2Trades.length ? 2 : 3);
+    const week = i < week1Trades.length ? 1 : (i < week1Trades.length + week2Trades.length ? 2 : (i < week1Trades.length + week2Trades.length + week3Trades.length ? 3 : 4));
 
     svgContent += `<rect
       x="${x}" y="${y.toFixed(1)}" width="${barW}" height="${barH.toFixed(1)}"
@@ -423,9 +461,14 @@ function drawEquity() {
   svgContent += `<line x1="${sep3X}" y1="${padT}" x2="${sep3X}" y2="${H - padB + 2}"
     stroke="rgba(94,250,158,0.25)" stroke-width="1" stroke-dasharray="3,3"/>`;
   svgContent += `<text x="${sep3X + 3}" y="${padT + 9}" font-size="8" fill="var(--gd)"
-    font-family="Chakra Petch,sans-serif">WK3 →</text>`;
+    font-family="Chakra Petch,sans-serif">WK2B →</text>`;
   svgContent += `<text x="${sep3X - 3}" y="${baselineY + 14}" text-anchor="end"
     font-size="7.5" fill="var(--y)" font-family="Chakra Petch,sans-serif" opacity="0.85">$1K BANKED ↓</text>`;
+  const sep4X = padL + (week1Trades.length + week2Trades.length + week3Trades.length) * (barW + gap) - gap/2 - 1;
+  svgContent += `<line x1="${sep4X}" y1="${padT}" x2="${sep4X}" y2="${H - padB + 2}"
+    stroke="rgba(255,107,138,0.25)" stroke-width="1" stroke-dasharray="3,3"/>`;
+  svgContent += `<text x="${sep4X + 3}" y="${padT + 9}" font-size="8" fill="var(--rd)"
+    font-family="Chakra Petch,sans-serif">WK3 →</text>`;
 
   // P&L labels on axis
   svgContent += `<text x="${W-padR}" y="${baselineY - 3}" text-anchor="end"
@@ -473,6 +516,7 @@ function toggleCard(id) {
 }
 
 // ─── Init ────────────────────────────────────────────────────────────────────
+renderTrades(week4Trades, 'week4-tbody');
 renderTrades(week3Trades, 'week3-tbody');
 renderTrades(week2Trades, 'week2-tbody');
 renderTrades(week1Trades, 'week1-tbody');
