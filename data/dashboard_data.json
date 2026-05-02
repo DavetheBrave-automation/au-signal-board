@@ -1,22 +1,22 @@
 {
-  "updated_at": "2026-05-02T03:13:00.770224+00:00",
+  "updated_at": "2026-05-02T03:18:53.343504+00:00",
   "balance": {
     "available": 0.25,
     "portfolio_value": 0.25,
     "deployed": 0
   },
   "btc": {
-    "price": 78276.02,
+    "price": 78272.11,
     "ema200": 77060.82934705965,
     "ema200_distance_pct": 1.62,
     "rsi": 64.21659235952723,
-    "eagle": "ACCUMULATION",
-    "eagle_confidence": 20.0,
-    "eagle_cvd": "NEUTRAL",
-    "nano": "ACCUMULATION",
-    "nano_position_pct": 6.6,
+    "eagle": "NEUTRAL",
+    "eagle_confidence": 30.0,
+    "eagle_cvd": "STRONG BEARISH",
+    "nano": "DISTRIBUTION",
+    "nano_position_pct": 8.9,
     "nano_zone_weight": "BOTTOM_HEAVY",
-    "nano_oi_context": "STALEMATE \u2014 Flat OI + Accumulation = Waiting for catalyst",
+    "nano_oi_context": "BALANCED \u2014 Flat OI + Distribution = No strong conviction",
     "nano_direction_bias": "NEUTRAL",
     "vulture_bias": "LONG",
     "vulture_stack": "\ud83d\udcc8 BULLISH STACK (price > EMA9 > EMA21)",
@@ -29,7 +29,7 @@
     "rr_long_6h": 0.2,
     "rr_short_6h": 5.2,
     "levels": {
-      "f5m": 78249.85,
+      "f5m": 78240.98,
       "f1h": 77022.55,
       "f4h": 74914.0,
       "c1h": 78961.14,
@@ -38,15 +38,15 @@
     }
   },
   "eth": {
-    "price": 2301.51,
+    "price": 2302.29,
     "ema200": 2298.676490774057,
     "ema200_distance_pct": 0.13,
     "rsi": 61.34426623944833,
-    "eagle": "NEUTRAL",
-    "eagle_confidence": 30.0,
-    "eagle_cvd": "STRONG BULLISH",
+    "eagle": "CAPITULATION",
+    "eagle_confidence": 21.0,
+    "eagle_cvd": "MILD BULLISH",
     "nano": "ACCUMULATION",
-    "nano_position_pct": 54.0,
+    "nano_position_pct": 49.0,
     "nano_zone_weight": "NEUTRAL",
     "nano_oi_context": "STALEMATE \u2014 Flat OI + Accumulation = Waiting for catalyst",
     "nano_direction_bias": "NEUTRAL",
@@ -70,8 +70,8 @@
     }
   },
   "symphony": {
-    "state": "SYMPHONY_OVERRIDE",
-    "confidence": 94
+    "state": "RANGE_BOUND",
+    "confidence": 30
   },
   "macro": {
     "fg": 39,
@@ -112,262 +112,262 @@
     "BTC": {
       "series": [
         {
-          "ts": "2026-05-01T02:12:11Z",
-          "price": 76663.6,
-          "eagle_phase": "NEUTRAL"
-        },
-        {
-          "ts": "2026-05-01T03:13:01Z",
-          "price": 76669.99,
-          "eagle_phase": "NEUTRAL"
-        },
-        {
-          "ts": "2026-05-01T04:13:49Z",
-          "price": 77114.69,
-          "eagle_phase": "NEUTRAL"
-        },
-        {
-          "ts": "2026-05-01T05:14:38Z",
-          "price": 77128.0,
-          "eagle_phase": "NEUTRAL"
-        },
-        {
-          "ts": "2026-05-01T06:15:22Z",
-          "price": 77118.09,
-          "eagle_phase": "NEUTRAL"
-        },
-        {
-          "ts": "2026-05-01T07:15:49Z",
-          "price": 77003.2,
-          "eagle_phase": "NEUTRAL"
-        },
-        {
-          "ts": "2026-05-01T08:16:57Z",
-          "price": 77359.07,
+          "ts": "2026-05-01T02:17:11Z",
+          "price": 76692.6,
           "eagle_phase": "BREAKOUT_ATTEMPT"
         },
         {
-          "ts": "2026-05-01T09:18:03Z",
-          "price": 77291.18,
-          "eagle_phase": "NEUTRAL"
-        },
-        {
-          "ts": "2026-05-01T10:19:01Z",
-          "price": 77242.01,
-          "eagle_phase": "CAPITULATION"
-        },
-        {
-          "ts": "2026-05-01T11:19:19Z",
-          "price": 77378.76,
-          "eagle_phase": "NEUTRAL"
-        },
-        {
-          "ts": "2026-05-01T12:20:01Z",
-          "price": 77686.01,
+          "ts": "2026-05-01T03:18:07Z",
+          "price": 76842.47,
           "eagle_phase": "BREAKOUT_ATTEMPT"
         },
         {
-          "ts": "2026-05-01T13:20:43Z",
-          "price": 78310.18,
+          "ts": "2026-05-01T04:18:53Z",
+          "price": 77172.65,
+          "eagle_phase": "NEUTRAL"
+        },
+        {
+          "ts": "2026-05-01T05:19:46Z",
+          "price": 77026.83,
+          "eagle_phase": "NEUTRAL"
+        },
+        {
+          "ts": "2026-05-01T06:20:27Z",
+          "price": 77102.93,
+          "eagle_phase": "NEUTRAL"
+        },
+        {
+          "ts": "2026-05-01T07:20:56Z",
+          "price": 77064.01,
+          "eagle_phase": "NEUTRAL"
+        },
+        {
+          "ts": "2026-05-01T08:21:50Z",
+          "price": 77356.59,
           "eagle_phase": "BREAKOUT_ATTEMPT"
         },
         {
-          "ts": "2026-05-01T14:21:59Z",
-          "price": 78552.62,
+          "ts": "2026-05-01T09:23:38Z",
+          "price": 77325.94,
           "eagle_phase": "NEUTRAL"
         },
         {
-          "ts": "2026-05-01T15:22:35Z",
-          "price": 78494.41,
+          "ts": "2026-05-01T10:24:03Z",
+          "price": 77409.09,
           "eagle_phase": "NEUTRAL"
         },
         {
-          "ts": "2026-05-01T16:23:12Z",
-          "price": 78461.17,
+          "ts": "2026-05-01T11:24:22Z",
+          "price": 77418.45,
           "eagle_phase": "NEUTRAL"
         },
         {
-          "ts": "2026-05-01T17:24:18Z",
-          "price": 78248.5,
-          "eagle_phase": "CAPITULATION"
+          "ts": "2026-05-01T12:25:09Z",
+          "price": 77750.0,
+          "eagle_phase": "BREAKOUT_ATTEMPT"
         },
         {
-          "ts": "2026-05-01T18:24:43Z",
-          "price": 78580.0,
+          "ts": "2026-05-01T13:25:47Z",
+          "price": 78310.01,
+          "eagle_phase": "BREAKOUT_ATTEMPT"
+        },
+        {
+          "ts": "2026-05-01T14:26:57Z",
+          "price": 78260.96,
           "eagle_phase": "NEUTRAL"
         },
         {
-          "ts": "2026-05-01T19:25:20Z",
-          "price": 78412.61,
+          "ts": "2026-05-01T15:27:37Z",
+          "price": 78546.11,
           "eagle_phase": "NEUTRAL"
         },
         {
-          "ts": "2026-05-01T21:11:29Z",
-          "price": 77957.11,
-          "eagle_phase": "CAPITULATION"
-        },
-        {
-          "ts": "2026-05-01T22:12:30Z",
-          "price": 78312.51,
-          "eagle_phase": "NEUTRAL"
-        },
-        {
-          "ts": "2026-05-01T23:13:11Z",
-          "price": 78160.48,
+          "ts": "2026-05-01T16:28:21Z",
+          "price": 78281.37,
           "eagle_phase": "ACCUMULATION"
         },
         {
-          "ts": "2026-05-02T00:13:55Z",
-          "price": 78210.66,
+          "ts": "2026-05-01T17:29:21Z",
+          "price": 78204.76,
           "eagle_phase": "CAPITULATION"
         },
         {
-          "ts": "2026-05-02T01:14:44Z",
-          "price": 78355.16,
+          "ts": "2026-05-01T18:29:44Z",
+          "price": 78545.46,
           "eagle_phase": "NEUTRAL"
         },
         {
-          "ts": "2026-05-02T02:15:46Z",
-          "price": 78296.23,
+          "ts": "2026-05-01T19:30:25Z",
+          "price": 78418.85,
+          "eagle_phase": "NEUTRAL"
+        },
+        {
+          "ts": "2026-05-01T21:16:33Z",
+          "price": 77938.0,
+          "eagle_phase": "CAPITULATION"
+        },
+        {
+          "ts": "2026-05-01T22:17:33Z",
+          "price": 78314.5,
+          "eagle_phase": "NEUTRAL"
+        },
+        {
+          "ts": "2026-05-01T23:18:12Z",
+          "price": 78129.54,
+          "eagle_phase": "ACCUMULATION"
+        },
+        {
+          "ts": "2026-05-02T00:19:00Z",
+          "price": 78192.67,
+          "eagle_phase": "CAPITULATION"
+        },
+        {
+          "ts": "2026-05-02T01:19:48Z",
+          "price": 78306.72,
+          "eagle_phase": "NEUTRAL"
+        },
+        {
+          "ts": "2026-05-02T02:20:47Z",
+          "price": 78324.03,
           "eagle_phase": "ACCUMULATION"
         }
       ],
-      "high": 78580.0,
-      "low": 76663.6
+      "high": 78546.11,
+      "low": 76692.6
     },
     "ETH": {
       "series": [
         {
-          "ts": "2026-05-01T02:12:11Z",
-          "price": 2267.21,
+          "ts": "2026-05-01T02:17:11Z",
+          "price": 2267.61,
           "eagle_phase": "NEUTRAL"
         },
         {
-          "ts": "2026-05-01T03:13:01Z",
-          "price": 2269.51,
+          "ts": "2026-05-01T03:18:07Z",
+          "price": 2273.8,
           "eagle_phase": "NEUTRAL"
         },
         {
-          "ts": "2026-05-01T04:13:49Z",
-          "price": 2282.88,
+          "ts": "2026-05-01T04:18:53Z",
+          "price": 2285.16,
           "eagle_phase": "NEUTRAL"
         },
         {
-          "ts": "2026-05-01T05:14:38Z",
-          "price": 2284.0,
+          "ts": "2026-05-01T05:19:46Z",
+          "price": 2281.69,
           "eagle_phase": "NEUTRAL"
         },
         {
-          "ts": "2026-05-01T06:15:22Z",
-          "price": 2284.6,
+          "ts": "2026-05-01T06:20:27Z",
+          "price": 2284.81,
           "eagle_phase": "NEUTRAL"
         },
         {
-          "ts": "2026-05-01T07:15:49Z",
-          "price": 2276.51,
+          "ts": "2026-05-01T07:20:56Z",
+          "price": 2278.07,
           "eagle_phase": "NEUTRAL"
         },
         {
-          "ts": "2026-05-01T08:16:57Z",
-          "price": 2285.74,
+          "ts": "2026-05-01T08:21:50Z",
+          "price": 2285.7,
           "eagle_phase": "NEUTRAL"
         },
         {
-          "ts": "2026-05-01T09:18:03Z",
-          "price": 2283.77,
+          "ts": "2026-05-01T09:23:38Z",
+          "price": 2284.12,
           "eagle_phase": "NEUTRAL"
         },
         {
-          "ts": "2026-05-01T10:19:01Z",
-          "price": 2280.7,
-          "eagle_phase": "CAPITULATION"
-        },
-        {
-          "ts": "2026-05-01T11:19:19Z",
-          "price": 2285.21,
+          "ts": "2026-05-01T10:24:03Z",
+          "price": 2285.47,
           "eagle_phase": "NEUTRAL"
         },
         {
-          "ts": "2026-05-01T12:20:01Z",
-          "price": 2296.6,
+          "ts": "2026-05-01T11:24:22Z",
+          "price": 2286.91,
+          "eagle_phase": "NEUTRAL"
+        },
+        {
+          "ts": "2026-05-01T12:25:09Z",
+          "price": 2302.7,
           "eagle_phase": "BREAKOUT_ATTEMPT"
         },
         {
-          "ts": "2026-05-01T13:20:43Z",
-          "price": 2309.93,
+          "ts": "2026-05-01T13:25:47Z",
+          "price": 2309.15,
           "eagle_phase": "BREAKOUT_ATTEMPT"
         },
         {
-          "ts": "2026-05-01T14:21:59Z",
-          "price": 2316.4,
+          "ts": "2026-05-01T14:26:57Z",
+          "price": 2309.62,
           "eagle_phase": "NEUTRAL"
         },
         {
-          "ts": "2026-05-01T15:22:35Z",
-          "price": 2309.2,
+          "ts": "2026-05-01T15:27:37Z",
+          "price": 2309.81,
           "eagle_phase": "NEUTRAL"
         },
         {
-          "ts": "2026-05-01T16:23:12Z",
-          "price": 2308.24,
+          "ts": "2026-05-01T16:28:21Z",
+          "price": 2301.68,
           "eagle_phase": "CAPITULATION"
         },
         {
-          "ts": "2026-05-01T17:24:18Z",
-          "price": 2303.86,
+          "ts": "2026-05-01T17:29:21Z",
+          "price": 2302.98,
           "eagle_phase": "CAPITULATION"
         },
         {
-          "ts": "2026-05-01T18:24:43Z",
-          "price": 2310.1,
+          "ts": "2026-05-01T18:29:44Z",
+          "price": 2308.82,
           "eagle_phase": "NEUTRAL"
         },
         {
-          "ts": "2026-05-01T19:25:20Z",
-          "price": 2304.83,
+          "ts": "2026-05-01T19:30:25Z",
+          "price": 2305.9,
+          "eagle_phase": "ACCUMULATION"
+        },
+        {
+          "ts": "2026-05-01T21:16:33Z",
+          "price": 2286.67,
+          "eagle_phase": "CAPITULATION"
+        },
+        {
+          "ts": "2026-05-01T22:17:33Z",
+          "price": 2296.4,
           "eagle_phase": "NEUTRAL"
         },
         {
-          "ts": "2026-05-01T21:11:29Z",
-          "price": 2288.31,
+          "ts": "2026-05-01T23:18:12Z",
+          "price": 2293.08,
           "eagle_phase": "CAPITULATION"
         },
         {
-          "ts": "2026-05-01T22:12:30Z",
-          "price": 2296.49,
-          "eagle_phase": "NEUTRAL"
-        },
-        {
-          "ts": "2026-05-01T23:13:11Z",
-          "price": 2293.09,
+          "ts": "2026-05-02T00:19:00Z",
+          "price": 2293.82,
           "eagle_phase": "CAPITULATION"
         },
         {
-          "ts": "2026-05-02T00:13:55Z",
-          "price": 2294.12,
+          "ts": "2026-05-02T01:19:48Z",
+          "price": 2296.11,
           "eagle_phase": "CAPITULATION"
         },
         {
-          "ts": "2026-05-02T01:14:44Z",
-          "price": 2297.81,
-          "eagle_phase": "CAPITULATION"
-        },
-        {
-          "ts": "2026-05-02T02:15:46Z",
-          "price": 2297.05,
+          "ts": "2026-05-02T02:20:47Z",
+          "price": 2297.51,
           "eagle_phase": "CAPITULATION"
         }
       ],
-      "high": 2316.4,
-      "low": 2267.21
+      "high": 2309.81,
+      "low": 2267.61
     }
   },
   "fleet_summary": {
     "BTC": {
-      "price": 78276.02,
-      "eagle": "ACCUMULATION",
-      "nano": "ACCUMULATION",
-      "cvd": "NEUTRAL",
+      "price": 78272.11,
+      "eagle": "NEUTRAL",
+      "nano": "DISTRIBUTION",
+      "cvd": "STRONG BEARISH",
       "rsi": 64.21659235952723,
       "ema200_dist": 1.62,
       "rr_long": 0.5,
@@ -375,10 +375,10 @@
       "funding": -0.0005
     },
     "ETH": {
-      "price": 2301.51,
-      "eagle": "NEUTRAL",
+      "price": 2302.29,
+      "eagle": "CAPITULATION",
       "nano": "ACCUMULATION",
-      "cvd": "STRONG BULLISH",
+      "cvd": "MILD BULLISH",
       "rsi": 61.34426623944833,
       "ema200_dist": 0.13,
       "rr_long": 1.3,
@@ -386,9 +386,9 @@
       "funding": -0.00030000000000000003
     },
     "SOL": {
-      "price": 83.79,
+      "price": 83.8,
       "eagle": "CAPITULATION",
-      "nano": "ACCUMULATION",
+      "nano": "DISTRIBUTION",
       "cvd": "STRONG BEARISH",
       "rsi": 53.768175311725216,
       "ema200_dist": -0.87,
@@ -397,18 +397,18 @@
       "funding": -9.999999999999999e-05
     },
     "XRP": {
-      "price": 1.3844,
+      "price": 1.3843,
       "eagle": "NEUTRAL",
       "nano": "ACCUMULATION",
       "cvd": "STRONG BEARISH",
-      "rsi": 56.18720494302778,
-      "ema200_dist": -0.72,
-      "rr_long": 1.9,
+      "rsi": 54.583604816378525,
+      "ema200_dist": -0.85,
+      "rr_long": 2.0,
       "trend": "\ud83d\udcc8 BULLISH \u2014 Confirmed uptrend (long-friendly, short-cautious)",
-      "funding": 0.00030000000000000003
+      "funding": 0.00039999999999999996
     },
     "DOGE": {
-      "price": 0.10813,
+      "price": 0.10816,
       "eagle": "CAPITULATION",
       "nano": "ACCUMULATION",
       "cvd": "STRONG BEARISH",
@@ -419,68 +419,68 @@
       "funding": 0
     },
     "BNB": {
-      "price": 615.52,
+      "price": 615.72,
       "eagle": "NEUTRAL",
       "nano": "ACCUMULATION",
       "cvd": "STRONG BEARISH",
-      "rsi": 46.78242422485396,
-      "ema200_dist": -1.25,
-      "rr_long": 2.6,
-      "trend": "\ud83d\udcc8 BULLISH \u2014 Confirmed uptrend (long-friendly, short-cautious)",
-      "funding": -0.00019999999999999998
+      "rsi": 45.88424867605309,
+      "ema200_dist": -1.36,
+      "rr_long": 3.9,
+      "trend": "\ud83d\udfe2 ACCUMULATION ZONE \u2014 Bullish at floor (LONG SIGNAL)",
+      "funding": -9.999999999999999e-05
     },
     "HYPE": {
-      "price": 41.22,
+      "price": 41.21,
       "eagle": "NEUTRAL",
       "nano": null,
-      "cvd": "STRONG BULLISH",
-      "rsi": 70.64584906064377,
-      "ema200_dist": 1.92,
+      "cvd": "MILD BULLISH",
+      "rsi": 68.52335911420519,
+      "ema200_dist": 1.82,
       "rr_long": 1.8,
-      "trend": "\u2696\ufe0f RANGING \u2014 Consolidation (wait for direction)",
+      "trend": "\ud83d\udcc8 BULLISH \u2014 Confirmed uptrend (long-friendly, short-cautious)",
       "funding": null
     },
     "TAO": {
-      "price": 270.88,
-      "eagle": "NEUTRAL",
+      "price": 271.56,
+      "eagle": "CAPITULATION",
       "nano": null,
       "cvd": "STRONG BULLISH",
-      "rsi": 75.48798749144449,
+      "rsi": 75.45989379474364,
       "ema200_dist": 7.02,
-      "rr_long": 0.2,
+      "rr_long": 0.3,
       "trend": "\ud83d\udcc8 BULLISH \u2014 Confirmed uptrend (long-friendly, short-cautious)",
       "funding": null
     },
     "ZEC": {
-      "price": 381.9,
-      "eagle": "ACCUMULATION",
-      "nano": "ACCUMULATION",
+      "price": 381.99,
+      "eagle": "NEUTRAL",
+      "nano": "CAPITULATION",
       "cvd": "STRONG BEARISH",
-      "rsi": 74.46349957075603,
-      "ema200_dist": 11.13,
+      "rsi": 71.30703199997765,
+      "ema200_dist": 10.83,
       "rr_long": 0.3,
       "trend": "\ud83d\udcc8 BULLISH \u2014 Confirmed uptrend (long-friendly, short-cautious)",
       "funding": -0.0023
     },
     "LINK": {
-      "price": 9.107,
-      "eagle": "ACCUMULATION",
-      "nano": "ACCUMULATION",
-      "cvd": "STRONG BULLISH",
-      "rsi": 47.410759548634786,
-      "ema200_dist": -1.34,
-      "rr_long": 3.1,
-      "trend": "\ud83d\udcc8 BULLISH \u2014 Confirmed uptrend (long-friendly, short-cautious)",
-      "funding": 0.0015
-    },
-    "BCH": {
-      "price": 450.82,
+      "price": 9.106,
       "eagle": "CAPITULATION",
       "nano": "DISTRIBUTION",
       "cvd": "STRONG BEARISH",
-      "rsi": 64.70401175053937,
-      "ema200_dist": 0.63,
-      "rr_long": 1.1,
+      "rsi": 46.044393256512976,
+      "ema200_dist": -1.45,
+      "rr_long": 4.4,
+      "trend": "\ud83d\udcc8 BULLISH \u2014 Confirmed uptrend (long-friendly, short-cautious)",
+      "funding": 0.0015999999999999999
+    },
+    "BCH": {
+      "price": 450.49,
+      "eagle": "CAPITULATION",
+      "nano": "DISTRIBUTION",
+      "cvd": "STRONG BEARISH",
+      "rsi": 58.04653811672587,
+      "ema200_dist": 0.3,
+      "rr_long": 1.5,
       "trend": "\ud83d\udcc8 BULLISH \u2014 Confirmed uptrend (long-friendly, short-cautious)",
       "funding": -0.0005
     }
@@ -548,7 +548,7 @@
     }
   ],
   "orderbook_depth": {
-    "scanned_at": "2026-05-02T03:07:56.337541+00:00",
+    "scanned_at": "2026-05-02T03:13:49.439863+00:00",
     "contracts": {
       "KXBTCD-26MAY0217-T86749.99": {
         "ticker": "KXBTCD-26MAY0217-T86749.99",
@@ -1207,12 +1207,22 @@
         "imbalance": "NO_HEAVY",
         "whale_walls": [
           {
+            "price": 0.04,
+            "qty": 19527.0,
+            "side": "no"
+          },
+          {
             "price": 0.91,
             "qty": 4249.0,
             "side": "no"
           }
         ],
         "mega_walls": [
+          {
+            "price": 0.04,
+            "qty": 19527.0,
+            "side": "no"
+          },
           {
             "price": 0.91,
             "qty": 4249.0,
@@ -1552,59 +1562,59 @@
         "ticker": "KXETHD-26MAY0217-T2329.99",
         "asset": "ETH",
         "mid_price": 0.13,
-        "spread_quality": "NORMAL",
+        "spread_quality": "TIGHT",
         "depth_quality": "DEEP",
         "imbalance": "NO_HEAVY",
         "whale_walls": [
           {
-            "price": 0.07,
+            "price": 0.06,
             "qty": 10000.0,
             "side": "yes"
           },
           {
-            "price": 0.1,
-            "qty": 600.0,
+            "price": 0.11,
+            "qty": 764.0,
             "side": "yes"
           },
           {
-            "price": 0.06,
-            "qty": 15661.0,
+            "price": 0.08,
+            "qty": 11746.0,
             "side": "no"
           },
           {
-            "price": 0.24,
-            "qty": 2796.0,
+            "price": 0.32,
+            "qty": 2097.0,
             "side": "no"
           },
           {
-            "price": 0.82,
+            "price": 0.84,
             "qty": 600.0,
             "side": "no"
           },
           {
-            "price": 0.85,
+            "price": 0.86,
             "qty": 10000.0,
             "side": "no"
           }
         ],
         "mega_walls": [
           {
-            "price": 0.07,
+            "price": 0.06,
             "qty": 10000.0,
             "side": "yes"
           },
           {
-            "price": 0.06,
-            "qty": 15661.0,
+            "price": 0.08,
+            "qty": 11746.0,
             "side": "no"
           },
           {
-            "price": 0.24,
-            "qty": 2796.0,
+            "price": 0.32,
+            "qty": 2097.0,
             "side": "no"
           },
           {
-            "price": 0.85,
+            "price": 0.86,
             "qty": 10000.0,
             "side": "no"
           }
@@ -1615,81 +1625,76 @@
       "KXETHD-26MAY0217-T2289.99": {
         "ticker": "KXETHD-26MAY0217-T2289.99",
         "asset": "ETH",
-        "mid_price": 0.735,
-        "spread_quality": "NORMAL",
+        "mid_price": 0.7,
+        "spread_quality": "TIGHT",
         "depth_quality": "DEEP",
         "imbalance": "BALANCED",
         "whale_walls": [
           {
-            "price": 0.04,
-            "qty": 23492.0,
+            "price": 0.26,
+            "qty": 2581.0,
             "side": "yes"
           },
           {
-            "price": 0.22,
-            "qty": 3051.0,
+            "price": 0.67,
+            "qty": 10000.0,
             "side": "yes"
           },
           {
             "price": 0.68,
-            "qty": 10600.0,
+            "qty": 587.72,
             "side": "yes"
           },
           {
-            "price": 0.05,
-            "qty": 18794.0,
-            "side": "no"
-          },
-          {
-            "price": 0.07,
-            "qty": 674.0,
-            "side": "no"
-          },
-          {
             "price": 0.08,
-            "qty": 639.0,
+            "qty": 1035.0,
             "side": "no"
           },
           {
-            "price": 0.13,
-            "qty": 5199.0,
+            "price": 0.09,
+            "qty": 601.0,
             "side": "no"
           },
           {
-            "price": 0.24,
-            "qty": 10630.0,
+            "price": 0.15,
+            "qty": 4484.0,
+            "side": "no"
+          },
+          {
+            "price": 0.25,
+            "qty": 10300.0,
+            "side": "no"
+          },
+          {
+            "price": 0.27,
+            "qty": 600.0,
             "side": "no"
           }
         ],
         "mega_walls": [
           {
-            "price": 0.04,
-            "qty": 23492.0,
+            "price": 0.26,
+            "qty": 2581.0,
             "side": "yes"
           },
           {
-            "price": 0.22,
-            "qty": 3051.0,
+            "price": 0.67,
+            "qty": 10000.0,
             "side": "yes"
           },
           {
-            "price": 0.68,
-            "qty": 10600.0,
-            "side": "yes"
-          },
-          {
-            "price": 0.05,
-            "qty": 18794.0,
+            "price": 0.08,
+            "qty": 1035.0,
             "side": "no"
           },
           {
-            "price": 0.13,
-            "qty": 5199.0,
+            "price": 0.15,
+            "qty": 4484.0,
             "side": "no"
           },
           {
-            "price": 0.24,
-            "qty": 10630.0,
+            "price": 0.25,
+            "qty": 10300.0,
             "side": "no"
           }
         ],
@@ -1699,11 +1704,16 @@
       "KXETHD-26MAY0217-T2249.99": {
         "ticker": "KXETHD-26MAY0217-T2249.99",
         "asset": "ETH",
-        "mid_price": 0.95,
+        "mid_price": 0.945,
         "spread_quality": "NORMAL",
         "depth_quality": "DEEP",
         "imbalance": "YES_HEAVY",
         "whale_walls": [
+          {
+            "price": 0.05,
+            "qty": 18795.0,
+            "side": "yes"
+          },
           {
             "price": 0.23,
             "qty": 2918.0,
@@ -1715,13 +1725,18 @@
             "side": "yes"
           },
           {
-            "price": 0.93,
+            "price": 0.92,
             "qty": 10000.0,
             "side": "yes"
           }
         ],
         "mega_walls": [
           {
+            "price": 0.05,
+            "qty": 18795.0,
+            "side": "yes"
+          },
+          {
             "price": 0.23,
             "qty": 2918.0,
             "side": "yes"
@@ -1732,7 +1747,7 @@
             "side": "yes"
           },
           {
-            "price": 0.93,
+            "price": 0.92,
             "qty": 10000.0,
             "side": "yes"
           }
@@ -2208,7 +2223,7 @@
       "KXSOLD-26MAY0217-T84.9999": {
         "ticker": "KXSOLD-26MAY0217-T84.9999",
         "asset": "SOL",
-        "mid_price": 0.11,
+        "mid_price": 0.105,
         "spread_quality": "ILLIQUID",
         "depth_quality": "DEEP",
         "imbalance": "BALANCED",
@@ -2219,7 +2234,7 @@
             "side": "yes"
           },
           {
-            "price": 0.82,
+            "price": 0.84,
             "qty": 10000.0,
             "side": "no"
           }
@@ -2231,7 +2246,7 @@
             "side": "yes"
           },
           {
-            "price": 0.82,
+            "price": 0.84,
             "qty": 10000.0,
             "side": "no"
           }
@@ -2242,7 +2257,7 @@
       "KXSOLD-26MAY0217-T83.9999": {
         "ticker": "KXSOLD-26MAY0217-T83.9999",
         "asset": "SOL",
-        "mid_price": 0.44,
+        "mid_price": 0.42,
         "spread_quality": "ILLIQUID",
         "depth_quality": "DEEP",
         "imbalance": "YES_HEAVY",
@@ -2258,29 +2273,24 @@
             "side": "yes"
           },
           {
-            "price": 0.37,
+            "price": 0.35,
             "qty": 10000.0,
             "side": "yes"
           },
           {
-            "price": 0.26,
-            "qty": 523.0,
-            "side": "no"
-          },
-          {
-            "price": 0.5,
+            "price": 0.52,
             "qty": 10000.0,
             "side": "no"
           }
         ],
         "mega_walls": [
           {
-            "price": 0.37,
+            "price": 0.35,
             "qty": 10000.0,
             "side": "yes"
           },
           {
-            "price": 0.5,
+            "price": 0.52,
             "qty": 10000.0,
             "side": "no"
           }
@@ -2291,36 +2301,31 @@
       "KXSOLD-26MAY0217-T82.9999": {
         "ticker": "KXSOLD-26MAY0217-T82.9999",
         "asset": "SOL",
-        "mid_price": 0.81,
+        "mid_price": 0.79,
         "spread_quality": "ILLIQUID",
         "depth_quality": "DEEP",
         "imbalance": "BALANCED",
         "whale_walls": [
           {
-            "price": 0.59,
-            "qty": 541.0,
-            "side": "yes"
-          },
-          {
-            "price": 0.75,
+            "price": 0.73,
             "qty": 10000.0,
             "side": "yes"
           },
           {
-            "price": 0.12,
-            "qty": 10000.0,
+            "price": 0.14,
+            "qty": 9999.0,
             "side": "no"
           }
         ],
         "mega_walls": [
           {
-            "price": 0.75,
+            "price": 0.73,
             "qty": 10000.0,
             "side": "yes"
           },
           {
-            "price": 0.12,
-            "qty": 10000.0,
+            "price": 0.14,
+            "qty": 9999.0,
             "side": "no"
           }
         ],
