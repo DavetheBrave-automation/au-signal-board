@@ -1,22 +1,22 @@
 {
-  "updated_at": "2026-05-24T20:56:37.572021+00:00",
+  "updated_at": "2026-05-24T21:02:31.159454+00:00",
   "balance": {
     "available": 1.29,
     "portfolio_value": 1.29,
     "deployed": 0
   },
   "btc": {
-    "price": 76536.88,
+    "price": 76568.72,
     "ema200": 77110.00833199952,
     "ema200_distance_pct": -0.71,
     "rsi": 55.716381937947205,
-    "eagle": "NEUTRAL",
-    "eagle_confidence": 30.0,
+    "eagle": "ACCUMULATION",
+    "eagle_confidence": 27.0,
     "eagle_cvd": "STRONG BULLISH",
-    "nano": "DISTRIBUTION",
-    "nano_position_pct": 28.5,
+    "nano": "ACCUMULATION",
+    "nano_position_pct": 31.4,
     "nano_zone_weight": "NEUTRAL",
-    "nano_oi_context": "BALANCED \u2014 Flat OI + Distribution = No strong conviction",
+    "nano_oi_context": "STALEMATE \u2014 Flat OI + Accumulation = Waiting for catalyst",
     "nano_direction_bias": "NEUTRAL",
     "vulture_bias": "LONG",
     "vulture_stack": "\u2696\ufe0f FLAT \u2014 EMAs converging",
@@ -38,15 +38,15 @@
     }
   },
   "eth": {
-    "price": 2089.38,
+    "price": 2091.12,
     "ema200": 2129.7499421347575,
     "ema200_distance_pct": -1.89,
     "rsi": 49.168293882966545,
     "eagle": "CAPITULATION",
-    "eagle_confidence": 67.0,
+    "eagle_confidence": 100.0,
     "eagle_cvd": "STRONG BEARISH",
     "nano": "DISTRIBUTION",
-    "nano_position_pct": 9.2,
+    "nano_position_pct": 18.7,
     "nano_zone_weight": "BOTTOM_HEAVY",
     "nano_oi_context": "BALANCED \u2014 Flat OI + Distribution = No strong conviction",
     "nano_direction_bias": "NEUTRAL",
@@ -61,7 +61,7 @@
     "rr_long_6h": 0.8,
     "rr_short_6h": 1.3,
     "levels": {
-      "f5m": 2089.21,
+      "f5m": 2088.43,
       "f1h": 2076.93,
       "f4h": 2006.64,
       "c1h": 2128.94,
@@ -144,9 +144,9 @@
   },
   "fleet_summary": {
     "BTC": {
-      "price": 76536.88,
-      "eagle": "NEUTRAL",
-      "nano": "DISTRIBUTION",
+      "price": 76568.72,
+      "eagle": "ACCUMULATION",
+      "nano": "ACCUMULATION",
       "cvd": "STRONG BULLISH",
       "rsi": 55.716381937947205,
       "ema200_dist": -0.71,
@@ -155,7 +155,7 @@
       "funding": -9.999999999999999e-05
     },
     "ETH": {
-      "price": 2089.38,
+      "price": 2091.12,
       "eagle": "CAPITULATION",
       "nano": "DISTRIBUTION",
       "cvd": "STRONG BEARISH",
@@ -166,7 +166,7 @@
       "funding": 0.0005
     },
     "SOL": {
-      "price": 84.63,
+      "price": 84.65,
       "eagle": "CAPITULATION",
       "nano": "CAPITULATION",
       "cvd": "STRONG BEARISH",
@@ -174,10 +174,10 @@
       "ema200_dist": -1.81,
       "rr_long": 10.9,
       "trend": "\ud83d\udfe2 ACCUMULATION ZONE \u2014 Bullish at floor (LONG SIGNAL)",
-      "funding": -0.00030000000000000003
+      "funding": -0.00019999999999999998
     },
     "XRP": {
-      "price": 1.3427,
+      "price": 1.3432,
       "eagle": "CAPITULATION",
       "nano": "DISTRIBUTION",
       "cvd": "STRONG BEARISH",
@@ -188,7 +188,7 @@
       "funding": 0.00039999999999999996
     },
     "DOGE": {
-      "price": 0.10162,
+      "price": 0.10168,
       "eagle": "CAPITULATION",
       "nano": "CAPITULATION",
       "cvd": "STRONG BEARISH",
@@ -199,18 +199,18 @@
       "funding": 0.0009
     },
     "BNB": {
-      "price": 654.39,
+      "price": 654.44,
       "eagle": "ACCUMULATION",
       "nano": "ACCUMULATION",
-      "cvd": "MILD BULLISH",
+      "cvd": "NEUTRAL",
       "rsi": 52.39734270173614,
       "ema200_dist": 0.06,
       "rr_long": 3.2,
       "trend": "\ud83d\udcc8 BULLISH \u2014 Confirmed uptrend (long-friendly, short-cautious)",
-      "funding": 0
+      "funding": 9.999999999999999e-05
     },
     "HYPE": {
-      "price": 62.13,
+      "price": 62.3,
       "eagle": "CAPITULATION",
       "nano": null,
       "cvd": "STRONG BEARISH",
@@ -221,7 +221,7 @@
       "funding": null
     },
     "TAO": {
-      "price": 273.89,
+      "price": 273.65,
       "eagle": "CAPITULATION",
       "nano": null,
       "cvd": "STRONG BEARISH",
@@ -232,7 +232,7 @@
       "funding": null
     },
     "ZEC": {
-      "price": 676.08,
+      "price": 677.0,
       "eagle": "NEUTRAL",
       "nano": "ACCUMULATION",
       "cvd": "STRONG BULLISH",
@@ -243,7 +243,7 @@
       "funding": 0.0015
     },
     "LINK": {
-      "price": 9.378,
+      "price": 9.382,
       "eagle": "CAPITULATION",
       "nano": "CAPITULATION",
       "cvd": "STRONG BEARISH",
@@ -254,8 +254,8 @@
       "funding": 0.00030000000000000003
     },
     "BCH": {
-      "price": 347.98,
-      "eagle": "NEUTRAL",
+      "price": 348.28,
+      "eagle": "CAPITULATION",
       "nano": "ACCUMULATION",
       "cvd": "STRONG BULLISH",
       "rsi": 42.139283097108894,
@@ -328,7 +328,7 @@
     }
   ],
   "orderbook_depth": {
-    "scanned_at": "2026-05-24T20:51:34.332465+00:00",
+    "scanned_at": "2026-05-24T20:57:27.811518+00:00",
     "contracts": {
       "KXBTCD-26MAY2517-T86249.99": {
         "ticker": "KXBTCD-26MAY2517-T86249.99",
@@ -995,7 +995,7 @@
         "asset": "ETH",
         "mid_price": null,
         "spread_quality": "NO_DATA",
-        "depth_quality": "DEEP",
+        "depth_quality": "MODERATE",
         "imbalance": "NO_HEAVY",
         "whale_walls": [],
         "mega_walls": [],
