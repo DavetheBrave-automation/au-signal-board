@@ -1,22 +1,22 @@
 {
-  "updated_at": "2026-05-24T20:27:10.416736+00:00",
+  "updated_at": "2026-05-24T20:33:04.541481+00:00",
   "balance": {
     "available": 1.29,
     "portfolio_value": 1.29,
     "deployed": 0
   },
   "btc": {
-    "price": 76536.03,
+    "price": 76614.04,
     "ema200": 77110.06395389007,
     "ema200_distance_pct": -0.71,
     "rsi": 55.73573720262004,
     "eagle": "ACCUMULATION",
-    "eagle_confidence": 35.0,
-    "eagle_cvd": "STRONG BEARISH",
-    "nano": "DISTRIBUTION",
-    "nano_position_pct": 20.6,
-    "nano_zone_weight": "BOTTOM_HEAVY",
-    "nano_oi_context": "BALANCED \u2014 Flat OI + Distribution = No strong conviction",
+    "eagle_confidence": 55.0,
+    "eagle_cvd": "MILD BULLISH",
+    "nano": "ACCUMULATION",
+    "nano_position_pct": 51.1,
+    "nano_zone_weight": "NEUTRAL",
+    "nano_oi_context": "STALEMATE \u2014 Flat OI + Accumulation = Waiting for catalyst",
     "nano_direction_bias": "NEUTRAL",
     "vulture_bias": "LONG",
     "vulture_stack": "\u2696\ufe0f FLAT \u2014 EMAs converging",
@@ -29,7 +29,7 @@
     "rr_long_6h": 0.7,
     "rr_short_6h": 1.5,
     "levels": {
-      "f5m": 76500.04,
+      "f5m": 76500.0,
       "f1h": 76100.0,
       "f4h": 74197.11,
       "c1h": 77412.32,
@@ -38,7 +38,7 @@
     }
   },
   "eth": {
-    "price": 2092.36,
+    "price": 2093.66,
     "ema200": 2129.7817829307774,
     "ema200_distance_pct": -1.75,
     "rsi": 50.904965750134686,
@@ -46,8 +46,8 @@
     "eagle_confidence": 30.0,
     "eagle_cvd": "STRONG BEARISH",
     "nano": "DISTRIBUTION",
-    "nano_position_pct": 24.1,
-    "nano_zone_weight": "BOTTOM_HEAVY",
+    "nano_position_pct": 41.3,
+    "nano_zone_weight": "NEUTRAL",
     "nano_oi_context": "BALANCED \u2014 Flat OI + Distribution = No strong conviction",
     "nano_direction_bias": "NEUTRAL",
     "vulture_bias": "LONG",
@@ -61,7 +61,7 @@
     "rr_long_6h": 0.7,
     "rr_short_6h": 1.4,
     "levels": {
-      "f5m": 2089.96,
+      "f5m": 2089.21,
       "f1h": 2076.93,
       "f4h": 2006.64,
       "c1h": 2128.94,
@@ -134,10 +134,10 @@
   },
   "fleet_summary": {
     "BTC": {
-      "price": 76536.03,
+      "price": 76614.04,
       "eagle": "ACCUMULATION",
-      "nano": "DISTRIBUTION",
-      "cvd": "STRONG BEARISH",
+      "nano": "ACCUMULATION",
+      "cvd": "MILD BULLISH",
       "rsi": 55.73573720262004,
       "ema200_dist": -0.71,
       "rr_long": 2.6,
@@ -145,7 +145,7 @@
       "funding": -9.999999999999999e-05
     },
     "ETH": {
-      "price": 2092.36,
+      "price": 2093.66,
       "eagle": "NEUTRAL",
       "nano": "DISTRIBUTION",
       "cvd": "STRONG BEARISH",
@@ -156,7 +156,7 @@
       "funding": 0.0005
     },
     "SOL": {
-      "price": 84.9,
+      "price": 85.01,
       "eagle": "CAPITULATION",
       "nano": "CAPITULATION",
       "cvd": "STRONG BEARISH",
@@ -164,13 +164,13 @@
       "ema200_dist": -1.44,
       "rr_long": 3.8,
       "trend": "\ud83d\udcc8 BULLISH \u2014 Confirmed uptrend (long-friendly, short-cautious)",
-      "funding": -0.00039999999999999996
+      "funding": -0.00030000000000000003
     },
     "XRP": {
-      "price": 1.3441,
+      "price": 1.3449,
       "eagle": "CAPITULATION",
       "nano": "DISTRIBUTION",
-      "cvd": "STRONG BULLISH",
+      "cvd": "STRONG BEARISH",
       "rsi": 46.37533918530379,
       "ema200_dist": -2.05,
       "rr_long": 4.7,
@@ -180,8 +180,8 @@
     "DOGE": {
       "price": 0.10178,
       "eagle": "CAPITULATION",
-      "nano": "DISTRIBUTION",
-      "cvd": "MILD BEARISH",
+      "nano": "CAPITULATION",
+      "cvd": "STRONG BEARISH",
       "rsi": 48.628685427862365,
       "ema200_dist": -3.12,
       "rr_long": 3.6,
@@ -189,21 +189,21 @@
       "funding": 0.001
     },
     "BNB": {
-      "price": 655.08,
-      "eagle": "NEUTRAL",
+      "price": 655.07,
+      "eagle": "ACCUMULATION",
       "nano": "ACCUMULATION",
-      "cvd": "MILD BEARISH",
+      "cvd": "MILD BULLISH",
       "rsi": 54.705812874173006,
       "ema200_dist": 0.18,
       "rr_long": 2.2,
       "trend": "\ud83d\udcc8 BULLISH \u2014 Confirmed uptrend (long-friendly, short-cautious)",
-      "funding": -9.999999999999999e-05
+      "funding": -0.00019999999999999998
     },
     "HYPE": {
-      "price": 62.98,
+      "price": 62.86,
       "eagle": "CAPITULATION",
       "nano": null,
-      "cvd": "STRONG BULLISH",
+      "cvd": "MILD BULLISH",
       "rsi": 60.829925322097,
       "ema200_dist": 17.88,
       "rr_long": 0.5,
@@ -211,10 +211,10 @@
       "funding": null
     },
     "TAO": {
-      "price": 274.4,
+      "price": 274.7,
       "eagle": "NEUTRAL",
       "nano": null,
-      "cvd": "MILD BULLISH",
+      "cvd": "MILD BEARISH",
       "rsi": 47.09249477893886,
       "ema200_dist": -0.43,
       "rr_long": 3.0,
@@ -222,10 +222,10 @@
       "funding": null
     },
     "ZEC": {
-      "price": 674.47,
+      "price": 675.54,
       "eagle": "NEUTRAL",
       "nano": "ACCUMULATION",
-      "cvd": "STRONG BULLISH",
+      "cvd": "NEUTRAL",
       "rsi": 65.9433974663964,
       "ema200_dist": 11.87,
       "rr_long": 0.2,
@@ -233,7 +233,7 @@
       "funding": 0.0015
     },
     "LINK": {
-      "price": 9.392,
+      "price": 9.396,
       "eagle": "CAPITULATION",
       "nano": "ACCUMULATION",
       "cvd": "STRONG BEARISH",
@@ -244,7 +244,7 @@
       "funding": 0.00030000000000000003
     },
     "BCH": {
-      "price": 347.97,
+      "price": 348.3,
       "eagle": "CAPITULATION",
       "nano": "CAPITULATION",
       "cvd": "STRONG BEARISH",
@@ -318,7 +318,7 @@
     }
   ],
   "orderbook_depth": {
-    "scanned_at": "2026-05-24T20:22:07.093580+00:00",
+    "scanned_at": "2026-05-24T20:28:01.350097+00:00",
     "contracts": {
       "KXBTCD-26MAY2517-T86249.99": {
         "ticker": "KXBTCD-26MAY2517-T86249.99",
@@ -332,11 +332,21 @@
             "price": 0.9,
             "qty": 1000.0,
             "side": "no"
+          },
+          {
+            "price": 0.95,
+            "qty": 1000.0,
+            "side": "no"
           }
         ],
         "mega_walls": [
           {
             "price": 0.9,
+            "qty": 1000.0,
+            "side": "no"
+          },
+          {
+            "price": 0.95,
             "qty": 1000.0,
             "side": "no"
           }
@@ -1031,8 +1041,8 @@
       "KXETHD-26MAY2517-T2099.99": {
         "ticker": "KXETHD-26MAY2517-T2099.99",
         "asset": "ETH",
-        "mid_price": 0.425,
-        "spread_quality": "TIGHT",
+        "mid_price": 0.45,
+        "spread_quality": "WIDE",
         "depth_quality": "DEEP",
         "imbalance": "BALANCED",
         "whale_walls": [],
