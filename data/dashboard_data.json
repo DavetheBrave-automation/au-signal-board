@@ -1,31 +1,31 @@
 {
-  "updated_at": "2026-05-25T12:09:38.489908+00:00",
+  "updated_at": "2026-05-25T12:15:28.140656+00:00",
   "balance": {
     "available": 1.29,
     "portfolio_value": 1.29,
     "deployed": 0
   },
   "btc": {
-    "price": 77252.66,
-    "ema200": 77259.19682245486,
-    "ema200_distance_pct": 0.03,
-    "rsi": 54.95022165684156,
+    "price": 77290.47,
+    "ema200": 77240.79675671678,
+    "ema200_distance_pct": 0.07,
+    "rsi": 56.49913357679046,
     "eagle": "CAPITULATION",
-    "eagle_confidence": 78.0,
+    "eagle_confidence": 57.0,
     "eagle_cvd": "STRONG BEARISH",
     "nano": "DISTRIBUTION",
-    "nano_position_pct": 17.4,
+    "nano_position_pct": 23.8,
     "nano_zone_weight": "BOTTOM_HEAVY",
     "nano_oi_context": "BALANCED \u2014 Flat OI + Distribution = No strong conviction",
     "nano_direction_bias": "NEUTRAL",
     "vulture_bias": "LONG",
-    "vulture_stack": "\ud83d\udd04 MIXED \u2014 Below EMA9, above EMA21",
+    "vulture_stack": "\ud83d\udcc8 BULLISH STACK (price > EMA9 > EMA21)",
     "trend": "\ud83d\udcc8 BULLISH \u2014 Confirmed uptrend (long-friendly, short-cautious)",
     "rr_best_long": 1.8,
     "rr_best_short": 0.6,
     "rr_best_timeframe": "1d",
     "rr_long_1h": 0.3,
-    "rr_short_1h": 3.8,
+    "rr_short_1h": 4.0,
     "rr_long_6h": 0.3,
     "rr_short_6h": 3.7,
     "levels": {
@@ -38,16 +38,16 @@
     }
   },
   "eth": {
-    "price": 2112.12,
+    "price": 2112.99,
     "ema200": 2127.40458353628,
     "ema200_distance_pct": -0.68,
     "rsi": 51.68510278055893,
     "eagle": "CAPITULATION",
-    "eagle_confidence": 41.0,
+    "eagle_confidence": 25.0,
     "eagle_cvd": "STRONG BEARISH",
     "nano": "DISTRIBUTION",
-    "nano_position_pct": 22.6,
-    "nano_zone_weight": "BOTTOM_HEAVY",
+    "nano_position_pct": 30.6,
+    "nano_zone_weight": "NEUTRAL",
     "nano_oi_context": "BALANCED \u2014 Flat OI + Distribution = No strong conviction",
     "nano_direction_bias": "NEUTRAL",
     "vulture_bias": "SHORT",
@@ -294,18 +294,18 @@
   },
   "fleet_summary": {
     "BTC": {
-      "price": 77252.66,
+      "price": 77290.47,
       "eagle": "CAPITULATION",
       "nano": "DISTRIBUTION",
       "cvd": "STRONG BEARISH",
-      "rsi": 54.95022165684156,
-      "ema200_dist": 0.03,
+      "rsi": 56.49913357679046,
+      "ema200_dist": 0.07,
       "rr_long": 1.8,
       "trend": "\ud83d\udcc8 BULLISH \u2014 Confirmed uptrend (long-friendly, short-cautious)",
       "funding": 0.00030000000000000003
     },
     "ETH": {
-      "price": 2112.12,
+      "price": 2112.99,
       "eagle": "CAPITULATION",
       "nano": "DISTRIBUTION",
       "cvd": "STRONG BEARISH",
@@ -316,10 +316,10 @@
       "funding": 0.00030000000000000003
     },
     "SOL": {
-      "price": 85.74,
-      "eagle": "CAPITULATION",
+      "price": 85.78,
+      "eagle": "NEUTRAL",
       "nano": "DISTRIBUTION",
-      "cvd": "STRONG BEARISH",
+      "cvd": "MILD BEARISH",
       "rsi": 48.63064666360458,
       "ema200_dist": -0.58,
       "rr_long": 2.9,
@@ -327,10 +327,10 @@
       "funding": 0
     },
     "XRP": {
-      "price": 1.3558,
+      "price": 1.3562,
       "eagle": "CAPITULATION",
-      "nano": "DISTRIBUTION",
-      "cvd": "STRONG BEARISH",
+      "nano": "ACCUMULATION",
+      "cvd": "STRONG BULLISH",
       "rsi": 51.4429140864571,
       "ema200_dist": -1.23,
       "rr_long": 3.4,
@@ -338,10 +338,10 @@
       "funding": 0.0005
     },
     "DOGE": {
-      "price": 0.10271,
+      "price": 0.10275,
       "eagle": "NEUTRAL",
       "nano": "ACCUMULATION",
-      "cvd": "MILD BEARISH",
+      "cvd": "STRONG BULLISH",
       "rsi": 52.04454442447526,
       "ema200_dist": -2.12,
       "rr_long": 2.9,
@@ -349,7 +349,7 @@
       "funding": 0.0014
     },
     "BNB": {
-      "price": 662.21,
+      "price": 663.28,
       "eagle": "BREAKOUT_ATTEMPT",
       "nano": "ACCUMULATION",
       "cvd": "STRONG BULLISH",
@@ -357,13 +357,13 @@
       "ema200_dist": 1.01,
       "rr_long": 1.0,
       "trend": "\u2696\ufe0f RANGING \u2014 Consolidation (wait for direction)",
-      "funding": 0.0013
+      "funding": 0.0012000000000000001
     },
     "HYPE": {
-      "price": 63.46,
+      "price": 63.66,
       "eagle": "NEUTRAL",
       "nano": null,
-      "cvd": "STRONG BEARISH",
+      "cvd": "MILD BULLISH",
       "rsi": 56.75180468453559,
       "ema200_dist": 14.7,
       "rr_long": 0.5,
@@ -371,8 +371,8 @@
       "funding": null
     },
     "TAO": {
-      "price": 277.85,
-      "eagle": "CAPITULATION",
+      "price": 277.66,
+      "eagle": "NEUTRAL",
       "nano": null,
       "cvd": "STRONG BEARISH",
       "rsi": 52.24567230245937,
@@ -382,10 +382,10 @@
       "funding": null
     },
     "ZEC": {
-      "price": 673.34,
+      "price": 673.32,
       "eagle": "NEUTRAL",
-      "nano": "ACCUMULATION",
-      "cvd": "STRONG BEARISH",
+      "nano": "BREAKOUT_ATTEMPT",
+      "cvd": "STRONG BULLISH",
       "rsi": 61.50067282636823,
       "ema200_dist": 8.84,
       "rr_long": 0.8,
@@ -393,18 +393,18 @@
       "funding": 0.001
     },
     "LINK": {
-      "price": 9.526,
-      "eagle": "CAPITULATION",
+      "price": 9.532,
+      "eagle": "NEUTRAL",
       "nano": "DISTRIBUTION",
-      "cvd": "STRONG BEARISH",
+      "cvd": "MILD BEARISH",
       "rsi": 52.901590403179114,
       "ema200_dist": -1.1,
       "rr_long": 2.9,
       "trend": "\ud83d\udcc8 BULLISH \u2014 Confirmed uptrend (long-friendly, short-cautious)",
-      "funding": 0.00039999999999999996
+      "funding": 0.0005
     },
     "BCH": {
-      "price": 349.22,
+      "price": 349.44,
       "eagle": "CAPITULATION",
       "nano": "DISTRIBUTION",
       "cvd": "STRONG BEARISH",
@@ -412,7 +412,7 @@
       "ema200_dist": -6.28,
       "rr_long": 8.7,
       "trend": "\ud83d\udcc8 BULLISH \u2014 Confirmed uptrend (long-friendly, short-cautious)",
-      "funding": -0.0026999999999999997
+      "funding": -0.0026
     }
   },
   "top_edges": [
@@ -478,7 +478,7 @@
     }
   ],
   "orderbook_depth": {
-    "scanned_at": "2026-05-25T12:04:35.476624+00:00",
+    "scanned_at": "2026-05-25T12:10:24.993389+00:00",
     "contracts": {
       "KXBTCD-26MAY2509-T85799.99": {
         "ticker": "KXBTCD-26MAY2509-T85799.99",
@@ -492,12 +492,52 @@
             "price": 0.04,
             "qty": 7751.0,
             "side": "no"
+          },
+          {
+            "price": 0.09,
+            "qty": 12150.0,
+            "side": "no"
+          },
+          {
+            "price": 0.35,
+            "qty": 861.0,
+            "side": "no"
+          },
+          {
+            "price": 0.37,
+            "qty": 804.0,
+            "side": "no"
+          },
+          {
+            "price": 0.9,
+            "qty": 1000.0,
+            "side": "no"
+          },
+          {
+            "price": 0.95,
+            "qty": 1008.0,
+            "side": "no"
           }
         ],
         "mega_walls": [
           {
             "price": 0.04,
             "qty": 7751.0,
+            "side": "no"
+          },
+          {
+            "price": 0.09,
+            "qty": 12150.0,
+            "side": "no"
+          },
+          {
+            "price": 0.9,
+            "qty": 1000.0,
+            "side": "no"
+          },
+          {
+            "price": 0.95,
+            "qty": 1008.0,
             "side": "no"
           }
         ],
@@ -516,12 +556,57 @@
             "price": 0.04,
             "qty": 7733.0,
             "side": "no"
+          },
+          {
+            "price": 0.09,
+            "qty": 12150.0,
+            "side": "no"
+          },
+          {
+            "price": 0.35,
+            "qty": 796.0,
+            "side": "no"
+          },
+          {
+            "price": 0.37,
+            "qty": 787.0,
+            "side": "no"
+          },
+          {
+            "price": 0.38,
+            "qty": 528.0,
+            "side": "no"
+          },
+          {
+            "price": 0.9,
+            "qty": 1000.0,
+            "side": "no"
+          },
+          {
+            "price": 0.95,
+            "qty": 1008.0,
+            "side": "no"
           }
         ],
         "mega_walls": [
           {
             "price": 0.04,
             "qty": 7733.0,
+            "side": "no"
+          },
+          {
+            "price": 0.09,
+            "qty": 12150.0,
+            "side": "no"
+          },
+          {
+            "price": 0.9,
+            "qty": 1000.0,
+            "side": "no"
+          },
+          {
+            "price": 0.95,
+            "qty": 1008.0,
             "side": "no"
           }
         ],
@@ -542,8 +627,8 @@
             "side": "no"
           },
           {
-            "price": 0.05,
-            "qty": 21871.0,
+            "price": 0.09,
+            "qty": 12150.0,
             "side": "no"
           },
           {
@@ -560,6 +645,16 @@
             "price": 0.38,
             "qty": 555.0,
             "side": "no"
+          },
+          {
+            "price": 0.9,
+            "qty": 1000.0,
+            "side": "no"
+          },
+          {
+            "price": 0.95,
+            "qty": 1008.0,
+            "side": "no"
           }
         ],
         "mega_walls": [
@@ -569,8 +664,18 @@
             "side": "no"
           },
           {
-            "price": 0.05,
-            "qty": 21871.0,
+            "price": 0.09,
+            "qty": 12150.0,
+            "side": "no"
+          },
+          {
+            "price": 0.9,
+            "qty": 1000.0,
+            "side": "no"
+          },
+          {
+            "price": 0.95,
+            "qty": 1008.0,
             "side": "no"
           }
         ],
@@ -591,8 +696,8 @@
             "side": "no"
           },
           {
-            "price": 0.05,
-            "qty": 21871.0,
+            "price": 0.09,
+            "qty": 12150.0,
             "side": "no"
           },
           {
@@ -604,6 +709,16 @@
             "price": 0.37,
             "qty": 848.0,
             "side": "no"
+          },
+          {
+            "price": 0.9,
+            "qty": 1000.0,
+            "side": "no"
+          },
+          {
+            "price": 0.95,
+            "qty": 1008.0,
+            "side": "no"
           }
         ],
         "mega_walls": [
@@ -613,8 +728,18 @@
             "side": "no"
           },
           {
-            "price": 0.05,
-            "qty": 21871.0,
+            "price": 0.09,
+            "qty": 12150.0,
+            "side": "no"
+          },
+          {
+            "price": 0.9,
+            "qty": 1000.0,
+            "side": "no"
+          },
+          {
+            "price": 0.95,
+            "qty": 1008.0,
             "side": "no"
           }
         ],
@@ -635,8 +760,8 @@
             "side": "no"
           },
           {
-            "price": 0.05,
-            "qty": 21871.0,
+            "price": 0.09,
+            "qty": 12150.0,
             "side": "no"
           },
           {
@@ -653,6 +778,16 @@
             "price": 0.38,
             "qty": 599.0,
             "side": "no"
+          },
+          {
+            "price": 0.9,
+            "qty": 1000.0,
+            "side": "no"
+          },
+          {
+            "price": 0.95,
+            "qty": 1008.0,
+            "side": "no"
           }
         ],
         "mega_walls": [
@@ -662,8 +797,18 @@
             "side": "no"
           },
           {
-            "price": 0.05,
-            "qty": 21871.0,
+            "price": 0.09,
+            "qty": 12150.0,
+            "side": "no"
+          },
+          {
+            "price": 0.9,
+            "qty": 1000.0,
+            "side": "no"
+          },
+          {
+            "price": 0.95,
+            "qty": 1008.0,
             "side": "no"
           }
         ],
@@ -684,8 +829,8 @@
             "side": "no"
           },
           {
-            "price": 0.05,
-            "qty": 21871.0,
+            "price": 0.09,
+            "qty": 12150.0,
             "side": "no"
           },
           {
@@ -702,6 +847,16 @@
             "price": 0.38,
             "qty": 529.0,
             "side": "no"
+          },
+          {
+            "price": 0.9,
+            "qty": 1000.0,
+            "side": "no"
+          },
+          {
+            "price": 0.95,
+            "qty": 1008.0,
+            "side": "no"
           }
         ],
         "mega_walls": [
@@ -711,8 +866,18 @@
             "side": "no"
           },
           {
-            "price": 0.05,
-            "qty": 21871.0,
+            "price": 0.09,
+            "qty": 12150.0,
+            "side": "no"
+          },
+          {
+            "price": 0.9,
+            "qty": 1000.0,
+            "side": "no"
+          },
+          {
+            "price": 0.95,
+            "qty": 1008.0,
             "side": "no"
           }
         ],
@@ -733,8 +898,8 @@
             "side": "no"
           },
           {
-            "price": 0.05,
-            "qty": 21871.0,
+            "price": 0.09,
+            "qty": 12150.0,
             "side": "no"
           },
           {
@@ -751,6 +916,16 @@
             "price": 0.38,
             "qty": 503.0,
             "side": "no"
+          },
+          {
+            "price": 0.9,
+            "qty": 1000.0,
+            "side": "no"
+          },
+          {
+            "price": 0.95,
+            "qty": 1008.0,
+            "side": "no"
           }
         ],
         "mega_walls": [
@@ -760,8 +935,18 @@
             "side": "no"
           },
           {
-            "price": 0.05,
-            "qty": 21871.0,
+            "price": 0.09,
+            "qty": 12150.0,
+            "side": "no"
+          },
+          {
+            "price": 0.9,
+            "qty": 1000.0,
+            "side": "no"
+          },
+          {
+            "price": 0.95,
+            "qty": 1008.0,
             "side": "no"
           }
         ],
@@ -782,8 +967,8 @@
             "side": "no"
           },
           {
-            "price": 0.05,
-            "qty": 21871.0,
+            "price": 0.09,
+            "qty": 12150.0,
             "side": "no"
           },
           {
@@ -800,6 +985,16 @@
             "price": 0.38,
             "qty": 599.0,
             "side": "no"
+          },
+          {
+            "price": 0.9,
+            "qty": 1000.0,
+            "side": "no"
+          },
+          {
+            "price": 0.95,
+            "qty": 1008.0,
+            "side": "no"
           }
         ],
         "mega_walls": [
@@ -809,8 +1004,18 @@
             "side": "no"
           },
           {
-            "price": 0.05,
-            "qty": 21871.0,
+            "price": 0.09,
+            "qty": 12150.0,
+            "side": "no"
+          },
+          {
+            "price": 0.9,
+            "qty": 1000.0,
+            "side": "no"
+          },
+          {
+            "price": 0.95,
+            "qty": 1008.0,
             "side": "no"
           }
         ],
@@ -831,8 +1036,8 @@
             "side": "no"
           },
           {
-            "price": 0.05,
-            "qty": 21871.0,
+            "price": 0.09,
+            "qty": 12150.0,
             "side": "no"
           },
           {
@@ -849,6 +1054,16 @@
             "price": 0.38,
             "qty": 548.0,
             "side": "no"
+          },
+          {
+            "price": 0.9,
+            "qty": 1000.0,
+            "side": "no"
+          },
+          {
+            "price": 0.95,
+            "qty": 1008.0,
+            "side": "no"
           }
         ],
         "mega_walls": [
@@ -858,8 +1073,18 @@
             "side": "no"
           },
           {
-            "price": 0.05,
-            "qty": 21871.0,
+            "price": 0.09,
+            "qty": 12150.0,
+            "side": "no"
+          },
+          {
+            "price": 0.9,
+            "qty": 1000.0,
+            "side": "no"
+          },
+          {
+            "price": 0.95,
+            "qty": 1008.0,
             "side": "no"
           }
         ],
@@ -880,8 +1105,8 @@
             "side": "no"
           },
           {
-            "price": 0.05,
-            "qty": 21871.0,
+            "price": 0.09,
+            "qty": 12150.0,
             "side": "no"
           },
           {
@@ -898,6 +1123,16 @@
             "price": 0.38,
             "qty": 503.0,
             "side": "no"
+          },
+          {
+            "price": 0.9,
+            "qty": 1000.0,
+            "side": "no"
+          },
+          {
+            "price": 0.95,
+            "qty": 1008.0,
+            "side": "no"
           }
         ],
         "mega_walls": [
@@ -907,8 +1142,18 @@
             "side": "no"
           },
           {
-            "price": 0.05,
-            "qty": 21871.0,
+            "price": 0.09,
+            "qty": 12150.0,
+            "side": "no"
+          },
+          {
+            "price": 0.9,
+            "qty": 1000.0,
+            "side": "no"
+          },
+          {
+            "price": 0.95,
+            "qty": 1008.0,
             "side": "no"
           }
         ],
@@ -927,12 +1172,57 @@
             "price": 0.04,
             "qty": 7626.0,
             "side": "no"
+          },
+          {
+            "price": 0.09,
+            "qty": 12150.0,
+            "side": "no"
+          },
+          {
+            "price": 0.35,
+            "qty": 829.0,
+            "side": "no"
+          },
+          {
+            "price": 0.37,
+            "qty": 760.0,
+            "side": "no"
+          },
+          {
+            "price": 0.38,
+            "qty": 522.0,
+            "side": "no"
+          },
+          {
+            "price": 0.9,
+            "qty": 1000.0,
+            "side": "no"
+          },
+          {
+            "price": 0.95,
+            "qty": 1008.0,
+            "side": "no"
           }
         ],
         "mega_walls": [
           {
             "price": 0.04,
             "qty": 7626.0,
+            "side": "no"
+          },
+          {
+            "price": 0.09,
+            "qty": 12150.0,
+            "side": "no"
+          },
+          {
+            "price": 0.9,
+            "qty": 1000.0,
+            "side": "no"
+          },
+          {
+            "price": 0.95,
+            "qty": 1008.0,
             "side": "no"
           }
         ],
@@ -953,8 +1243,8 @@
             "side": "no"
           },
           {
-            "price": 0.05,
-            "qty": 21871.0,
+            "price": 0.09,
+            "qty": 12150.0,
             "side": "no"
           },
           {
@@ -971,6 +1261,16 @@
             "price": 0.38,
             "qty": 554.0,
             "side": "no"
+          },
+          {
+            "price": 0.9,
+            "qty": 1000.0,
+            "side": "no"
+          },
+          {
+            "price": 0.95,
+            "qty": 1008.0,
+            "side": "no"
           }
         ],
         "mega_walls": [
@@ -980,8 +1280,18 @@
             "side": "no"
           },
           {
-            "price": 0.05,
-            "qty": 21871.0,
+            "price": 0.09,
+            "qty": 12150.0,
+            "side": "no"
+          },
+          {
+            "price": 0.9,
+            "qty": 1000.0,
+            "side": "no"
+          },
+          {
+            "price": 0.95,
+            "qty": 1008.0,
             "side": "no"
           }
         ],
@@ -1002,8 +1312,8 @@
             "side": "no"
           },
           {
-            "price": 0.05,
-            "qty": 21871.0,
+            "price": 0.09,
+            "qty": 12150.0,
             "side": "no"
           },
           {
@@ -1020,6 +1330,16 @@
             "price": 0.38,
             "qty": 529.0,
             "side": "no"
+          },
+          {
+            "price": 0.9,
+            "qty": 1000.0,
+            "side": "no"
+          },
+          {
+            "price": 0.95,
+            "qty": 1008.0,
+            "side": "no"
           }
         ],
         "mega_walls": [
@@ -1029,8 +1349,18 @@
             "side": "no"
           },
           {
-            "price": 0.05,
-            "qty": 21871.0,
+            "price": 0.09,
+            "qty": 12150.0,
+            "side": "no"
+          },
+          {
+            "price": 0.9,
+            "qty": 1000.0,
+            "side": "no"
+          },
+          {
+            "price": 0.95,
+            "qty": 1008.0,
             "side": "no"
           }
         ],
@@ -1051,8 +1381,8 @@
             "side": "no"
           },
           {
-            "price": 0.05,
-            "qty": 21871.0,
+            "price": 0.09,
+            "qty": 12150.0,
             "side": "no"
           },
           {
@@ -1064,6 +1394,16 @@
             "price": 0.37,
             "qty": 791.0,
             "side": "no"
+          },
+          {
+            "price": 0.9,
+            "qty": 1000.0,
+            "side": "no"
+          },
+          {
+            "price": 0.95,
+            "qty": 1008.0,
+            "side": "no"
           }
         ],
         "mega_walls": [
@@ -1073,8 +1413,18 @@
             "side": "no"
           },
           {
-            "price": 0.05,
-            "qty": 21871.0,
+            "price": 0.09,
+            "qty": 12150.0,
+            "side": "no"
+          },
+          {
+            "price": 0.9,
+            "qty": 1000.0,
+            "side": "no"
+          },
+          {
+            "price": 0.95,
+            "qty": 1008.0,
             "side": "no"
           }
         ],
@@ -1095,8 +1445,8 @@
             "side": "no"
           },
           {
-            "price": 0.05,
-            "qty": 21871.0,
+            "price": 0.09,
+            "qty": 12150.0,
             "side": "no"
           },
           {
@@ -1113,6 +1463,16 @@
             "price": 0.38,
             "qty": 522.0,
             "side": "no"
+          },
+          {
+            "price": 0.9,
+            "qty": 1000.0,
+            "side": "no"
+          },
+          {
+            "price": 0.95,
+            "qty": 1008.0,
+            "side": "no"
           }
         ],
         "mega_walls": [
@@ -1122,8 +1482,18 @@
             "side": "no"
           },
           {
-            "price": 0.05,
-            "qty": 21871.0,
+            "price": 0.09,
+            "qty": 12150.0,
+            "side": "no"
+          },
+          {
+            "price": 0.9,
+            "qty": 1000.0,
+            "side": "no"
+          },
+          {
+            "price": 0.95,
+            "qty": 1008.0,
             "side": "no"
           }
         ],
@@ -1144,8 +1514,8 @@
             "side": "no"
           },
           {
-            "price": 0.05,
-            "qty": 21871.0,
+            "price": 0.09,
+            "qty": 12150.0,
             "side": "no"
           },
           {
@@ -1162,6 +1532,16 @@
             "price": 0.38,
             "qty": 503.0,
             "side": "no"
+          },
+          {
+            "price": 0.9,
+            "qty": 1000.0,
+            "side": "no"
+          },
+          {
+            "price": 0.95,
+            "qty": 1001.0,
+            "side": "no"
           }
         ],
         "mega_walls": [
@@ -1171,8 +1551,18 @@
             "side": "no"
           },
           {
-            "price": 0.05,
-            "qty": 21871.0,
+            "price": 0.09,
+            "qty": 12150.0,
+            "side": "no"
+          },
+          {
+            "price": 0.9,
+            "qty": 1000.0,
+            "side": "no"
+          },
+          {
+            "price": 0.95,
+            "qty": 1001.0,
             "side": "no"
           }
         ],
@@ -1193,8 +1583,8 @@
             "side": "no"
           },
           {
-            "price": 0.05,
-            "qty": 21871.0,
+            "price": 0.09,
+            "qty": 12150.0,
             "side": "no"
           },
           {
@@ -1211,6 +1601,16 @@
             "price": 0.38,
             "qty": 529.0,
             "side": "no"
+          },
+          {
+            "price": 0.9,
+            "qty": 1000.0,
+            "side": "no"
+          },
+          {
+            "price": 0.95,
+            "qty": 1001.0,
+            "side": "no"
           }
         ],
         "mega_walls": [
@@ -1220,8 +1620,18 @@
             "side": "no"
           },
           {
-            "price": 0.05,
-            "qty": 21871.0,
+            "price": 0.09,
+            "qty": 12150.0,
+            "side": "no"
+          },
+          {
+            "price": 0.9,
+            "qty": 1000.0,
+            "side": "no"
+          },
+          {
+            "price": 0.95,
+            "qty": 1001.0,
             "side": "no"
           }
         ],
@@ -1242,8 +1652,8 @@
             "side": "no"
           },
           {
-            "price": 0.05,
-            "qty": 21871.0,
+            "price": 0.09,
+            "qty": 12150.0,
             "side": "no"
           },
           {
@@ -1260,6 +1670,16 @@
             "price": 0.38,
             "qty": 548.0,
             "side": "no"
+          },
+          {
+            "price": 0.9,
+            "qty": 1000.0,
+            "side": "no"
+          },
+          {
+            "price": 0.95,
+            "qty": 1001.0,
+            "side": "no"
           }
         ],
         "mega_walls": [
@@ -1269,8 +1689,18 @@
             "side": "no"
           },
           {
-            "price": 0.05,
-            "qty": 21871.0,
+            "price": 0.09,
+            "qty": 12150.0,
+            "side": "no"
+          },
+          {
+            "price": 0.9,
+            "qty": 1000.0,
+            "side": "no"
+          },
+          {
+            "price": 0.95,
+            "qty": 1001.0,
             "side": "no"
           }
         ],
@@ -1289,12 +1719,52 @@
             "price": 0.04,
             "qty": 7528.0,
             "side": "no"
+          },
+          {
+            "price": 0.09,
+            "qty": 12150.0,
+            "side": "no"
+          },
+          {
+            "price": 0.35,
+            "qty": 799.0,
+            "side": "no"
+          },
+          {
+            "price": 0.37,
+            "qty": 816.0,
+            "side": "no"
+          },
+          {
+            "price": 0.9,
+            "qty": 1000.0,
+            "side": "no"
+          },
+          {
+            "price": 0.95,
+            "qty": 1001.0,
+            "side": "no"
           }
         ],
         "mega_walls": [
           {
             "price": 0.04,
             "qty": 7528.0,
+            "side": "no"
+          },
+          {
+            "price": 0.09,
+            "qty": 12150.0,
+            "side": "no"
+          },
+          {
+            "price": 0.9,
+            "qty": 1000.0,
+            "side": "no"
+          },
+          {
+            "price": 0.95,
+            "qty": 1001.0,
             "side": "no"
           }
         ],
@@ -1315,8 +1785,8 @@
             "side": "no"
           },
           {
-            "price": 0.05,
-            "qty": 21871.0,
+            "price": 0.09,
+            "qty": 12150.0,
             "side": "no"
           },
           {
@@ -1328,6 +1798,16 @@
             "price": 0.37,
             "qty": 776.0,
             "side": "no"
+          },
+          {
+            "price": 0.9,
+            "qty": 1000.0,
+            "side": "no"
+          },
+          {
+            "price": 0.95,
+            "qty": 1001.0,
+            "side": "no"
           }
         ],
         "mega_walls": [
@@ -1337,8 +1817,18 @@
             "side": "no"
           },
           {
-            "price": 0.05,
-            "qty": 21871.0,
+            "price": 0.09,
+            "qty": 12150.0,
+            "side": "no"
+          },
+          {
+            "price": 0.9,
+            "qty": 1000.0,
+            "side": "no"
+          },
+          {
+            "price": 0.95,
+            "qty": 1001.0,
             "side": "no"
           }
         ],
@@ -2818,7 +3308,7 @@
           },
           {
             "price": 0.06,
-            "qty": 982.0,
+            "qty": 977.0,
             "side": "no"
           }
         ],
@@ -2919,17 +3409,12 @@
         "asset": "SOL",
         "mid_price": null,
         "spread_quality": "NO_DATA",
-        "depth_quality": "THIN",
+        "depth_quality": "DEEP",
         "imbalance": "NO_HEAVY",
         "whale_walls": [
           {
             "price": 0.04,
             "qty": 5751.0,
-            "side": "no"
-          },
-          {
-            "price": 0.94,
-            "qty": 1053.0,
             "side": "no"
           }
         ],
@@ -2937,11 +3422,6 @@
           {
             "price": 0.04,
             "qty": 5751.0,
-            "side": "no"
-          },
-          {
-            "price": 0.94,
-            "qty": 1053.0,
             "side": "no"
           }
         ],
@@ -2977,17 +3457,12 @@
         "asset": "SOL",
         "mid_price": null,
         "spread_quality": "NO_DATA",
-        "depth_quality": "THIN",
+        "depth_quality": "MODERATE",
         "imbalance": "NO_HEAVY",
         "whale_walls": [
           {
             "price": 0.04,
             "qty": 2239.0,
-            "side": "no"
-          },
-          {
-            "price": 0.05,
-            "qty": 915.0,
             "side": "no"
           }
         ],
@@ -3004,9 +3479,9 @@
       "KXSOLD-26MAY2509-T85.9999": {
         "ticker": "KXSOLD-26MAY2509-T85.9999",
         "asset": "SOL",
-        "mid_price": 0.16,
+        "mid_price": 0.21,
         "spread_quality": "ILLIQUID",
-        "depth_quality": "MODERATE",
+        "depth_quality": "DEEP",
         "imbalance": "NO_HEAVY",
         "whale_walls": [
           {
@@ -3015,8 +3490,8 @@
             "side": "no"
           },
           {
-            "price": 0.1,
-            "qty": 854.0,
+            "price": 0.05,
+            "qty": 1081.0,
             "side": "no"
           }
         ],
@@ -3024,6 +3499,11 @@
           {
             "price": 0.04,
             "qty": 2218.0,
+            "side": "no"
+          },
+          {
+            "price": 0.05,
+            "qty": 1081.0,
             "side": "no"
           }
         ],
@@ -3033,7 +3513,7 @@
       "KXSOLD-26MAY2509-T84.9999": {
         "ticker": "KXSOLD-26MAY2509-T84.9999",
         "asset": "SOL",
-        "mid_price": 0.81,
+        "mid_price": 0.84,
         "spread_quality": "ILLIQUID",
         "depth_quality": "THIN",
         "imbalance": "YES_HEAVY",
@@ -3045,7 +3525,7 @@
           },
           {
             "price": 0.05,
-            "qty": 899.0,
+            "qty": 923.0,
             "side": "yes"
           }
         ],
@@ -3064,7 +3544,7 @@
         "asset": "SOL",
         "mid_price": null,
         "spread_quality": "NO_DATA",
-        "depth_quality": "DEEP",
+        "depth_quality": "MODERATE",
         "imbalance": "YES_HEAVY",
         "whale_walls": [
           {
@@ -3073,8 +3553,8 @@
             "side": "yes"
           },
           {
-            "price": 0.94,
-            "qty": 944.0,
+            "price": 0.13,
+            "qty": 1090.0,
             "side": "yes"
           }
         ],
@@ -3082,6 +3562,11 @@
           {
             "price": 0.04,
             "qty": 2248.0,
+            "side": "yes"
+          },
+          {
+            "price": 0.13,
+            "qty": 1090.0,
             "side": "yes"
           }
         ],
@@ -3103,7 +3588,7 @@
           },
           {
             "price": 0.21,
-            "qty": 971.0,
+            "qty": 1055.0,
             "side": "yes"
           }
         ],
@@ -3111,6 +3596,11 @@
           {
             "price": 0.04,
             "qty": 2269.0,
+            "side": "yes"
+          },
+          {
+            "price": 0.21,
+            "qty": 1055.0,
             "side": "yes"
           }
         ],
